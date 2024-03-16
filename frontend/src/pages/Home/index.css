@@ -1,0 +1,18 @@
+
+.events-swiper {
+    user-select: none;
+}
+
+.swiper-pagination-bullet {
+    background: rgb(197, 197, 197);
+    opacity: 0.6;
+}
+
+.swiper-pagination-bullet-active {
+    background: red;
+    opacity: 1;
+}
+
+.event-slide {
+    width: 75vw;
+}

@@ -1,0 +1,13 @@
+@import "~react-image-gallery/styles/css/image-gallery.css";
+
+* {
+    --swiper-theme-color: red;
+}
+
+.image-gallery-slide {
+    color: red;
+}
+
+.image-gallery-bullets .image-gallery-bullet:hover {
+    background: red;
+}
