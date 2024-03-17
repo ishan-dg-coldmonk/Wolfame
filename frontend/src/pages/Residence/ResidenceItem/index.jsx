@@ -15,7 +15,6 @@ function ResidenceItem() {
     useEffect(() => {
         const selectedResidenceData = residenceList.find(({ name }) => name.replaceAll(' ', '').toLowerCase() === residence.toLowerCase())
         setResidenceData(selectedResidenceData)
-        console.log(selectedResidenceData)
     }, [residence])
 
     if (residenceData === undefined) {

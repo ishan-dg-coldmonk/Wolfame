@@ -27,8 +27,8 @@ const contactList = [
                 name: 'Ankur Roy Chowdhury',
                 phone_number: '8420474705',
                 image: '',
-                linkedin: 'https://in.linkedin.com/in/saha-kiranmoy',
-                email: 'mail.kiranmoy@gmail.com ',
+                linkedin: '',
+                email: '',
             },
         ],
     },
@@ -38,7 +38,7 @@ const contactList = [
             {
                 name: 'Satyam Lohiya',
                 phone_number: '9414118891',
-                image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQa2QfjnmBfc2vgP3nNwNVBRPveqiTNGVfUbXbLEwcz4zCDCocJv3WFSGIIdQ&s',
+                image: 'https://media-ccu1-1.cdn.whatsapp.net/v/t61.24694-24/375913222_2297297070659040_6420605060213818667_n.jpg?ccb=11-4&oh=01_AdTqH4q_E6CLUvq_QW2hHXJTE9OVikz0W09TP1yMR9TMBg&oe=66034CA1&_nc_sid=e6ed6c&_nc_cat=103',
                 linkedin: 'https://in.linkedin.com/in/satyam-lohiya-536879229',
                 email: 'lohiyasatyam@gmail.com'
             },

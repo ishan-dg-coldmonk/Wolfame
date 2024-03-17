@@ -93,6 +93,7 @@ export default function CreateTeamSection() {
                     return
                 }
                 try {
+                    values.players = values.players.filter((value) => value)
                     await axios.post('/team/create', values)
                     navigate('../')
                 }
@@ -131,8 +132,6 @@ export default function CreateTeamSection() {
     }
 
     const eventData = eventsList.find(({ label }) => label === values.event)
-
-    console.log(errors)
 
     return (
         <Grid container p={4} mt={8} mb={6}>

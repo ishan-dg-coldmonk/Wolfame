@@ -2,28 +2,13 @@ import { Button, Grid, IconButton, Paper, Stack, Typography } from '@mui/materia
 import React, { useEffect, useState } from 'react'
 
 import PlayerSection from './PlayerSection'
-import TeamSection from './TeamSection'
+import TeamSection from '../../../../components/TeamSection'
 import MatchSection from './MatchSection'
 
 
 function BodySection({ residence }) {
 
-    const bodyItems = [
-        {
-            name: 'Players',
-            element: () => <PlayerSection residence={residence} />
-        },
-        {
-            name: 'Teams',
-            element: () => <TeamSection />
-        },
-        {
-            name: 'Matches',
-            element: () => <MatchSection />
-        },
-    ]
-
-    const [selectedMenu, setSelectedMenu] = useState(bodyItems[0])
+    const [selectedMenu, setSelectedMenu] = useState('Players')
 
     const menuChangeHandler = (menuItem) => {
         setSelectedMenu(menuItem)
@@ -34,15 +19,14 @@ function BodySection({ residence }) {
             <Paper>
                 <Grid container spacing={1} sx={{ justifyContent: 'center', width: 1, p: 1 }} >
                     {
-                        bodyItems.map((menuItem) => {
-                            const { name } = menuItem
-                            const isSelected = selectedMenu.name === name
+                        ['Players', 'Teams', 'Matches'].map((name) => {
+                            const isSelected = selectedMenu === name
                             return (
                                 <Grid key={name} item>
                                     <Button
                                         size='large'
                                         variant={isSelected ? 'contained' : 'text'}
-                                        onClick={() => menuChangeHandler(menuItem)}
+                                        onClick={() => menuChangeHandler(name)}
                                     >
                                         <Typography variant='body1' fontWeight={700} sx={{ opacity: 0.8, color: isSelected ? 'white' : 'red' }} >
                                             {name}
@@ -54,7 +38,9 @@ function BodySection({ residence }) {
                     }
                 </Grid>
             </Paper>
-            {selectedMenu?.element()}
+            {selectedMenu === 'Players' && <PlayerSection residence={residence} />}
+            {selectedMenu === 'Teams' && <TeamSection params={{ residence: residence.name }} />}
+            {selectedMenu === 'Matches' && <MatchSection />}
         </Stack >
     )
 }

@@ -131,7 +131,7 @@ function SponsersSection() {
     return (
         <Stack p={4} sx={{ alignItems: 'center' }} gap={3}>
             <Typography variant='h1' fontFamily={"'Nosifer', sans-serif"}>
-                <span className="text-gradient">Sponsors</span>
+                <span className="text-gradient">Past Sponsors</span>
             </Typography>
             <Grid container spacing={3}>
                 <Grid item xs={12} md={4} order={{ xs: 1, md: 2 }}>

@@ -16,11 +16,23 @@ router.get('/', async (req, res) => {
     }
 })
 
+router.get('/:name', async (req, res) => {
+    try {
+        const name = decodeURIComponent(req.params.name)
+        const team = await Team.findOne({ name })
+        await team.populate('players')
+        res.send(team)
+    }
+    catch (e) {
+        res.status(500).send()
+    }
+})
+
 router.post('/create', auth, async (req, res) => {
     try {
         const teamNameExist = await Team.findOne({ name: req.body.name })
         if (teamNameExist) {
-            return res.status(406).send({name: `Team name is already taken.`})
+            return res.status(406).send({ name: `Team name is already taken.` })
         }
         const team = new Team({ ...req.body, createdBy: req.user._id })
         await team.save()
@@ -34,7 +46,7 @@ router.post('/create', auth, async (req, res) => {
 router.post('/approve', auth, async (req, res) => {
     try {
         if (req.user.role != 'admin') {
-            return res.status(401).send({ msg: 'Only admin can approve a team.' })
+            return res.status(402).send({ msg: 'Only admin can approve a team.' })
         }
         const team = await Team.findById({ _id: req.body._id })
         team.approved = true
@@ -53,7 +65,7 @@ router.delete('/:id', auth, async (req, res) => {
             await Team.deleteOne({ _id: req.params.id })
             return res.send()
         }
-        res.status(401).send()
+        res.status(403).send()
     }
     catch (e) {
         res.status(500).send()

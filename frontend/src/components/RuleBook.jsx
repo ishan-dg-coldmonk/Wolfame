@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import PhoneIcon from '@mui/icons-material/Phone';
 import eventsList from '../data/events'
 import registration from '../data/registration'
+import { useNavigate } from 'react-router'
 
 function CoordinatorBlock({ coordinators = [], disableButton }) {
     return (
@@ -55,6 +56,9 @@ function CoordinatorBlock({ coordinators = [], disableButton }) {
 }
 
 function PointsCard({ points = [] }) {
+
+    const navigate = useNavigate()
+
     return (
         <Fragment>
             <Tilt
@@ -87,7 +91,7 @@ function PointsCard({ points = [] }) {
                     </Stack>
                 </Mirror>
             </Tilt>
-            <Button size='large' variant='contained' >
+            <Button size='large' variant='contained' onClick={() => navigate('/teams/create')} >
                 <Typography variant='h5' fontWeight={700}  >
                     Register Now
                 </Typography>

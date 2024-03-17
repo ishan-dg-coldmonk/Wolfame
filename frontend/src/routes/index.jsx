@@ -17,6 +17,7 @@ import Signin from '../pages/Signin'
 import EditSection from "../pages/Users/ProfileSection/EditSection";
 import Teams from '../pages/Teams'
 import CreateTeamSection from '../pages/Teams/CreateTeamSection'
+import TeamPageSection from '../pages/Teams/TeamPageSection'
 
 
 const router = createBrowserRouter([
@@ -103,6 +104,10 @@ const router = createBrowserRouter([
                     {
                         path: 'create',
                         element: <CreateTeamSection />
+                    },
+                    {
+                        path: ':team',
+                        element: <TeamPageSection />
                     }
                 ]
             },

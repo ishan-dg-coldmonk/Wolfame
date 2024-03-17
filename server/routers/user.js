@@ -60,7 +60,7 @@ router.post('/role', auth, async (req, res) => {
     }
     try {
         if (getPriority(req.user.role) < getPriority(req.body.role)) {
-            res.status(401).send()
+            res.status(403).send()
         }
         const user = await User.findById(req.body._id)
         user.role = req.body.role

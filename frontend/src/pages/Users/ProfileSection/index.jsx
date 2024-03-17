@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext, Fragment } from 'react'
-import { Stack, Paper, Typography, Link, Button, MenuItem, Menu } from '@mui/material'
+import { Stack, Paper, Typography, Link, Button, MenuItem, Menu, Grid } from '@mui/material'
 import { Navigate, useNavigate, useParams } from 'react-router'
 import axios from '../../../services/axiosinstance'
 
@@ -11,6 +11,7 @@ import { AuthContext } from '../../../context/AuthProvider';
 import EditIcon from '@mui/icons-material/Edit';
 import ProfileImage from '../../../UI/ProfileImage';
 import useUserProfile from '../../../hooks/useUserProfile';
+import TeamSection from '../../../components/TeamSection';
 
 const roles = ['user', 'jmcr', 'admin']
 
@@ -102,90 +103,122 @@ export default function ProfileSection() {
         }
     }
 
+    if(!userProfile?.name) {
+        return (
+            <Stack mt={12} mb={6} mx={4} py={6} sx={{alignItems: 'center'}}>
+                <Typography variant='h3' fontWeight={700} color='GrayText'>
+                    User Not Exist
+                </Typography>
+            </Stack>
+        )
+    }
+
     return (
-        <Stack direction='row' m={4} mt={12} mb={6}>
-            <Paper elevation={10} sx={{ width: { xs: '100%', md: '35%' }, borderRadius: '2rem' }}>
-                <Stack gap={1} p={4} sx={{ justifyContent: 'flex-start', alignItems: 'flex-start' }}>
-                    <Stack direction='row' gap={2} mb={3}>
-                        <ProfileImage image={userProfile?.image} />
-                        <Stack gap={1} pt={1} sx={{ alignItems: 'flex-start', height: 1 }}>
-                            <Typography
-                                variant='h4'
-                                fontWeight={700}
-                                textAlign='center'
-                                sx={{ textShadow: '0px 2px 0 #000' }}
-                            >
-                                {userProfile?.name}
-                            </Typography>
-                            <Link href={`/residence/${userProfile?.residence?.replaceAll(' ', '')}`} sx={{ textDecoration: 'none' }}>
+        <Grid container spacing={2} p={4} mt={6} mb={2}>
+            <Grid item xs={12} md={4}>
+                <Paper elevation={10} sx={{ borderRadius: '2rem' }}>
+                    <Stack gap={1} p={4} sx={{ justifyContent: 'flex-start', alignItems: 'flex-start' }}>
+                        <Stack direction='row' gap={2} mb={3}>
+                            <ProfileImage image={userProfile?.image} />
+                            <Stack gap={1} pt={1} sx={{ alignItems: 'flex-start', height: 1 }}>
                                 <Typography
                                     variant='h4'
-                                    color='GrayText'
+                                    fontWeight={700}
+                                    textAlign='center'
+                                    sx={{ textShadow: '0px 2px 0 #000' }}
+                                >
+                                    {userProfile?.name}
+                                </Typography>
+                                <Link href={`/residence/${userProfile?.residence?.replaceAll(' ', '')}`} sx={{ textDecoration: 'none' }}>
+                                    <Typography
+                                        variant='h4'
+                                        color='GrayText'
+                                        fontWeight={500}
+                                        textAlign='center'
+                                        sx={{ textShadow: '0px 2px 0 #000', ':hover': { color: 'red' } }}
+                                    >
+                                        {userProfile?.residence}
+                                    </Typography>
+                                </Link>
+                                <RoleChangeMenu role={user?.role} user={userProfile} />
+                                {userProfile.isMe && <Button variant='contained' size='large' startIcon={<EditIcon />} onClick={() => navigate('./edit')}>Edit Profile</Button>}
+                            </Stack>
+                        </Stack>
+                        {userProfile?.phone_number && <Link href={`tel:${userProfile?.phone_number}`} target='_blank' style={{ textDecoration: 'none' }}>
+                            <Stack direction='row' gap={1} sx={{ color: 'white', ":hover": { color: 'red' } }}>
+                                <PhoneIcon fontSize='large' />
+                                <Typography
+                                    variant='h4'
+                                    color='inherit'
                                     fontWeight={500}
                                     textAlign='center'
-                                    sx={{ textShadow: '0px 2px 0 #000', ':hover': { color: 'red' } }}
+                                    sx={{ textShadow: '0px 2px 0 #000' }}
                                 >
-                                    {userProfile?.residence}
+                                    {userProfile?.phone_number}
                                 </Typography>
-                            </Link>
-                            <RoleChangeMenu role={user?.role} user={userProfile} />
-                            {userProfile.isMe && <Button variant='contained' size='large' startIcon={<EditIcon />} onClick={() => navigate('./edit')}>Edit Profile</Button>}
-                        </Stack>
+                            </Stack>
+                        </Link>}
+                        {userProfile?.linkedin && <Link href={userProfile.linkedin} target='_blank' style={{ textDecoration: 'none' }}>
+                            <Stack direction='row' gap={1} sx={{ color: 'white', ":hover": { color: 'red' } }}>
+                                <LinkedInIcon fontSize='large' />
+                                <Typography
+                                    variant='h4'
+                                    color='inherit'
+                                    fontWeight={500}
+                                    textAlign='center'
+                                    sx={{ textShadow: '0px 2px 0 #000' }}
+                                >
+                                    {userProfile?.linkedin}
+                                </Typography>
+                            </Stack>
+                        </Link>}
+                        {userProfile?.email && <Link href={`mailto:${userProfile.email}`} target='_blank' style={{ textDecoration: 'none' }}>
+                            <Stack direction='row' gap={1} sx={{ color: 'white', ":hover": { color: 'red' } }}>
+                                <EmailIcon fontSize='large' />
+                                <Typography
+                                    variant='h4'
+                                    color='inherit'
+                                    fontWeight={500}
+                                    textAlign='center'
+                                    sx={{ textShadow: '0px 2px 0 #000' }}
+                                >
+                                    {userProfile?.email}
+                                </Typography>
+                            </Stack>
+                        </Link>}
+                        {userProfile?.isMe && (
+                            <Stack gap={1} sx={{ width: '100%' }}>
+                                <Button onClick={signout} size='large' variant='contained' fullWidth sx={{ mt: 3 }}>
+                                    Sign Out
+                                </Button>
+                                <Button onClick={deleteAccountHandler} size='large' variant='contained' fullWidth >
+                                    Delete Account
+                                </Button>
+                            </ Stack>
+                        )}
                     </Stack>
-                    {userProfile?.phone_number && <Link href={`tel:${userProfile?.phone_number}`} target='_blank' style={{ textDecoration: 'none' }}>
-                        <Stack direction='row' gap={1} sx={{ color: 'white', ":hover": { color: 'red' } }}>
-                            <PhoneIcon fontSize='large' />
-                            <Typography
-                                variant='h4'
-                                color='inherit'
-                                fontWeight={500}
-                                textAlign='center'
-                                sx={{ textShadow: '0px 2px 0 #000' }}
-                            >
-                                {userProfile?.phone_number}
+                </Paper >
+            </Grid>
+            <Grid item xs={12} md={8}>
+                <Grid container spacing={3} >
+                    <Grid item xs={12}>
+                        <Paper elevation={10} sx={{ borderRadius: '2rem', p: 2, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                            <Typography variant='h2' fontWeight={700} sx={{ opacity: 0.6 }} >
+                                Teams
                             </Typography>
-                        </Stack>
-                    </Link>}
-                    {userProfile?.linkedin && <Link href={userProfile.linkedin} target='_blank' style={{ textDecoration: 'none' }}>
-                        <Stack direction='row' gap={1} sx={{ color: 'white', ":hover": { color: 'red' } }}>
-                            <LinkedInIcon fontSize='large' />
-                            <Typography
-                                variant='h4'
-                                color='inherit'
-                                fontWeight={500}
-                                textAlign='center'
-                                sx={{ textShadow: '0px 2px 0 #000' }}
-                            >
-                                {userProfile?.linkedin}
+                            <TeamSection params={{ players: userProfile?._id }} />
+                        </Paper>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Paper elevation={10} sx={{ borderRadius: '2rem', p: 2, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                            <Typography variant='h2' fontWeight={700} sx={{ opacity: 0.6 }} >
+                                Matches
                             </Typography>
-                        </Stack>
-                    </Link>}
-                    {userProfile?.email && <Link href={`mailto:${userProfile.email}`} target='_blank' style={{ textDecoration: 'none' }}>
-                        <Stack direction='row' gap={1} sx={{ color: 'white', ":hover": { color: 'red' } }}>
-                            <EmailIcon fontSize='large' />
-                            <Typography
-                                variant='h4'
-                                color='inherit'
-                                fontWeight={500}
-                                textAlign='center'
-                                sx={{ textShadow: '0px 2px 0 #000' }}
-                            >
-                                {userProfile?.email}
-                            </Typography>
-                        </Stack>
-                    </Link>}
-                    {userProfile?.isMe && (
-                        <Stack gap={1} sx={{width: '100%'}}>
-                            <Button onClick={signout} size='large' variant='contained' fullWidth sx={{ mt: 3 }}>
-                                Sign Out
-                            </Button>
-                            <Button onClick={deleteAccountHandler} size='large' variant='contained' fullWidth >
-                                Delete Account
-                            </Button>
-                        </ Stack>
-                    )}
-                </Stack>
-            </Paper >
-        </Stack >
+                            {/* <TeamSection params={{ players: userProfile?._id }} /> */}
+                        </Paper>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid >
     )
 }
