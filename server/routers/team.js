@@ -6,8 +6,22 @@ require('dotenv').config()
 
 const roles = ['user', 'jmcr', 'admin']
 
+router.get('/', async (req, res) => {
+    try {
+        const teams = await Team.find(req.query || {})
+        res.send(teams)
+    }
+    catch (e) {
+        res.status(500).send()
+    }
+})
+
 router.post('/create', auth, async (req, res) => {
     try {
+        const teamNameExist = await Team.findOne({ name: req.body.name })
+        if (teamNameExist) {
+            return res.status(406).send({name: `Team name is already taken.`})
+        }
         const team = new Team({ ...req.body, createdBy: req.user._id })
         await team.save()
         res.status(201).send(team)
@@ -35,13 +49,13 @@ router.post('/approve', auth, async (req, res) => {
 router.delete('/:id', auth, async (req, res) => {
     try {
         const team = await Team.findById(req.params.id)
-        if(req.user.role === 'admin' || (req.user.role === 'jmcr' && req.user.residence == team.residence) || team.createdBy == req.user._id) {
-            await Team.deleteOne({_id: req.params.id })
+        if (req.user.role === 'admin' || (req.user.role === 'jmcr' && req.user.residence == team.residence) || team.createdBy == req.user._id) {
+            await Team.deleteOne({ _id: req.params.id })
             return res.send()
         }
         res.status(401).send()
     }
-    catch(e) {
+    catch (e) {
         res.status(500).send()
     }
 })

@@ -1,6 +1,9 @@
+import trophyPhoto from '../assets/boards-page/hero-bg.jpg'
+
 const registration = {
     label: 'Registration Rules',
     name: "REGISTRATION RULES",
+    image: trophyPhoto,
     rules: [
         "All interested students are required to report to their respective hall/hostel JMCR.",
         "Each participant must have a valid identity card issued by the institution.",

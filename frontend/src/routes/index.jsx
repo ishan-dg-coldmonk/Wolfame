@@ -15,6 +15,8 @@ import ProfileSection from '../pages/Users/ProfileSection'
 import Signup from '../pages/Signup'
 import Signin from '../pages/Signin'
 import EditSection from "../pages/Users/ProfileSection/EditSection";
+import Teams from '../pages/Teams'
+import CreateTeamSection from '../pages/Teams/CreateTeamSection'
 
 
 const router = createBrowserRouter([
@@ -87,6 +89,20 @@ const router = createBrowserRouter([
                                 element: <EditSection />
                             }
                         ]
+                    }
+                ]
+            },
+            {
+                path: '/teams',
+                element: <Outlet />,
+                children: [
+                    {
+                        index: true,
+                        element: <Teams />
+                    },
+                    {
+                        path: 'create',
+                        element: <CreateTeamSection />
                     }
                 ]
             },

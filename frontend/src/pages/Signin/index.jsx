@@ -56,8 +56,6 @@ const Signin = (props) => {
             },
         });
 
-    // console.log(values, errors)
-
     const footer = (
         <Typography>
             Don't have an account? <Link to='/signup' style={{ textDecoration: 'none', color: 'red' }}>Sign Up</Link>
