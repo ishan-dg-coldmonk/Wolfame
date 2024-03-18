@@ -20,7 +20,7 @@ const SignUpForm = (props) => {
         confirm_password: "",
     };
 
-    const { values, handleBlur, handleChange, handleSubmit, errors, touched } =
+    const { values, handleBlur, handleChange, handleSubmit, errors, touched, isSubmitting } =
         useFormik({
             initialValues,
             validationSchema: signUpSchema,
@@ -28,6 +28,7 @@ const SignUpForm = (props) => {
             validateOnBlur: false,
             //// By disabling validation onChange and onBlur formik will validate on submit.
             onSubmit: async (values, action) => {
+                action.setSubmitting(true)
                 try {
                     const user_data = { ...values }
                     delete user_data.confirm_password
@@ -38,6 +39,7 @@ const SignUpForm = (props) => {
                         action.setErrors(e.response.data)
                     }
                 }
+                action.setSubmitting(false)
             },
         });
 
@@ -48,7 +50,7 @@ const SignUpForm = (props) => {
     )
 
     return (
-        <AuthBox title='Sign Up' onSubmit={handleSubmit} footer={footer}>
+        <AuthBox title='Sign Up' onSubmit={handleSubmit} footer={footer} isSubmitting={isSubmitting}>
             <TextField
                 margin="normal"
                 required
@@ -163,7 +165,6 @@ const Signup = (props) => {
             }
         }
         catch (e) {
-            console.log(e)
             const msg = e?.response?.data?.msg
             if(msg) {
                 setSnackBarMessage({color: 'error' , msg})

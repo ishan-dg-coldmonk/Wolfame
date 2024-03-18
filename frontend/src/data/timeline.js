@@ -11,7 +11,7 @@ const timelineList = [
         image: inaugurationPhoto,
         events: ["INITIATION",
             "INAUGURATION CEREMONY",
-            "FRIENDLY MATCHES",],
+            "MATCHES BEGINS",],
     },
     {
         title: "SECOND DAY",

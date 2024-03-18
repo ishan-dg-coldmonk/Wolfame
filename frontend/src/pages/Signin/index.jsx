@@ -17,15 +17,9 @@ const Signin = (props) => {
 
     const signInHandler = async (values) => {
         try {
-            const { data } = await axios.post('user/signin', values)
-            signin(data.user, data.token)
-            if (searchParams.has('next')) {
-                navigate(decodeURIComponent(searchParams.get('next')))
-            }
-            else {
-                navigate('/')
-            }
-            // setAuthValues(values)
+            const signinData = await axios.post('user/signin', values)
+            signin(signinData.data.user, signinData.data.token)
+            navigate(`/users/${encodeURIComponent(signinData.data.user.name)}`)
         }
         catch (e) {
             throw e;
@@ -47,14 +41,13 @@ const Signin = (props) => {
             onSubmit: async (values, action) => {
                 try {
                     await signInHandler(values)
-                    action.resetForm();
                 }
                 catch (e) {
-                    action.setStatus(e.response.data.msg || 'Unknown error occured')
+                    action.setStatus(e?.response?.data?.msg || 'Unknown error occured')
                 }
-
             },
         });
+
 
     const footer = (
         <Typography>

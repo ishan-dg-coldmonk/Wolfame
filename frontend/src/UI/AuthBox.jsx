@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Stack, Box, Typography, Paper } from '@mui/material'
 import Button from "@mui/material/Button";
 
-function AuthBox({ title, onSubmit, children, footer }) {
+function AuthBox({ title, onSubmit, children, footer, isSubmitting }) {
     return (
         <Box display={'flex'} justifyContent='center' alignItems='center' p={3} mt={8} flex={1} boxSizing={'border-box'} >
             <Paper elevation={2} sx={{ width: '30rem', padding: '1rem' }} >
@@ -22,6 +22,7 @@ function AuthBox({ title, onSubmit, children, footer }) {
                             type="submit"
                             fullWidth
                             variant="contained"
+                            disabled={isSubmitting}
                             sx={{ mt: 3, mb: 2 }}
                         >
                             {title}
