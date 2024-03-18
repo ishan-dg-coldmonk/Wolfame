@@ -47,6 +47,7 @@ export default function EditSection() {
 
     const initialValues = {
         name: "",
+        image: "",
         email: "",
         residence: "",
     };
@@ -62,7 +63,7 @@ export default function EditSection() {
                     const user_data = { ...values }
                     delete user_data.isMe
                     // await props.onSubmit(user_data)
-                    updateUserData(user_data)
+                    await updateUserData(user_data)
                     // action.resetForm();
                 }
                 catch (e) {

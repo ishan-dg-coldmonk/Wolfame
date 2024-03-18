@@ -165,11 +165,8 @@ function SponsersSection() {
                     </Grid>
                 </Grid>
                 <Grid container spacing={3}>
-                    <Grid item xs={12} sm={6}>
+                    <Grid item xs={12}>
                         <SponserGroup title={'Youth Partner'} sponsers={youthPartner} />
-                    </Grid>
-                    <Grid item xs={12} sm={6} >
-                        <SponserGroup title={'Artist Partner'} sponsers={artistPartner} />
                     </Grid>
                 </Grid>
                 <Grid spacing={3} sx={{ display: 'flex', alignItems: 'center' }}>

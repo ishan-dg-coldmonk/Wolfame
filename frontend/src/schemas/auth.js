@@ -20,7 +20,7 @@ export const updateSchema = Yup.object({
     name: Yup.string().required("Please enter your name").min(3, 'Name is too short').max(35, 'Name is too big'),
     phone_number: Yup.string().required("Please enter your phone number").matches(phoneRegExp, 'Phone number is not valid'),
     residence: Yup.string().required("Please select your residence"),
-    email: Yup.string().email(),
+    email: Yup.string().email("Not a valid email"),
     linkedin: Yup.string(),
     image: Yup.string(),
 });

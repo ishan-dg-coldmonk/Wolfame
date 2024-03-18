@@ -17,13 +17,6 @@ const contactList = [
                 email: 'harshjoshi4219@gmail.com',
             },
             {
-                name: 'Kiranmoy Saha',
-                phone_number: '9083045947',
-                image: 'https://media.licdn.com/dms/image/C5603AQGZYwKAALLzDA/profile-displayphoto-shrink_200_200/0/1649766363460?e=2147483647&v=beta&t=uSog6Sg3UE42D0MVYmGUTxlEWy9lrhBVjXNGzCwZpK8',
-                linkedin: 'https://in.linkedin.com/in/saha-kiranmoy',
-                email: 'mail.kiranmoy@gmail.com ',
-            },
-            {
                 name: 'Ankur Roy Chowdhury',
                 phone_number: '8420474705',
                 image: '',

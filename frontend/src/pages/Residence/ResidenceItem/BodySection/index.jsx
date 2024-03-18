@@ -40,7 +40,7 @@ function BodySection({ residence }) {
             </Paper>
             {selectedMenu === 'Players' && <PlayerSection residence={residence} />}
             {selectedMenu === 'Teams' && <TeamSection params={{ residence: residence.name }} />}
-            {selectedMenu === 'Matches' && <MatchSection params={{ residence: residence.name }} />}
+            {selectedMenu === 'Matches' && <MatchSection params={{ residence: residence.name }} hide={{ residence: true }} />}
         </Stack >
     )
 }

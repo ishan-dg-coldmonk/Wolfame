@@ -388,14 +388,14 @@ const eventsList = [
         description: "COORDINATE TO DOMINATE",
         rules: [
             "Each team must have a minimum of five (5) players eligible to play for each match.",
-            "Players must bring their own earphones/headphones.",
-            "Players must bring their own laptops, mouse, keyboard, etc.",
+            "Players must bring their own earphones/headphones, laptops, mouse, keyboard, etc.",
             "All matches will be knockout matches except the semifinals and Final. The semifinals and Final will be 'Best of 3' Round matches.",
             "For knockout matches maps will be decided by toss.",
             "Home/Away will be designated by toss....the winner team will be designated as the 'home Team.'",
-            "Best of 3:<br />Home Team bans a map.<br />Away team bans a map.<br />Home team bans a map.<br />Home Team picks Map 1, Away Team chooses Map 1 side.<br />Away team picks Map 2, Home Team chooses Map 2 side.<br />The team with a better round differential through two maps chooses Map 3 side.",
+            "Before pausing the participant must ask the moderator for permission",
             "Both teams may agree to restart a map prior to Round 1 beginning if the latency is unreasonable for the server selected.",
             "Any team member who is displaying excessive toxic behaviour during matches may also be disqualified at the discretion of a tournament administrator.",
+            "In case of any dispute the decision of the moderators will be final"
         ],
         points: [50, 30, 15],
         team: 2,
@@ -407,7 +407,7 @@ const eventsList = [
             },
             {
                 name: 'Ankush Dutta',
-                contact: '9083247051'
+                contact: '8617051935'
             },
         ],
     },
