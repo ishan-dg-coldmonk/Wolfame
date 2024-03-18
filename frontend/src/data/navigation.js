@@ -4,10 +4,12 @@ import SportsHandballIcon from '@mui/icons-material/SportsHandball';
 import ImageIcon from '@mui/icons-material/Image';
 import PersonIcon from '@mui/icons-material/Person';
 import ApartmentIcon from '@mui/icons-material/Apartment';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 
 const navigationList = [
     { name: 'Home', to: '/', icon: <HomeIcon fontSize='large' /> },
-    { name: 'Events', to: '/events', icon: <SportsHandballIcon fontSize='large' /> },
+    { name: 'Events', to: '/events', icon: <CalendarMonthIcon fontSize='large' /> },
+    { name: 'Matches', to: '/matches', icon: <SportsHandballIcon fontSize='large' /> },
     { name: 'Leader Board', to: '/leaderboard', icon: <EmojiEventsIcon fontSize='large' /> },
     { name: 'Gallery', to: '/gallery', icon: <ImageIcon fontSize='large' /> },
     { name: 'Residence', to: '/residence', icon: <ApartmentIcon fontSize='large' /> },

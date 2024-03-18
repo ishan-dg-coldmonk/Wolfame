@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Grid, IconButton, Paper, Stack, Typography } from '@mui/material'
-import TeamCard from '../UI/TeamCard'
+import MatchCard from '../UI/MatchCard'
 
 import axios from '../services/axiosinstance'
 
-export default function MatchSection({ params }) {
+export default function MatchSection({ params, sx = {} }) {
 
-    const [teamList, setTeamList] = useState([])
+    const [matchList, setMatchList] = useState([])
 
-    const fetchTeams = async () => {
+    const fetchMatches = async () => {
         try {
-            const teams = await axios.get('/team', { params })
-            return teams.data
+            const matches = await axios.get('/match', { params })
+            return matches.data
         }
         catch (e) {
             return []
@@ -19,16 +19,16 @@ export default function MatchSection({ params }) {
     }
 
     useEffect(() => {
-        fetchTeams().then((data) => setTeamList(data))
+        fetchMatches().then((data) => setMatchList(data))
     }, [params])
 
     return (
-        <Grid container spacing={1} sx={{ display: 'flex', justifyContent: 'center', p: { xs: 2, md: 4 } }}>
-            {teamList.length === 0 && (<Typography sx={{ fontSize: '2rem', opacity: 0.4 }}>
+        <Grid container sx={{ display: 'flex', justifyContent: 'center', p: { xs: 2, md: 4 }, ...sx }}>
+            {matchList.length === 0 && (<Typography sx={{ fontSize: '2rem', opacity: 0.4 }}>
                 Empty
             </Typography>)}
-            {teamList.map((team) => {
-                return <TeamCard key={team.name} team={team} />
+            {matchList.map((match) => {
+                return <MatchCard key={match._id} match={match} />
             })}
         </Grid>
     )

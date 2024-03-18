@@ -10,22 +10,20 @@ const userSchema = new mongoose.Schema({
         trim: true,
         required: true,
     },
-    email: {
-        type: String,
-        trim: true,
-        unique: true,
-        validate: [isEmail, 'Please fill a valid email address']
-    },
+    // email: {
+    //     type: String,
+    //     validate: [isEmail, 'Please fill a valid email address']
+    // },
     linkedin: {
         type: String,
         trim: true,
-        validate: [isURL, 'Please fill a valid linkedin url']
+        // validate: [isURL, 'Please fill a valid linkedin url']
     },
     phone_number: {
         type: String,
         trim: true,
         required: true,
-        validate: [isMobilePhone, 'Please fill a valid phone number']
+        // validate: [isMobilePhone, 'Please fill a valid phone number']
     },
     residence: {
         type: String,
@@ -57,7 +55,6 @@ userSchema.methods.toJSON = function () {
     const userObject = this.toObject()
     delete userObject.password
     delete userObject.tokens
-    delete userObject.avatar
     return userObject
 }
 

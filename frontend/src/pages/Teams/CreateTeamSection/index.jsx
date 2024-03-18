@@ -5,7 +5,6 @@ import { useFormik } from 'formik'
 import axios from '../../../services/axiosinstance';
 import { useSearchParams, useNavigate, Link } from 'react-router-dom';
 import RuleBook from '../../../components/RuleBook'
-import PlayerSelect from 'react-select';
 
 import residenceList from '../../../data/residence'
 import eventsList from '../../../data/events'
@@ -37,6 +36,9 @@ function PlayerSelectInput({ index, selectedPlayers = [], playersList = [], setP
                     label="Player"
                     name='player'
                 >
+                    {
+                        filteredPlayersList.length === 0 && (<Stack sx={{ alignItems: 'center', p: 2 }}><Typography variant='h4'>No Player</Typography></Stack>)
+                    }
                     {filteredPlayersList.map((player) => {
                         const { name, image, _id } = player
                         return (
@@ -113,7 +115,6 @@ export default function CreateTeamSection() {
             return users.data
         }
         catch (e) {
-            console.log(e)
             return []
         }
     }
@@ -134,11 +135,11 @@ export default function CreateTeamSection() {
     const eventData = eventsList.find(({ label }) => label === values.event)
 
     return (
-        <Grid container p={4} mt={8} mb={6}>
-            <Grid item xs={12} md={6} >
+        <Grid container p={{ xs: 1, md: 3 }} mt={9} mb={6}>
+            <Grid item xs={12} md={6} order={{ xs: 3, md: 1 }} py={{ xs: 2, md: 0 }} >
                 <RuleBook event={values.event} disableButton />
             </Grid>
-            <Grid item xs={12} md={6} >
+            <Grid item xs={12} md={6} order={2} >
                 <Stack component="form" onSubmit={handleSubmit} gap={2} px={2} sx={{ alignItems: 'center' }}>
                     <Typography variant='h2' fontWeight={700} sx={{ opacity: 0.6 }} >
                         Create Team

@@ -377,7 +377,7 @@ const eventsList = [
         coordinators: [
             {
                 name: 'Rohit Yadav',
-                contact: '7890825610'
+                contact: '9079627232'
             },
         ],
     },

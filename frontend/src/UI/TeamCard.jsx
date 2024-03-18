@@ -2,7 +2,7 @@ import React from 'react'
 import { Avatar, Grid, Paper, Stack, Typography, Link } from '@mui/material'
 import Tilt from 'react-parallax-tilt';
 
-
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import residenceList from '../data/residence'
 import eventsList from '../data/events'
 import chroma from 'chroma-js';
@@ -35,71 +35,26 @@ export default function TeamCard({ team, ...props }) {
         <Stack direction='row' p={1} sx={{ justifyContent: 'space-between', alignItems: 'center' }}>
           <Link href={`/teams/${teamPathName}`} sx={{ textDecoration: 'none', color: 'white', ':hover': { color: 'red' } }}>
             <Stack direction='row' gap={2} sx={{ justifyContent: 'center', alignItems: 'center' }}>
-              <Avatar src={residenceData?.image} variant="rounded" sx={{ width: 56, height: 56 }} />
-              {/* <Typography variant='h5' fontWeight={500} sx={{ opacity: 0.6, color: 'inherit' }} >
-                {name}
-              </Typography> */}
-              <ValueCard label='Team Name' value={name} />
+              <Avatar src={residenceData?.image} variant="rounded" sx={{ width: 56, height: 56, display: { xs: 'none', md: 'block' } }} />
+              <ValueCard label='Team Name' >
+                <Stack direction='row' gap={1}>
+                  <Typography variant='h5' fontWeight={500} sx={{ opacity: 0.6, color: 'inherit' }} >
+                    {name}
+                  </Typography>
+                  {team?.approved && <CheckCircleIcon color='primary' />}
+                </Stack>
+              </ValueCard>
             </Stack>
           </Link>
-          <ValueCard label='Residence' value={residence} />
-          <ValueCard label='Event' value={event} />
-          <Avatar src={eventData?.image} variant="rounded" sx={{ width: 56, height: 56 }} />
+          <Link href={`/residence/${residence?.replaceAll(' ', '')}`} sx={{ textDecoration: 'none', color: 'white', ':hover': { color: 'red' } }}>
+            <ValueCard label='Residence' value={residence} />
+          </Link>
+          <Link href={`/leaderboard/${event?.replaceAll(' ', '')}`} sx={{ textDecoration: 'none', color: 'white', ':hover': { color: 'red' } }}>
+            <ValueCard label='Event' value={event} />
+          </Link>
+          <Avatar src={eventData?.image} variant="rounded" sx={{ width: 56, height: 56, display: { xs: 'none', md: 'block' } }} />
         </Stack >
       </Paper >
-      {/* <Tilt
-        scale={1.15}
-        tiltReverse={true}
-        perspective={500}
-        glareEnable={true}
-        glareMaxOpacity={0.45}
-        glareBorderRadius='1rem'
-        className='parallax-effect'
-        style={{
-          height: '15rem',
-          width: '25rem',
-          borderRadius: '1rem',
-          borderColor: residenceData?.color,
-          borderStyle: 'solid',
-          borderWidth: '4px',
-          // backgroundColor: chroma(residenceData?.color).alpha(0.6).hex(),
-          backgroundImage: `url(${eventData?.image})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          display: 'flex',
-          justifyContent: 'space-evenly',
-          alignItems: 'center',
-          cursor: 'pointer',
-          padding: '0.5rem',
-          boxSizing: 'border-box'
-        }}
-      >
-        <Stack
-          className='inner-element'
-          p={2}
-          gap={2}
-          alignItems='center'
-        >
-          <Link to={`/teams/${teamPathName}`} style={{ textDecoration: 'none' }}>
-            <Typography
-              variant='h3'
-              fontWeight={700}
-              textAlign='center'
-              sx={{ textShadow: '0px 2px 0 #000' }}
-            >
-              {name}
-            </Typography>
-
-          </Link>
-          <Typography
-            variant='h4'
-            textAlign='center'
-            sx={{ textShadow: '0px 2px 0 #000' }}
-          >
-            {residence}
-          </Typography>
-        </Stack>
-      </Tilt > */}
     </Grid>
   )
 }

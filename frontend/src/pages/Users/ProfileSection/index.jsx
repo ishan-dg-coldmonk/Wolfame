@@ -12,6 +12,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import ProfileImage from '../../../UI/ProfileImage';
 import useUserProfile from '../../../hooks/useUserProfile';
 import TeamSection from '../../../components/TeamSection';
+import MatchSection from '../../../components/MatchSection';
 
 const roles = ['user', 'jmcr', 'admin']
 
@@ -103,9 +104,9 @@ export default function ProfileSection() {
         }
     }
 
-    if(!userProfile?.name) {
+    if (!userProfile?.name) {
         return (
-            <Stack mt={12} mb={6} mx={4} py={6} sx={{alignItems: 'center'}}>
+            <Stack mt={12} mb={6} mx={4} py={6} sx={{ alignItems: 'center' }}>
                 <Typography variant='h3' fontWeight={700} color='GrayText'>
                     User Not Exist
                 </Typography>
@@ -114,7 +115,7 @@ export default function ProfileSection() {
     }
 
     return (
-        <Grid container spacing={2} p={4} mt={6} mb={2}>
+        <Grid container spacing={2} p={{ xs: 1, md: 4 }} mt={6} mb={2}>
             <Grid item xs={12} md={4}>
                 <Paper elevation={10} sx={{ borderRadius: '2rem' }}>
                     <Stack gap={1} p={4} sx={{ justifyContent: 'flex-start', alignItems: 'flex-start' }}>
@@ -200,20 +201,21 @@ export default function ProfileSection() {
                 </Paper >
             </Grid>
             <Grid item xs={12} md={8}>
-                <Grid container spacing={3} >
+                <Grid container spacing={2} >
                     <Grid item xs={12}>
-                        <Paper elevation={10} sx={{ borderRadius: '2rem', p: 2, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                        <Paper elevation={10} sx={{ borderRadius: '2rem', p: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                             <Typography variant='h2' fontWeight={700} sx={{ opacity: 0.6 }} >
                                 Teams
                             </Typography>
-                            <TeamSection params={{ players: userProfile?._id }} />
+                            <TeamSection params={{ players: userProfile?._id }} sx={{ p: 0, py: 2 }} />
                         </Paper>
                     </Grid>
                     <Grid item xs={12}>
-                        <Paper elevation={10} sx={{ borderRadius: '2rem', p: 2, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                        <Paper elevation={10} sx={{ borderRadius: '2rem', p: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                             <Typography variant='h2' fontWeight={700} sx={{ opacity: 0.6 }} >
                                 Matches
                             </Typography>
+                            <MatchSection params={{ player: userProfile?._id }} sx={{ p: 0, py: 2 }} />
                             {/* <TeamSection params={{ players: userProfile?._id }} /> */}
                         </Paper>
                     </Grid>

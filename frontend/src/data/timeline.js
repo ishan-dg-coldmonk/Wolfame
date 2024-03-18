@@ -6,7 +6,7 @@ import culturalPhoto from '../assets/events-page/cultural-bg.jpg'
 
 const timelineList = [
     {
-        title: "INAUGURATION DAY",
+        title: "FIRST DAY",
         date: "19 March 2024",
         image: inaugurationPhoto,
         events: ["INITIATION",
@@ -14,7 +14,7 @@ const timelineList = [
             "FRIENDLY MATCHES",],
     },
     {
-        title: "FIRST DAY",
+        title: "SECOND DAY",
         date: "20 March 2024",
         image: firstdayPhoto,
         events: [
@@ -24,7 +24,7 @@ const timelineList = [
         ],
     },
     {
-        title: "SECOND DAY",
+        title: "THIRD DAY",
         date: "21 March 2024",
         image: seconddayPhoto,
         events: [
@@ -33,19 +33,19 @@ const timelineList = [
             "QUARTER AND SEMI FINALS",
         ],
     },
-    {
-        title: "THIRD DAY",
-        date: "22 March 2024",
-        image: thirddayPhoto,
-        events: [
-            "FINALE GRIND",
-            "AWARD CEREMONY",
-            "DECLARATION OF CHAMPION OF CHAMPIONS",
-        ],
-    },
+    // {
+    //     title: "THIRD DAY",
+    //     date: "22 March 2024",
+    //     image: thirddayPhoto,
+    //     events: [
+    //         "FINALE GRIND",
+    //         "AWARD CEREMONY",
+    //         "DECLARATION OF CHAMPION OF CHAMPIONS",
+    //     ],
+    // },
     {
         title: "CULTURAL DAY",
-        date: "23 March 2024",
+        date: "22 March 2024",
         image: culturalPhoto,
         events: [
             "CULTURAL NIGHT",

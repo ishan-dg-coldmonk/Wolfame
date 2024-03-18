@@ -18,6 +18,8 @@ import EditSection from "../pages/Users/ProfileSection/EditSection";
 import Teams from '../pages/Teams'
 import CreateTeamSection from '../pages/Teams/CreateTeamSection'
 import TeamPageSection from '../pages/Teams/TeamPageSection'
+import Matches from '../pages/Matches' 
+import CreateMatchSection from '../pages/Matches/CreateMatchSection'
 
 
 const router = createBrowserRouter([
@@ -108,6 +110,20 @@ const router = createBrowserRouter([
                     {
                         path: ':team',
                         element: <TeamPageSection />
+                    }
+                ]
+            },
+            {
+                path: '/matches',
+                element: <Outlet />,
+                children: [
+                    {
+                        index: true,
+                        element: <Matches />
+                    },
+                    {
+                        path: 'create',
+                        element: <CreateMatchSection />
                     }
                 ]
             },

@@ -1,7 +1,6 @@
 import React, { Fragment, useState } from 'react'
 
 import ImageGallery from "react-image-gallery";
-import { Gallery } from "react-grid-gallery";
 import Tilt from 'react-parallax-tilt';
 import { Grid, IconButton, Modal, Zoom } from '@mui/material';
 

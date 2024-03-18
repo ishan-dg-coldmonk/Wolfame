@@ -2,10 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Button, Grid, IconButton, Paper, Stack, Typography } from '@mui/material'
 
 import TeamSection from '../../../components/TeamSection'
-
-function MatchSection() {
-    return <></>
-}
+import MatchSection from '../../../components/MatchSection'
 
 export default function EventSection({ event }) {
 
@@ -38,8 +35,8 @@ export default function EventSection({ event }) {
                     })
                 }
             </Grid>
-            {selectedMenu === 'Teams' && <TeamSection params={{ event }} />}
-            {selectedMenu === 'Matches' && <MatchSection event={event} />}
+            {selectedMenu === 'Teams' && <TeamSection params={{ event }} sx={{ p: 0, pt: 1 }} />}
+            {selectedMenu === 'Matches' && <MatchSection params={{ event }} sx={{p: 0, pt: 2}} />}
         </Stack >
     )
 }

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 
 import PlayerSection from './PlayerSection'
 import TeamSection from '../../../../components/TeamSection'
-import MatchSection from './MatchSection'
+import MatchSection from '../../../../components/MatchSection'
 
 
 function BodySection({ residence }) {
@@ -40,7 +40,7 @@ function BodySection({ residence }) {
             </Paper>
             {selectedMenu === 'Players' && <PlayerSection residence={residence} />}
             {selectedMenu === 'Teams' && <TeamSection params={{ residence: residence.name }} />}
-            {selectedMenu === 'Matches' && <MatchSection />}
+            {selectedMenu === 'Matches' && <MatchSection params={{ residence: residence.name }} />}
         </Stack >
     )
 }

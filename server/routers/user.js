@@ -10,7 +10,7 @@ router.post('/signup', async (req, res) => {
     try {
         const isNameExist = await User.findOne({ name: req.body.name })
         if (isNameExist) {
-            return res.status(403).send({msg: 'Name is already being used.'})
+            return res.status(403).send({ msg: 'Name is already being used.' })
         }
         const user = new User(req.body)
         await user.save()
@@ -18,6 +18,7 @@ router.post('/signup', async (req, res) => {
         res.status(201).send({ user, token })
     }
     catch (e) {
+        console.log(e)
         res.status(400).send(e)
     }
 })
@@ -74,7 +75,8 @@ router.post('/role', auth, async (req, res) => {
 
 router.patch('/', auth, async (req, res) => {
     try {
-        Object.keys(req.body).forEach(update => { req.user[update] = req.body[update] })
+        Object.keys(req.body).forEach(update => { if (update != 'role') { req.user[update] = req.body[update] } })
+        req.user['role'] = req.user['role'] !== 'admin' ? 'user' : 'admin'
         await req.user.save()
         res.send({ user: req.user, token: req.token })
     }

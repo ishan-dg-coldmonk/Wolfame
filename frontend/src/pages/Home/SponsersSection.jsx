@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { Grid, Grow, Paper, Stack, Typography } from '@mui/material'
 import Tilt from 'react-parallax-tilt';
 
@@ -13,6 +13,19 @@ import nba from "../../assets/home-page/sponsors-section/nba.jpg";
 import talentwala from "../../assets/home-page/sponsors-section/talentwala.jpg";
 import theGlobalHues from "../../assets/home-page/sponsors-section/the-global-hues.jpg";
 import waaMomo from "../../assets/home-page/sponsors-section/waa-momo.jpg";
+
+const sponsors = [
+    {
+        title: 'Monster Energy',
+        logo: 'https://github.com/Satyam-2001/Wolfame/assets/88069082/f3a52e6f-00f4-45cb-99c0-e9b9403a83d9',
+        backgroundColor: 'black'
+    },
+    {
+        title: 'Predator Energy',
+        logo: 'https://github.com/Satyam-2001/Wolfame/assets/88069082/0ae82ac5-a7ab-4929-b15d-62c482602378',
+        backgroundColor: 'black'
+    },
+]
 
 const titleSponser = [
     {
@@ -129,36 +142,44 @@ function SponserGroup({ title, sponsers }) {
 
 function SponsersSection() {
     return (
-        <Stack p={4} sx={{ alignItems: 'center' }} gap={3}>
-            <Typography variant='h1' fontFamily={"'Nosifer', sans-serif"}>
-                <span className="text-gradient">Past Sponsors</span>
-            </Typography>
-            <Grid container spacing={3}>
-                <Grid item xs={12} md={4} order={{ xs: 1, md: 2 }}>
-                    <SponserGroup title={'Title Sponser'} sponsers={titleSponser} />
+        <Fragment>
+            <Stack p={4} sx={{ alignItems: 'center' }} gap={3}>
+                <Typography variant='h1' fontFamily={"'Nosifer', sans-serif"}>
+                    <span className="text-gradient">Sponsors</span>
+                </Typography>
+                <SponserGroup title={''} sponsers={sponsors} />
+            </Stack>
+            <Stack p={4} sx={{ alignItems: 'center' }} gap={3}>
+                <Typography variant='h1' fontFamily={"'Nosifer', sans-serif"}>
+                    <span className="text-gradient">Past Sponsors</span>
+                </Typography>
+                <Grid container spacing={3}>
+                    <Grid item xs={12} md={4} order={{ xs: 1, md: 2 }}>
+                        <SponserGroup title={'Title Sponser'} sponsers={titleSponser} />
+                    </Grid>
+                    <Grid item xs={12} sm={6} md={4} order={{ xs: 2, md: 1 }}>
+                        <SponserGroup title={'Powered By'} sponsers={poweredBy} />
+                    </Grid>
+                    <Grid item xs={12} sm={6} md={4} order={{ xs: 3, md: 3 }}>
+                        <SponserGroup title={'Associate Sponser'} sponsers={associateSponser} />
+                    </Grid>
                 </Grid>
-                <Grid item xs={12} sm={6} md={4} order={{ xs: 2, md: 1 }}>
-                    <SponserGroup title={'Powered By'} sponsers={poweredBy} />
+                <Grid container spacing={3}>
+                    <Grid item xs={12} sm={6}>
+                        <SponserGroup title={'Youth Partner'} sponsers={youthPartner} />
+                    </Grid>
+                    <Grid item xs={12} sm={6} >
+                        <SponserGroup title={'Artist Partner'} sponsers={artistPartner} />
+                    </Grid>
                 </Grid>
-                <Grid item xs={12} sm={6} md={4} order={{ xs: 3, md: 3 }}>
-                    <SponserGroup title={'Associate Sponser'} sponsers={associateSponser} />
+                <Grid spacing={3} sx={{ display: 'flex', alignItems: 'center' }}>
+                    <SponserGroup title={'Media Partners'} sponsers={mediaPartners} />
                 </Grid>
-            </Grid>
-            <Grid container spacing={3}>
-                <Grid item xs={12} sm={6}>
-                    <SponserGroup title={'Youth Partner'} sponsers={youthPartner} />
+                <Grid spacing={3} sx={{ display: 'flex', alignItems: 'center' }}>
+                    <SponserGroup title={'Other Partners'} sponsers={otherPartners} />
                 </Grid>
-                <Grid item xs={12} sm={6} >
-                    <SponserGroup title={'Artist Partner'} sponsers={artistPartner} />
-                </Grid>
-            </Grid>
-            <Grid spacing={3} sx={{ display: 'flex', alignItems: 'center' }}>
-                <SponserGroup title={'Media Partners'} sponsers={mediaPartners} />
-            </Grid>
-            <Grid spacing={3} sx={{ display: 'flex', alignItems: 'center' }}>
-                <SponserGroup title={'Other Partners'} sponsers={otherPartners} />
-            </Grid>
-        </Stack>
+            </Stack>
+        </Fragment>
     )
 }
 
