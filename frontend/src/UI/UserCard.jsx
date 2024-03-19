@@ -11,7 +11,7 @@ import ProfileImage from './ProfileImage';
 
 export default function UserCard({ user, hide = {} }) {
 
-    const userPathName = encodeURIComponent(user.name) 
+    const userPathName = user?._id
 
     return (
         <Grid item>
@@ -39,7 +39,7 @@ export default function UserCard({ user, hide = {} }) {
                     boxSizing: 'border-box'
                 }}
             >
-                <Link to={`/users/${userPathName}`}>
+                <Link to={userPathName ? `/users/${userPathName}` : '#'}>
                     <ProfileImage image={user.image} />
                 </Link>
 
@@ -49,7 +49,7 @@ export default function UserCard({ user, hide = {} }) {
                     gap={1}
                     alignItems='center'
                 >
-                    <Link to={`/users/${userPathName}`} style={{textDecoration: 'none'}}>
+                    <Link to={userPathName ? `/users/${userPathName}` : '#'} style={{textDecoration: 'none'}}>
                         <Typography
                             variant='h5'
                             fontWeight={700}

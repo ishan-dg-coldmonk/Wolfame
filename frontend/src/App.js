@@ -8,7 +8,7 @@ import { AuthProvider } from './context/AuthProvider';
 
 window.Buffer = window.Buffer || require("buffer").Buffer;
 
-function App() {
+function App(props) {
   const theme = themeSettings();
 
   return (
@@ -17,6 +17,7 @@ function App() {
         <Box height='100vh' overflow='auto' bgcolor={theme.palette.background.default} boxSizing='border-box'>
           <MainAppBar />
           <Outlet />
+          {props?.children}
           <Footer />
         </Box>
       </AuthProvider>

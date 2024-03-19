@@ -9,7 +9,7 @@ const roles = ['user', 'jmcr', 'admin']
 router.get('/', async (req, res) => {
     try {
         const query = { ...req.query, residence: null, player: null }
-        let matches = await Match.find(query).sort({time: 'ascending'}).populate({ path: 'teams', populate: { path: 'players' } })
+        let matches = await Match.find(query).sort({ time: 'ascending' }).populate({ path: 'teams', populate: { path: 'players' } })
         if (req.query.residence) {
             matches = matches.filter(({ teams }) => teams.some(({ residence }) => residence === req.query.residence))
         }
@@ -19,6 +19,29 @@ router.get('/', async (req, res) => {
         res.send(matches)
     }
     catch (e) {
+        res.status(500).send()
+    }
+})
+
+router.get('/:id', async (req, res) => {
+    try {
+        const match = await Match.findById(req.params.id).populate({ path: 'teams', populate: { path: 'players' } })
+        res.send(match)
+    }
+    catch {
+        res.status(500).send()
+    }
+})
+
+router.patch('/:id', auth, async (req, res) => {
+    try {
+        if (req.user.role != 'admin') {
+            res.status(400).send({msg: 'Only admin can edit.'})
+        }
+        const match = await Match.findByIdAndUpdate(req.params.id, { $set: req.body }, { new: true })
+        res.send()
+    }
+    catch {
         res.status(500).send()
     }
 })

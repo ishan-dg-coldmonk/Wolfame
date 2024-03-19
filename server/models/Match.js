@@ -12,6 +12,10 @@ const matchSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Team'
     },
+    summary: {
+        type: String,
+        default: '',
+    },
     event: {
         type: String,
         required: true,

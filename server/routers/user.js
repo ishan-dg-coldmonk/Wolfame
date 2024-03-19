@@ -8,10 +8,6 @@ const roles = ['user', 'jmcr', 'admin']
 
 router.post('/signup', async (req, res) => {
     try {
-        const isNameExist = await User.findOne({ name: req.body.name })
-        if (isNameExist) {
-            return res.status(403).send({ msg: 'Name is already being used.' })
-        }
         const user = new User(req.body)
         await user.save()
         const token = await user.generateAuthToken()
@@ -25,8 +21,8 @@ router.post('/signup', async (req, res) => {
 
 router.post('/signin', async (req, res) => {
     try {
-        const { name, password } = req.body
-        const user = await User.findByCredentials({ name }, password)
+        const { phone_number, password } = req.body
+        const user = await User.findByCredentials({ phone_number }, password)
         const token = await user.generateAuthToken()
         res.send({ user, token })
     }
@@ -45,9 +41,9 @@ router.get('/', async (req, res) => {
     }
 })
 
-router.get('/getuser', async (req, res) => {
+router.get('/:id', async (req, res) => {
     try {
-        const users = await User.findOne(req.query)
+        const users = await User.findById(req.params.id)
         res.send(users)
     }
     catch (e) {

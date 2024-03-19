@@ -7,7 +7,7 @@ import axios from '../services/axiosinstance'
 import residenceList from '../data/residence'
 import eventsList from '../data/events'
 
-function CustomSelect({ value, setValue, label, children, hide }) {
+function CustomSelect({ value, setValue, label, children, hide, ...props }) {
 
     if (hide) {
         return <></>
@@ -16,7 +16,7 @@ function CustomSelect({ value, setValue, label, children, hide }) {
     const name = label.toLowerCase()
 
     return (
-        <Grid item md={4}>
+        <Grid item md={4} {...props}>
             <Box m={1}>
                 <FormControl fullWidth>
                     <InputLabel id="match-select">{label}</InputLabel>
@@ -73,18 +73,18 @@ export default function MatchSection({ params, sx = {}, hide = {} }) {
         <Grid container sx={{ display: 'flex', justifyContent: 'space-evenly', p: { xs: 2, md: 4 }, ...sx }}>
             <Paper sx={{ width: '100%', mb: 2 }}>
                 <Grid container p={1} sx={{ display: 'flex', justifyContent: 'space-evenly' }}>
-                    <CustomSelect hide={hide?.date} label={'Date'} value={filters} setValue={setFilters}>
+                    <CustomSelect xs={6} hide={hide?.date} label={'Date'} value={filters} setValue={setFilters}>
                         <MenuItem value={'19'}>19th March</MenuItem>
                         <MenuItem value={'20'}>20th March</MenuItem>
                         <MenuItem value={'21'}>21st March</MenuItem>
                         <MenuItem value={'22'}>22nd March</MenuItem>
                     </CustomSelect>
-                    <CustomSelect hide={hide?.residence} label={'Residence'} value={filters} setValue={setFilters}>
+                    <CustomSelect xs={6} hide={hide?.residence} label={'Residence'} value={filters} setValue={setFilters}>
                         {residenceList.map(({ name }) => {
                             return <MenuItem key={name} value={name}>{name}</MenuItem>
                         })}
                     </CustomSelect>
-                    <CustomSelect hide={hide?.event} label={'Event'} value={filters} setValue={setFilters}>
+                    <CustomSelect xs={12} hide={hide?.event} label={'Event'} value={filters} setValue={setFilters}>
                         {eventsList.map(({ label }) => {
                             return <MenuItem key={label} value={label}>{label}</MenuItem>
                         })}

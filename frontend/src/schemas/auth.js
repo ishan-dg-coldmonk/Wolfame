@@ -26,6 +26,6 @@ export const updateSchema = Yup.object({
 });
 
 export const signInSchema = Yup.object({
-    name: Yup.string().required("Please enter your name").min(3, 'Name is too short').max(35, 'Name is too big'),
+    phone_number: Yup.string().required("Please enter your phone number").matches(phoneRegExp, 'Phone number is not valid'),
     password: Yup.string().required("Please enter your password").matches(passwordRegex, "Password must contain at least 8 characters, one uppercase, one number and one special case character"),
 });

@@ -18,18 +18,22 @@ import EditSection from "../pages/Users/ProfileSection/EditSection";
 import Teams from '../pages/Teams'
 import CreateTeamSection from '../pages/Teams/CreateTeamSection'
 import TeamPageSection from '../pages/Teams/TeamPageSection'
-import Matches from '../pages/Matches' 
+import Matches from '../pages/Matches'
 import CreateMatchSection from '../pages/Matches/CreateMatchSection'
+import Error from '../pages/Error'
+import MatchPageSection from "../pages/Matches/MatchPageSection";
 
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: <App />,
+        errorElement: <App><Error /></App>,
         children: [
             {
                 index: true,
                 element: <Home />,
+                errorElement: <Error />,
             },
             {
                 path: '/gallery',
@@ -124,6 +128,10 @@ const router = createBrowserRouter([
                     {
                         path: 'create',
                         element: <CreateMatchSection />
+                    },
+                    {
+                        path: ':matchId',
+                        element: <MatchPageSection />
                     }
                 ]
             },

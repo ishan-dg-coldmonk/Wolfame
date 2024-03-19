@@ -83,7 +83,7 @@ export default function CreateTeamSection() {
             validateOnBlur: false,
             //// By disabling validation onChange and onBlur formik will validate on submit.
             onSubmit: async (values, action) => {
-                const data = {...values, time: values.time.$d}
+                const data = { ...values, time: values.time.$d }
                 try {
                     await axios.post('/match/create', data)
                     navigate('../')
@@ -97,13 +97,11 @@ export default function CreateTeamSection() {
             },
         });
 
-    console.log(values, errors)
-
     const [teamsList, setTeamsList] = useState([])
 
     const fetchTeam = async () => {
         try {
-            const { data } = await axios.get('/team', { params: { event: values?.event, approved: true } })
+            const { data } = await axios.get('/team', { params: { event: values?.event } })
             return data
         }
         catch (e) {
@@ -160,7 +158,7 @@ export default function CreateTeamSection() {
                         name='time'
                         id='time'
                         onChange={(value) => setFieldValue('time', value)}
-                        // onBlur={handleBlur}
+                    // onBlur={handleBlur}
                     />
                 </DemoContainer>
             </LocalizationProvider>

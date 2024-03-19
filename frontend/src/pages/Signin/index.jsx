@@ -19,7 +19,7 @@ const Signin = (props) => {
         try {
             const signinData = await axios.post('user/signin', values)
             signin(signinData.data.user, signinData.data.token)
-            navigate(`/users/${encodeURIComponent(signinData.data.user.name)}`)
+            navigate(`/users/${signinData.data.user._id}`)
         }
         catch (e) {
             throw e;
@@ -27,7 +27,7 @@ const Signin = (props) => {
     }
 
     const initialValues = {
-        name: "",
+        phone_number: "",
         password: "",
     };
 
@@ -59,20 +59,18 @@ const Signin = (props) => {
         <AuthBox title='Sign In' onSubmit={handleSubmit} footer={footer}>
             <TextField
                 margin="normal"
-                required
                 fullWidth
-                id="name"
-                label="Name"
-                name="name"
-                value={values.name}
+                id="phone_number"
+                label="Phone Number"
+                name="phone_number"
+                value={values.phone_number}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                error={errors.name && touched.name}
-                autoFocus
+                error={errors.phone_number && touched.phone_number}
             />
-            {errors.name && touched.name && (
+            {errors.phone_number && touched.phone_number && (
                 <Typography color='error'>
-                    {errors.name}
+                    {errors.phone_number}
                 </Typography>
             )}
             <PasswordInput

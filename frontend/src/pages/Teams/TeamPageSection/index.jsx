@@ -29,7 +29,7 @@ export default function TeamPageSection() {
 
     const deleteTeamHandler = async () => {
         try {
-            await axios.delete(`/team/${teamData?._id}`)
+            await axios.delete(`/team/${team}`)
             navigate('../')
         }
         catch (e) {
@@ -51,6 +51,16 @@ export default function TeamPageSection() {
     useEffect(() => {
         fetchTeam()
     }, [team])
+
+    if (!teamData?.name) {
+        return (
+            <Stack p={8} pt={15} sx={{alignItems: 'center'}}>
+                <Typography variant='h4'>
+                    Loading
+                </Typography>
+            </Stack>
+        )
+    }
 
     return (
         <Grid container spacing={2} p={{ xs: 1, md: 4 }} mt={6} mb={2}>
@@ -95,7 +105,7 @@ export default function TeamPageSection() {
                                     <Typography variant='h4' >
                                         Approve
                                     </Typography>
-                                    <Switch checked={teamData?.approved} onChange={approveChangeHandler} />
+                                    <Switch checked={teamData?.approved} disabled={user?.role != 'admin'} onChange={approveChangeHandler} />
                                 </Stack>
                                 <Typography variant='body1' color='GrayText' >
                                     *Only approved team can participate in matches.
