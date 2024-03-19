@@ -7,7 +7,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import EmailIcon from '@mui/icons-material/Email';
 
 import { Link } from 'react-router-dom';
-import ProfileImage from './ProfileImage';
+import ProfileImage from '../../UI/ProfileImage';
 
 export default function UserCard({ user, hide = {} }) {
 

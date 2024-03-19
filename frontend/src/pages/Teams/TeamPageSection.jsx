@@ -1,65 +1,59 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Avatar, Button, Grid, Link, Paper, Stack, Switch, Typography } from '@mui/material'
 import { useNavigate, useParams } from 'react-router'
-import axios from '../../../services/axiosinstance'
+import axios from '../../services/axiosinstance'
 
 import PhoneIcon from '@mui/icons-material/Phone';
-import PlayerCard from '../../../UI/PlayerCard'
-import MatchSection from '../../../components/MatchSection';
-import { AuthContext } from '../../../context/AuthProvider';
+import PlayerCard from '../../UI/PlayerCard'
+import MatchSection from '../../components/Sections/MatchSection';
+import { AuthContext } from '../../context/AuthProvider';
+
+import LoadingIndicator from '../../UI/LoadingIndicator'
+import EmptyBlock from '../../UI/EmptyBlock'
+import ErrorBlock from '../../UI/ErrorBlock'
+
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { queryClient } from '../../services/http';
 
 export default function TeamPageSection() {
 
-    const { team } = useParams()
-    const [teamData, setTeamData] = useState({})
+    const { teamId } = useParams()
+
+    const { data: teamData, isPending, isError } = useQuery({
+        queryKey: ['teams', teamId],
+        queryFn: () => axios.get(`/team/${teamId}`).then((response) => response.data),
+    })
+
+    const { mutate: deleteTeamHandler, isPending: isDeleting } = useMutation({
+        mutationFn: () => axios.delete(`/team/${teamId}`),
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['teams'], refetchType: 'none' })
+            navigate('../')
+        }
+    })
+
+    const { mutate: updateTeamHandler } = useMutation({
+        mutationFn: (values) => axios.patch(`/team/${teamId}`, values),
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['teams'] })
+        }
+    })
+
     const { user } = useContext(AuthContext)
     const navigate = useNavigate()
 
+    if (isPending) {
+        return <LoadingIndicator pt={12} />
+    }
+
+    if (isError) {
+        return <ErrorBlock pt={12} />
+    }
+
     const rightToDelete = !teamData?.approved && (user?.role === 'admin' || (user?.role === 'jmcr' && user?.residence === teamData?.residence) || teamData?.createdBy == user?._id)
 
-    const fetchTeam = async () => {
-        try {
-            const { data } = await axios.get(`/team/${team}`)
-            setTeamData(data)
-        }
-        catch (e) {
-
-        }
-    }
-
-    const deleteTeamHandler = async () => {
-        try {
-            await axios.delete(`/team/${team}`)
-            navigate('../')
-        }
-        catch (e) {
-
-        }
-    }
-
     const approveChangeHandler = async (event) => {
-        try {
-            const approved = event.target.checked
-            await axios.post('/team/approve', { _id: teamData?._id, approved })
-            setTeamData({ ...teamData, approved })
-        }
-        catch (e) {
-
-        }
-    }
-
-    useEffect(() => {
-        fetchTeam()
-    }, [team])
-
-    if (!teamData?.name) {
-        return (
-            <Stack p={8} pt={15} sx={{alignItems: 'center'}}>
-                <Typography variant='h4'>
-                    Loading
-                </Typography>
-            </Stack>
-        )
+        updateTeamHandler({ approved: event.target.checked })
     }
 
     return (
@@ -127,7 +121,7 @@ export default function TeamPageSection() {
                                 </Stack>
                             </Stack>
                         </Paper>
-                        {rightToDelete && <Button size='large' variant='outlined' onClick={deleteTeamHandler}>Delete Team</Button>}
+                        {rightToDelete && <Button size='large' variant='outlined' onClick={deleteTeamHandler} disabled={isDeleting}>Delete Team</Button>}
                     </Stack>
                 </Paper>
             </Grid>

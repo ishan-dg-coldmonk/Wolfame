@@ -11,8 +11,8 @@ import { AuthContext } from '../../../context/AuthProvider';
 import EditIcon from '@mui/icons-material/Edit';
 import ProfileImage from '../../../UI/ProfileImage';
 import useUserProfile from '../../../hooks/useUserProfile';
-import TeamSection from '../../../components/TeamSection';
-import MatchSection from '../../../components/MatchSection';
+import TeamSection from '../../../components/Sections/TeamSection';
+import MatchSection from '../../../components/Sections/MatchSection';
 
 const roles = ['user', 'jmcr', 'admin']
 
@@ -119,7 +119,7 @@ export default function ProfileSection() {
             <Grid item xs={12} md={4}>
                 <Paper elevation={10} sx={{ borderRadius: '2rem' }}>
                     <Stack gap={1} p={4} sx={{ justifyContent: 'flex-start', alignItems: 'flex-start' }}>
-                        <Stack direction='row' gap={2} mb={3}>
+                        <Stack direction='row' gap={2} mb={1}>
                             <ProfileImage image={userProfile?.image} />
                             <Stack gap={1} pt={1} sx={{ alignItems: 'flex-start', height: 1 }}>
                                 <Typography
@@ -142,9 +142,9 @@ export default function ProfileSection() {
                                     </Typography>
                                 </Link>
                                 <RoleChangeMenu role={user?.role} user={userProfile} />
-                                {userProfile.isMe && <Button variant='contained' size='large' startIcon={<EditIcon />} onClick={() => navigate('./edit')}>Edit Profile</Button>}
                             </Stack>
                         </Stack>
+                        {userProfile.isMe && <Button variant='contained' fullWidth size='large' sx={{mb: 2}} startIcon={<EditIcon />} onClick={() => navigate('./edit')}>Edit Profile</Button>}
                         {userProfile?.phone_number && <Link href={`tel:${userProfile?.phone_number}`} target='_blank' style={{ textDecoration: 'none' }}>
                             <Stack direction='row' gap={1} sx={{ color: 'white', ":hover": { color: 'red' } }}>
                                 <PhoneIcon fontSize='large' />
@@ -204,11 +204,11 @@ export default function ProfileSection() {
                 <Grid container spacing={2} >
                     <Grid item xs={12}>
                         <Paper elevation={10} sx={{ borderRadius: '2rem', p: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                            <Stack gap={1} sx={{alignItems: 'center'}}>
+                            <Stack gap={1} sx={{ alignItems: 'center' }}>
                                 <Typography variant='h2' fontWeight={700} sx={{ opacity: 0.6 }} >
                                     Teams
                                 </Typography>
-                                <Link href='/teams/create' sx={{ textDecoration: 'none', ':hover': {color: 'red'} }}>
+                                <Link href='/teams/create' sx={{ textDecoration: 'none', ':hover': { color: 'red' } }}>
                                     <Typography variant='h3' fontWeight={700} sx={{ opacity: 0.6, color: 'inherit' }} >
                                         (Create Team)
                                     </Typography>

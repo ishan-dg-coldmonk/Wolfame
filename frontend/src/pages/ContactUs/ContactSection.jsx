@@ -2,7 +2,7 @@ import { Button, Grid, Paper, Stack, Typography } from '@mui/material'
 import React, { useState } from 'react'
 
 import contactList from '../../data/contact'
-import UserCard from '../../UI/UserCard';
+import UserCard from '../../components/Cards/UserCard';
 
 
 function ContactSection() {

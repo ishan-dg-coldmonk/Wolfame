@@ -112,7 +112,7 @@ const router = createBrowserRouter([
                         element: <CreateTeamSection />
                     },
                     {
-                        path: ':team',
+                        path: ':teamId',
                         element: <TeamPageSection />
                     }
                 ]

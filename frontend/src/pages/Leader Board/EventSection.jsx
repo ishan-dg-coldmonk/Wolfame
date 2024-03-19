@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Grid, IconButton, Paper, Stack, Typography } from '@mui/material'
 
-import TeamSection from '../../../components/TeamSection'
-import MatchSection from '../../../components/MatchSection'
+import TeamSection from '../../components/Sections/TeamSection'
+import MatchSection from '../../components/Sections/MatchSection'
 
 export default function EventSection({ event }) {
 

@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import { Button, Paper, Stack, Typography } from '@mui/material'
-import Loading from '../../UI/Loading'
-import MatchCard from '../../UI/MatchCard'
+import LoadingIndicator from '../../UI/LoadingIndicator'
+import MatchCard from '../../components/Cards/MatchCard'
 import axios from '../../services/axiosinstance'
 // import MDEditor from '../../components/MDEditor'
 import MDPreview from '../../components/MDPreview'
@@ -112,7 +112,7 @@ export default function MatchPageSection() {
     }, [matchId])
 
     if (!matchData?.time) {
-        return <Loading />
+        return <LoadingIndicator />
     }
 
     return (

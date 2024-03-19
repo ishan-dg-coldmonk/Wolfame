@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import { Button, FormControl, Grid, IconButton, InputLabel, Paper, Select, Stack, Typography, MenuItem, Box } from '@mui/material'
-import MatchCard from '../UI/MatchCard'
+import MatchCard from '../Cards/MatchCard'
 
-import axios from '../services/axiosinstance'
+import LoadingIndicator from '../../UI/LoadingIndicator'
+import EmptyBlock from '../../UI/EmptyBlock'
+import ErrorBlock from '../../UI/ErrorBlock'
 
-import residenceList from '../data/residence'
-import eventsList from '../data/events'
+import { useQuery } from '@tanstack/react-query';
+import { fetchMatches } from '../../services/http';
+
+import residenceList from '../../data/residence'
+import eventsList from '../../data/events'
 
 function CustomSelect({ value, setValue, label, children, hide, ...props }) {
 
-    if (hide) {
-        return <></>
-    }
+    if (hide) return <></>
 
     const name = label.toLowerCase()
 
@@ -36,10 +39,26 @@ function CustomSelect({ value, setValue, label, children, hide, ...props }) {
     )
 }
 
-export default function MatchSection({ params, sx = {}, hide = {} }) {
+export default function MatchSection({ params = {}, sx = {}, hide = {} }) {
 
-    const [matchList, setMatchList] = useState([])
-    const [filters, setFilters] = useState({date: 'All', event: 'All', residence: 'All'})
+    const { data: matchList, isPending, isError } = useQuery({
+        queryKey: ['matches', params],
+        queryFn: () => fetchMatches(params),
+    })
+
+    const [filters, setFilters] = useState({ date: 'All', event: 'All', residence: 'All' })
+
+    if (isPending) {
+        return <LoadingIndicator />
+    }
+
+    if (isError) {
+        return <ErrorBlock />
+    }
+
+    if (matchList.length === 0) {
+        return <EmptyBlock />
+    }
 
     const filteredList = matchList.filter(({ time, event, teams }) => {
         if (filters.date != 'All' && new Date(time).getDate() != filters.date) {
@@ -53,21 +72,6 @@ export default function MatchSection({ params, sx = {}, hide = {} }) {
         }
         return true
     })
-
-
-    const fetchMatches = async () => {
-        try {
-            const matches = await axios.get('/match', { params })
-            return matches.data
-        }
-        catch (e) {
-            return []
-        }
-    }
-
-    useEffect(() => {
-        fetchMatches().then((data) => setMatchList(data))
-    }, [params])
 
     return (
         <Grid container sx={{ display: 'flex', justifyContent: 'space-evenly', p: { xs: 2, md: 4 }, ...sx }}>
@@ -91,9 +95,7 @@ export default function MatchSection({ params, sx = {}, hide = {} }) {
                     </CustomSelect>
                 </Grid>
             </Paper>
-            {filteredList.length === 0 && (<Typography sx={{ fontSize: '2rem', opacity: 0.4, mt: 3 }}>
-                Empty
-            </Typography>)}
+            {filteredList.length === 0 && <EmptyBlock />}
             {filteredList.map((match) => {
                 return <MatchCard key={match._id} match={match} />
             })}

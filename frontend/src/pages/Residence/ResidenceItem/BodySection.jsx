@@ -1,9 +1,9 @@
 import { Button, Grid, IconButton, Paper, Stack, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 
-import PlayerSection from './PlayerSection'
-import TeamSection from '../../../../components/TeamSection'
-import MatchSection from '../../../../components/MatchSection'
+import PlayerSection from '../../../components/Sections/PlayerSection'
+import TeamSection from '../../../components/Sections/TeamSection'
+import MatchSection from '../../../components/Sections/MatchSection'
 
 
 function BodySection({ residence }) {
@@ -38,7 +38,7 @@ function BodySection({ residence }) {
                     }
                 </Grid>
             </Paper>
-            {selectedMenu === 'Players' && <PlayerSection residence={residence} />}
+            {selectedMenu === 'Players' && <PlayerSection params={{ residence: residence.name }} />}
             {selectedMenu === 'Teams' && <TeamSection params={{ residence: residence.name }} />}
             {selectedMenu === 'Matches' && <MatchSection params={{ residence: residence.name }} hide={{ residence: true }} />}
         </Stack >

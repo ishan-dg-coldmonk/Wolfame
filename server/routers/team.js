@@ -27,7 +27,7 @@ router.get('/:id', async (req, res) => {
     }
 })
 
-router.post('/create', auth, async (req, res) => {
+router.post('/', auth, async (req, res) => {
     try {
         const team = new Team({ ...req.body, createdBy: req.user._id })
         await team.save()
@@ -38,12 +38,12 @@ router.post('/create', auth, async (req, res) => {
     }
 })
 
-router.post('/approve', auth, async (req, res) => {
+router.patch('/:id', auth, async (req, res) => {
     try {
         if (req.user.role != 'admin') {
             return res.status(403).send({ msg: 'Only admin can approve a team.' })
         }
-        const team = await Team.findByIdAndUpdate(req.body._id, { $set: { approved: req.body.approved } }, { new: true })
+        const team = await Team.findByIdAndUpdate(req.params.id, { $set: req.body }, { new: true })
         res.send()
     }
     catch (e) {

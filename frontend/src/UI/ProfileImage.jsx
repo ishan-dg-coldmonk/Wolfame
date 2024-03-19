@@ -12,7 +12,6 @@ export default function ProfileImage({ image }) {
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             borderRadius: '1rem',
-        }}>
-        </Paper>
+        }} />
     )
 }

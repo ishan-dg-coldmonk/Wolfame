@@ -3,14 +3,14 @@ import { Avatar, Grid, Paper, Stack, Typography, Link, AvatarGroup, Tooltip, But
 import Tilt from 'react-parallax-tilt';
 
 
-import residenceList from '../data/residence'
-import eventsList from '../data/events'
+import residenceList from '../../data/residence'
+import eventsList from '../../data/events'
 import chroma from 'chroma-js';
 import moment from 'moment'
-import PlayerCard from './PlayerCard';
-import { AuthContext } from '../context/AuthProvider';
+import PlayerCard from '../../UI/PlayerCard';
+import { AuthContext } from '../../context/AuthProvider';
 
-import axios from '../services/axiosinstance'
+import axios from '../../services/axiosinstance'
 import { useNavigate } from 'react-router';
 
 const vsImage = 'https://upload.wikimedia.org/wikipedia/commons/7/70/Street_Fighter_VS_logo.png'

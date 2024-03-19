@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { Stack, Paper, Typography, Link } from '@mui/material'
 import DefaultHeader from '../../UI/DefaultHeader'
-import MatchSection from '../../components/MatchSection'
+import MatchSection from '../../components/Sections/MatchSection'
 import { AuthContext } from '../../context/AuthProvider'
 
 function Matches() {

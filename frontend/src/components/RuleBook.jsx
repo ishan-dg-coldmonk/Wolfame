@@ -153,7 +153,7 @@ function HeroSection({ event, disableButton }) {
                                 }}>
                                     {(eventData?.rules || []).map((rule) => {
                                         return (
-                                            <ListItem>
+                                            <ListItem key={rule}>
                                                 <Typography variant='h5' sx={{ opacity: 0.9 }}>
                                                     <div dangerouslySetInnerHTML={{ __html: rule }} />
                                                 </Typography>

@@ -14,8 +14,7 @@ router.post('/signup', async (req, res) => {
         res.status(201).send({ user, token })
     }
     catch (e) {
-        console.log(e)
-        res.status(400).send(e)
+        res.status(500).send(e)
     }
 })
 
@@ -27,7 +26,7 @@ router.post('/signin', async (req, res) => {
         res.send({ user, token })
     }
     catch (e) {
-        res.status(400).send(e)
+        res.status(500).send(e)
     }
 })
 
@@ -37,7 +36,7 @@ router.get('/', async (req, res) => {
         res.send(users)
     }
     catch (e) {
-        res.status(400).send(e)
+        res.status(500).send(e)
     }
 })
 
@@ -47,7 +46,7 @@ router.get('/:id', async (req, res) => {
         res.send(users)
     }
     catch (e) {
-        res.status(400).send(e)
+        res.status(500).send(e)
     }
 })
 
@@ -65,7 +64,7 @@ router.post('/role', auth, async (req, res) => {
         res.send()
     }
     catch (e) {
-        res.status(400).send(e)
+        res.status(500).send(e)
     }
 })
 
@@ -77,7 +76,7 @@ router.patch('/', auth, async (req, res) => {
         res.send({ user: req.user, token: req.token })
     }
     catch (e) {
-        res.status(400).send(e)
+        res.status(500).send(e)
     }
 })
 
@@ -87,8 +86,7 @@ router.delete('/me', auth, async (req, res) => {
         res.send()
     }
     catch (e) {
-        console.log(e)
-        res.status(400).send()
+        res.status(500).send()
     }
 })
 

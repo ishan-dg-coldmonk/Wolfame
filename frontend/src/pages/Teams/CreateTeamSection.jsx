@@ -2,19 +2,22 @@ import React, { Fragment, useContext, useEffect, useState } from 'react'
 import { Stack, Grid, Typography, Paper, Avatar, Snackbar, Alert, MenuItem, Select, InputLabel, FormControl, useTheme, Button, IconButton } from '@mui/material'
 import TextField from "@mui/material/TextField";
 import { useFormik } from 'formik'
-import axios from '../../../services/axiosinstance';
+import axios from '../../services/axiosinstance';
 import { useSearchParams, useNavigate, Link } from 'react-router-dom';
-import RuleBook from '../../../components/RuleBook'
+import RuleBook from '../../components/RuleBook'
 
-import residenceList from '../../../data/residence'
-import eventsList from '../../../data/events'
+import residenceList from '../../data/residence'
+import eventsList from '../../data/events'
 
-import { teamSchema } from '../../../schemas/team'
+import { teamSchema } from '../../schemas/team'
 import CloseIcon from '@mui/icons-material/Close';
+
+import { useQuery, useMutation } from '@tanstack/react-query';
+import { fetchUsers, queryClient } from '../../services/http'
 
 function PlayerSelectInput({ index, selectedPlayers = [], playersList = [], setPlayers }) {
     const filteredPlayersList = playersList.filter(
-        (player) => !selectedPlayers.find(
+        (player) => !selectedPlayers.some(
             (id, i) => index !== i && player?._id === id)
     )
 
@@ -76,53 +79,43 @@ export default function CreateTeamSection() {
 
     const navigate = useNavigate()
 
-    const { values, handleBlur, handleChange, handleSubmit, errors, touched, setFieldValue } =
+    const { mutate, isPending } = useMutation({
+        mutationFn: (values) => axios.post('/team', values),
+        onSuccess: (response) => {
+            queryClient.invalidateQueries({ queryKey: ['teams'] })
+            const { data: team } = response
+            navigate(`/teams/${team._id}`)
+        },
+        onError: (e) => {
+            if (e.response?.status === 406) {
+                setErrors(e.response.data)
+            }
+        }
+    })
+
+    const { values, handleBlur, handleChange, handleSubmit, errors, touched, setFieldValue, setErrors } =
         useFormik({
             initialValues,
             validationSchema: teamSchema,
             validateOnChange: true,
             validateOnBlur: false,
-            //// By disabling validation onChange and onBlur formik will validate on submit.
             onSubmit: async (values, action) => {
                 const playersCount = values.players.filter((value) => value).length
-                if (playersCount < eventData.players[0] || playersCount > eventData.players[1]) {
-                    if (eventData.players[0] === eventData.players[1]) {
-                        action.setErrors({ players: `There must exist exactly ${eventData.players[0]} players in a ${eventData.label} team` })
-                    }
-                    else {
-                        action.setErrors({ players: `There must exist atleat ${eventData.players[0]} and atmost ${eventData.players[0]} players in a ${eventData.label} team` })
-                    }
-                    return
+                if (playersCount >= eventData.players[0] && playersCount <= eventData.players[1]) {
+                    return mutate(values)
                 }
-                try {
-                    values.players = values.players.filter((value) => value)
-                    await axios.post('/team/create', values)
-                    navigate('../')
+                if (eventData.players[0] === eventData.players[1]) {
+                    return action.setErrors({ players: `There must exist exactly ${eventData.players[0]} players in a ${eventData.label} team` })
                 }
-                catch (e) {
-                    if (e.response?.status === 406) {
-                        action.setErrors(e.response.data)
-                    }
-                }
+                action.setErrors({ players: `There must exist atleat ${eventData.players[0]} and atmost ${eventData.players[0]} players in a ${eventData.label} team` })
             },
         });
 
-    const [playersList, setPlayersList] = useState([])
-
-    const fetchPlayer = async () => {
-        try {
-            const users = await axios.get('/user', { params: { residence: values.residence } })
-            return users.data
-        }
-        catch (e) {
-            return []
-        }
-    }
-
-    useEffect(() => {
-        if (!values.residence) return
-        fetchPlayer().then((data) => setPlayersList(data))
-    }, [values.residence])
+    const { data: playersList } = useQuery({
+        queryKey: ['users', values.residence],
+        queryFn: () => fetchUsers({ residence: values.residence }),
+        enabled: !!values.residence
+    })
 
     const addPlayer = () => {
         setFieldValue('players', [...values.players, ''])
@@ -225,11 +218,11 @@ export default function CreateTeamSection() {
                         </Typography>
                     )}
 
-                    <Stack direction='row' gap={2}>
-                        <Button type="submit" size='large' variant='contained'>
+                    <Stack direction='row' gap={2} width='100%'>
+                        <Button type="submit" size='large' variant='contained' fullWidth disabled={isPending}>
                             Create
                         </Button>
-                        <Button size='large' variant='contained'>
+                        <Button size='large' variant='contained' fullWidth>
                             Cancel
                         </Button>
                     </Stack>

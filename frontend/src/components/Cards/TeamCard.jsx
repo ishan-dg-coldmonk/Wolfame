@@ -3,8 +3,8 @@ import { Avatar, Grid, Paper, Stack, Typography, Link } from '@mui/material'
 import Tilt from 'react-parallax-tilt';
 
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import residenceList from '../data/residence'
-import eventsList from '../data/events'
+import residenceList from '../../data/residence'
+import eventsList from '../../data/events'
 import chroma from 'chroma-js';
 
 function ValueCard({ label, children, value }) {

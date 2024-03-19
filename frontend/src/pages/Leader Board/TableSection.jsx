@@ -12,14 +12,10 @@ import EventSection from './EventSection';
 function TableSection() {
 
     const { event } = useParams()
-    const [eventDeatils, setEventDetails] = useState({})
+    const eventDeatils = eventsList.find(({ label }) => label.replaceAll(' ', '').toLowerCase() === event.replaceAll(' ', '').toLowerCase())
 
     const navigate = useNavigate()
 
-    useEffect(() => {
-        const eventItem = eventsList.find(({ label }) => label.replaceAll(' ', '').toLowerCase() === event.replaceAll(' ', '').toLowerCase())
-        setEventDetails(eventItem)
-    }, [event])
 
     return (
         <Fragment>
