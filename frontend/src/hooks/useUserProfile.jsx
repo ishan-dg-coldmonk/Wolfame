@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import { AuthContext } from '../context/AuthProvider'
 import axios from '../services/axiosinstance'
+import { useQuery } from '@tanstack/react-query';
 
 export default function useUserProfile() {
 
@@ -10,26 +11,11 @@ export default function useUserProfile() {
     const { user: userData } = useContext(AuthContext)
     const isMe = userId == userData?._id
 
-    const [userProfile, setUserProfile] = useState({ _id: '', name: '', email: '' })
+    const { data: userProfile, ...other } = useQuery({
+        queryKey: ['users', userId],
+        queryFn: () => axios.get(`/user/${userId}`).then(response => response.data)
+    })
 
-    const fetchUser = async () => {
-        try {
-            const userArray = await axios.get(`/user/${userId}`)
-            return userArray.data
-        }
-        catch (e) {
-            return []
-        }
-    }
 
-    useEffect(() => {
-        if (isMe) {
-            setUserProfile(userData)
-        }
-        else {
-            fetchUser().then((data) => setUserProfile(data))
-        }
-    }, [userId])
-
-    return { ...userProfile, isMe }
+    return { userProfile, isMe, ...other }
 }

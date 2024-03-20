@@ -23,7 +23,6 @@ import CreateMatchSection from '../pages/Matches/CreateMatchSection'
 import Error from '../pages/Error'
 import MatchPageSection from "../pages/Matches/MatchPageSection";
 
-
 const router = createBrowserRouter([
     {
         path: '/',

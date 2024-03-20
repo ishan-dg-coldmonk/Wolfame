@@ -1,10 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import { Button, Paper, Stack, Typography } from '@mui/material'
-import LoadingIndicator from '../../UI/LoadingIndicator'
 import MatchCard from '../../components/Cards/MatchCard'
 import axios from '../../services/axiosinstance'
-// import MDEditor from '../../components/MDEditor'
 import MDPreview from '../../components/MDPreview'
 import { AuthContext } from '../../context/AuthProvider'
 import JoditEditor from 'jodit-react';
@@ -14,6 +12,13 @@ import { styled } from '@mui/material/styles';
 import RadioGroup, { useRadioGroup } from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';
+import { useMutation, useQuery } from '@tanstack/react-query';
+
+import LoadingIndicator from '../../UI/LoadingIndicator'
+import EmptyBlock from '../../UI/EmptyBlock'
+import ErrorBlock from '../../UI/ErrorBlock'
+import { queryClient } from '../../services/http'
+
 
 const StyledFormControlLabel = styled((props) => <FormControlLabel {...props} />)(
     ({ theme, checked }) => ({
@@ -65,51 +70,33 @@ export default function MatchPageSection() {
 
     const { matchId } = useParams()
     const { user } = useContext(AuthContext)
-    const [matchData, setMatchData] = useState({})
     const [openEditor, setOpenEditor] = useState(false)
     const [summaryValue, setSummaryValue] = useState('')
 
-    const fetchMatch = async () => {
-        try {
-            const match = await axios.get(`/match/${matchId}`)
-            return match.data
-        }
-        catch (e) {
+    const { data: matchData, isPending, isError } = useQuery({
+        queryKey: ['matches'],
+        queryFn: () => axios.get(`/match/${matchId}`).then(response => response.data),
+    })
 
+    const { mutate: upadateSummaryHandler } = useMutation({
+        mutationFn: (summary) => axios.patch(`/match/${matchId}`, { summary }),
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['matches'] })
         }
-    }
-
-    const upadateSummaryHandler = async () => {
-        try {
-            await axios.patch(`/match/${matchId}`, { summary: summaryValue })
-            setMatchData(prop => {
-                return { ...prop, summary: summaryValue }
-            })
-        }
-        catch (e) {
-
-        }
-    }
-
-    const updateWinnerHandler = async (e) => {
-        try {
-            const winner = e.target.value || null
-            await axios.patch(`/match/${matchId}`, { winner })
-            setMatchData(prop => {
-                return { ...prop, winner }
-            })
-        }
-        catch {
-
-        }
-    }
+    })
 
     useEffect(() => {
-        fetchMatch().then((match) => {
-            setMatchData(match)
-            setSummaryValue(match?.summary)
-        })
-    }, [matchId])
+        setSummaryValue(matchData?.summary || '')
+    }, [matchData])
+
+    if (isPending) {
+        return <LoadingIndicator pt={12} />
+    }
+
+    if (isError) {
+        return <ErrorBlock pt={12} />
+    }
+
 
     if (!matchData?.time) {
         return <LoadingIndicator />
@@ -118,18 +105,6 @@ export default function MatchPageSection() {
     return (
         <Stack p={{ xs: 1, md: 4 }} pt={{ xs: 9, md: 10 }} gap={2}>
             <MatchCard match={matchData} hideSummary={true} />
-            {user?.role === 'admin' && <Paper elevation={5} sx={{ p: 1 }}>
-                <Stack gap={2} sx={{ alignItems: 'center' }}>
-                    <Typography variant='h2' fontWeight={700}>
-                        <span className='text-gradient'>Select Winner</span>
-                    </Typography>
-                    <RadioGroup name="radio-group" value={matchData.winner || ''} onChange={updateWinnerHandler}>
-                        <MyFormControlLabel value="" label="None" control={<Radio />} />
-                        <MyFormControlLabel value={matchData?.teams?.[0]._id} label={matchData?.teams?.[0].name} control={<Radio />} />
-                        <MyFormControlLabel value={matchData?.teams?.[1]._id} label={matchData?.teams?.[1].name} control={<Radio />} />
-                    </RadioGroup>
-                </Stack>
-            </Paper>}
             <Paper elevation={5} sx={{ p: 1 }}>
                 <Stack gap={2} sx={{ alignItems: 'center' }}>
                     <Typography variant='h2' fontWeight={700}>
@@ -141,7 +116,7 @@ export default function MatchPageSection() {
                         </Button>
                     )}
                     {!openEditor && <MDPreview content={matchData?.summary || '<p><span style="font-size: 30px;">Empty</span></p>'} />}
-                    {openEditor && <Editor value={summaryValue} onChange={(value) => setSummaryValue(value)} onUpdate={upadateSummaryHandler} onClose={() => {
+                    {openEditor && <Editor value={summaryValue} onChange={(value) => setSummaryValue(value)} onUpdate={() => upadateSummaryHandler(summaryValue)} onClose={() => {
                         setSummaryValue(matchData?.summary)
                         setOpenEditor(false)
                     }} />}

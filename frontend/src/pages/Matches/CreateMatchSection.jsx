@@ -126,42 +126,44 @@ export default function CreateTeamSection() {
             <Typography variant='h2' fontWeight={700} sx={{ opacity: 0.6 }} >
                 Create Match
             </Typography>
-            <FormControl fullWidth sx={{ maxWidth: '500px' }}>
-                <InputLabel id="event-label">Event</InputLabel>
-                <Select
-                    labelId='event-label'
-                    id="event"
-                    fullWidth
-                    defaultValue={'Select Event'}
-                    value={values.event}
-                    label="Event"
-                    name='event'
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    error={errors.event && touched.event}
-                >
-                    {eventsList.map(({ label }) => {
-                        return <MenuItem key={label} value={label}>{label}</MenuItem>
-                    })}
-                </Select>
-            </FormControl>
-            {errors.event && touched.event && (
-                <Typography color='error'>
-                    {errors.event}
-                </Typography>
-            )}
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <DemoContainer components={['DateTimePicker']}>
-                    <DateTimePicker
-                        label="Time"
-                        value={values?.time}
-                        name='time'
-                        id='time'
-                        onChange={(value) => setFieldValue('time', value)}
-                    // onBlur={handleBlur}
-                    />
-                </DemoContainer>
-            </LocalizationProvider>
+            <Stack gap={2}>
+                <FormControl fullWidth sx={{ maxWidth: '500px' }}>
+                    <InputLabel id="event-label">Event</InputLabel>
+                    <Select
+                        labelId='event-label'
+                        id="event"
+                        fullWidth
+                        defaultValue={'Select Event'}
+                        value={values.event}
+                        label="Event"
+                        name='event'
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        error={errors.event && touched.event}
+                    >
+                        {eventsList.map(({ label }) => {
+                            return <MenuItem key={label} value={label}>{label}</MenuItem>
+                        })}
+                    </Select>
+                </FormControl>
+                {errors.event && touched.event && (
+                    <Typography color='error'>
+                        {errors.event}
+                    </Typography>
+                )}
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DemoContainer components={['DateTimePicker']}>
+                        <DateTimePicker
+                            label="Time"
+                            value={values?.time}
+                            name='time'
+                            id='time'
+                            onChange={(value) => setFieldValue('time', value)}
+                        // onBlur={handleBlur}
+                        />
+                    </DemoContainer>
+                </LocalizationProvider>
+            </Stack>
             {errors.date && touched.date && (
                 <Typography color='error'>
                     {errors.date}
@@ -177,11 +179,11 @@ export default function CreateTeamSection() {
                     {errors.teams}
                 </Typography>
             )}
-            <Stack direction='row' gap={2}>
-                <Button type="submit" size='large' variant='contained'>
+            <Stack direction='row' gap={2} width={{xs: '100%', md: '50%'}}>
+                <Button fullWidth type="submit" size='large' variant='contained'>
                     Create
                 </Button>
-                <Button size='large' variant='contained' onClick={() => navigate('../')}>
+                <Button fullWidth size='large' variant='contained' onClick={() => navigate('../')}>
                     Cancel
                 </Button>
             </Stack>

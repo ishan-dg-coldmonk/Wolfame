@@ -1,5 +1,5 @@
-import React, { useContext } from 'react'
-import { Avatar, Grid, Paper, Stack, Typography, Link, AvatarGroup, Tooltip, Button } from '@mui/material'
+import React, { useContext, useEffect, useState, useRef } from 'react'
+import { Avatar, Grid, Paper, Stack, Typography, Link, AvatarGroup, Tooltip, Button, CircularProgress } from '@mui/material'
 import Tilt from 'react-parallax-tilt';
 
 
@@ -12,10 +12,128 @@ import { AuthContext } from '../../context/AuthProvider';
 
 import axios from '../../services/axiosinstance'
 import { useNavigate } from 'react-router';
+import { useMutation } from '@tanstack/react-query';
+import { queryClient } from '../../services/http';
+
+import ButtonGroup from '@mui/material/ButtonGroup';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import ClickAwayListener from '@mui/material/ClickAwayListener';
+import Grow from '@mui/material/Grow';
+import Popper from '@mui/material/Popper';
+import MenuItem from '@mui/material/MenuItem';
+import MenuList from '@mui/material/MenuList';
 
 const vsImage = 'https://upload.wikimedia.org/wikipedia/commons/7/70/Street_Fighter_VS_logo.png'
 
-function TeamBox({ team, winner }) {
+function SelectWinnerSection({ matchId, teams = [], winner }) {
+    const [open, setOpen] = useState(false);
+    const [winnerTeam, setWinnerTeam] = useState(null)
+    const anchorRef = useRef(null);
+
+    const { mutate, isPending } = useMutation({
+        mutationFn: async (winner) => {
+            setWinnerTeam(winner)
+            return axios.patch(`/match/${matchId}`, { winner }).then(response => response.data)
+        },
+        onSuccess: () => {
+            queryClient.invalidateQueries({
+                queryKey: ['matches']
+            })
+        },
+    })
+
+    useEffect(() => {
+        setWinnerTeam(teams.find(({ _id }) => _id == winner))
+    }, [winner])
+
+    const handleMenuItemClick = (winnerId) => {
+        mutate(winnerId)
+    };
+
+    const handleToggle = () => {
+        setOpen((prevOpen) => !prevOpen);
+    };
+
+    const handleClose = (event) => {
+        if (anchorRef.current && anchorRef.current.contains(event.target)) {
+            return;
+        }
+
+        setOpen(false);
+    };
+    return (
+        <Stack gap={2} sx={{ alignItems: 'center', p: 2 }}>
+            <Typography
+                variant='h5'
+                fontWeight={400}
+                textAlign='center'
+                letterSpacing={'1px'}
+                sx={{ textShadow: '0px 2px 0 #000' }}
+            >
+                Select Winner
+            </Typography>
+            <ButtonGroup
+                fullWidth
+                variant="contained"
+                ref={anchorRef}
+                aria-label="Button group with a nested menu"
+            >
+                <Button onClick={handleToggle} fullWidth>{isPending ? 'Updating...' : winnerTeam?.name || 'None'}</Button>
+                <Button
+                    sx={{ width: '3rem' }}
+                    size="large"
+                    aria-controls={open ? 'split-button-menu' : undefined}
+                    aria-expanded={open ? 'true' : undefined}
+                    aria-label="select merge strategy"
+                    aria-haspopup="menu"
+                    onClick={handleToggle}
+                >
+                    <ArrowDropDownIcon />
+                </Button>
+            </ButtonGroup>
+            <Popper
+                sx={{
+                    zIndex: 1,
+                }}
+                open={open}
+                anchorEl={anchorRef.current}
+                role={undefined}
+                transition
+                disablePortal
+            >
+                {({ TransitionProps, placement }) => (
+                    <Grow
+                        {...TransitionProps}
+                        style={{
+                            transformOrigin:
+                                placement === 'bottom' ? 'center top' : 'center bottom',
+                        }}
+                    >
+                        <Paper>
+                            <ClickAwayListener onClickAway={handleClose}>
+                                <MenuList id="split-button-menu" autoFocusItem>
+                                    <MenuItem selected={!winner} >None</MenuItem>
+                                    {teams.map((team, index) => {
+                                        const { _id, name } = team
+                                        return <MenuItem
+                                            key={_id}
+                                            selected={_id === winner}
+                                            onClick={() => handleMenuItemClick(_id)}
+                                        >
+                                            {name}
+                                        </MenuItem>
+                                    })}
+                                </MenuList>
+                            </ClickAwayListener>
+                        </Paper>
+                    </Grow>
+                )}
+            </Popper>
+        </Stack>
+    )
+}
+
+function TeamBox({ team = { name: '', residence: '', players: [], _id: '' }, winner }) {
     const { name, residence, players, _id } = team
     const residenceData = residenceList.find((data) => data.name === residence)
     const playersList = (
@@ -43,7 +161,7 @@ function TeamBox({ team, winner }) {
                 width: '10rem',
                 height: '12rem',
                 borderRadius: '0.8rem',
-                backgroundColor: chroma(residenceData.color).darken().alpha(0.6).hex(),
+                backgroundColor: chroma(residenceData?.color || 'black').darken().alpha(0.8).hex(),
                 // backgroundImage: `url(${image})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
@@ -84,11 +202,11 @@ function TeamBox({ team, winner }) {
                         })}
                     </AvatarGroup>
                 </Tooltip>
-                {_id == winner && <Paper sx={{p: 1}}><Typography
-                    variant='h3'
+                {_id == winner && <Paper sx={{ p: 1, bgcolor: chroma(residenceData?.color || 'black').hex() }}><Typography
+                    variant='h4'
                     fontWeight={700}
                     textAlign='center'
-                    sx={{ textShadow: '0px 2px 0 #000', }}
+                    sx={{}}
                 >
                     Winner
                 </Typography></Paper>}
@@ -105,19 +223,16 @@ export default function MatchCard({ match, ...props }) {
     const navigate = useNavigate()
 
     const isAdmin = user?.role === 'admin'
-
-    const deleteMatchHandler = async () => {
-        try {
-            await axios.delete(`/match/${_id}`)
+    const { mutate: deleteMatchHandler } = useMutation({
+        mutationFn: () => axios.delete(`/match/${_id}`).then(response => response.data),
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['matches'] })
         }
-        catch (e) {
-
-        }
-    }
+    })
 
     return (
-        <Paper elevation={5} sx={{ m: 1 }} >
-            <Paper elevation={1} sx={{ p: 2 }}>
+        <Paper elevation={10} sx={{ m: 1, my: 2 }}>
+            <Paper elevation={1} onClick={() => navigate(`/matches/${_id}`)} sx={{ cursor: 'pointer', p: 2 }}>
                 <Stack sx={{ alignItems: 'center' }}>
                     <Typography
                         variant='h4'
@@ -128,9 +243,9 @@ export default function MatchCard({ match, ...props }) {
                     >
                         <span className="text-gradient">{event}</span>
                     </Typography>
-                    {!props?.hideSummary && <Button size='large' variant='contained' sx={{ mb: 2 }} onClick={() => navigate(`/matches/${_id}`)}>
+                    {/* {!props?.hideSummary && <Button size='large' variant='contained' sx={{ mb: 2 }} onClick={() => navigate(`/matches/${_id}`)}>
                         Show Match Summary
-                    </Button>}
+                    </Button>} */}
                     <Typography
                         variant='h5'
                         fontWeight={400}
@@ -157,9 +272,12 @@ export default function MatchCard({ match, ...props }) {
                 <TeamBox team={teams[1]} winner={match?.winner} />
             </Stack>
             {isAdmin && (
-                <Button size='large' variant='contained' fullWidth onClick={deleteMatchHandler}>
-                    Delete Match
-                </Button>
+                <>
+                    <SelectWinnerSection matchId={_id} teams={teams} winner={match?.winner} />
+                    <Button size='large' variant='contained' fullWidth onClick={deleteMatchHandler}>
+                        Delete Match
+                    </Button>
+                </>
             )}
         </Paper>
     )

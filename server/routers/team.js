@@ -8,7 +8,7 @@ const roles = ['user', 'jmcr', 'admin']
 
 router.get('/', async (req, res) => {
     try {
-        const teams = await Team.find(req.query || {})
+        const teams = await Team.find(req.query || {}).sort({ residence: 'ascending' })
         res.send(teams)
     }
     catch (e) {

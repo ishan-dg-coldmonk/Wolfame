@@ -14,6 +14,7 @@ import CloseIcon from '@mui/icons-material/Close';
 
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { fetchUsers, queryClient } from '../../services/http'
+import { AuthContext } from '../../context/AuthProvider';
 
 function PlayerSelectInput({ index, selectedPlayers = [], playersList = [], setPlayers }) {
     const filteredPlayersList = playersList.filter(
@@ -78,6 +79,7 @@ export default function CreateTeamSection() {
     }
 
     const navigate = useNavigate()
+    const { user } = useContext(AuthContext)
 
     const { mutate, isPending } = useMutation({
         mutationFn: (values) => axios.post('/team', values),
@@ -100,9 +102,10 @@ export default function CreateTeamSection() {
             validateOnChange: true,
             validateOnBlur: false,
             onSubmit: async (values, action) => {
-                const playersCount = values.players.filter((value) => value).length
-                if (playersCount >= eventData.players[0] && playersCount <= eventData.players[1]) {
-                    return mutate(values)
+                const filteredPlayers = values.players.filter((value) => value)
+                const playersCount = filteredPlayers.length
+                if (user?.role === 'admin' || (playersCount >= eventData.players[0] && playersCount <= eventData.players[1])) {
+                    return mutate({ ...values, players: filteredPlayers })
                 }
                 if (eventData.players[0] === eventData.players[1]) {
                     return action.setErrors({ players: `There must exist exactly ${eventData.players[0]} players in a ${eventData.label} team` })

@@ -11,33 +11,8 @@ import { fetchMatches } from '../../services/http';
 
 import residenceList from '../../data/residence'
 import eventsList from '../../data/events'
+import CustomSelect from './CustomSelect'
 
-function CustomSelect({ value, setValue, label, children, hide, ...props }) {
-
-    if (hide) return <></>
-
-    const name = label.toLowerCase()
-
-    return (
-        <Grid item md={4} {...props}>
-            <Box m={1}>
-                <FormControl fullWidth>
-                    <InputLabel id="match-select">{label}</InputLabel>
-                    <Select
-                        labelId="match-select"
-                        defaultValue={'All'}
-                        value={value?.[name]}
-                        label={label}
-                        onChange={(e) => setValue((values) => { return { ...values, [name]: e.target.value } })}
-                    >
-                        <MenuItem value={'All'}>All {label}s</MenuItem>
-                        {children}
-                    </Select>
-                </FormControl>
-            </Box>
-        </Grid>
-    )
-}
 
 export default function MatchSection({ params = {}, sx = {}, hide = {} }) {
 
@@ -46,7 +21,7 @@ export default function MatchSection({ params = {}, sx = {}, hide = {} }) {
         queryFn: () => fetchMatches(params),
     })
 
-    const [filters, setFilters] = useState({ date: 'All', event: 'All', residence: 'All' })
+    const [filters, setFilters] = useState({ date: new Date().getDate(), event: 'All', residence: 'All' })
 
     if (isPending) {
         return <LoadingIndicator />

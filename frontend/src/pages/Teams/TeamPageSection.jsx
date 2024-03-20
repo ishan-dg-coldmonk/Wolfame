@@ -27,7 +27,7 @@ export default function TeamPageSection() {
     const { mutate: deleteTeamHandler, isPending: isDeleting } = useMutation({
         mutationFn: () => axios.delete(`/team/${teamId}`),
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['teams'], refetchType: 'none' })
+            queryClient.invalidateQueries({ queryKey: ['teams'] })
             navigate('../')
         }
     })

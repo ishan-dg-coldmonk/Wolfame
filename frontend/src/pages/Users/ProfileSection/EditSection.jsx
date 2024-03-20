@@ -21,7 +21,7 @@ import useUserProfile from '../../../hooks/useUserProfile';
 export default function EditSection() {
 
     const navigate = useNavigate()
-    const userProfile = useUserProfile()
+    const { userProfile, isMe } = useUserProfile()
 
     const { signin } = useContext(AuthContext)
 
@@ -76,7 +76,6 @@ export default function EditSection() {
 
     useEffect(() => {
         const data = { ...userProfile }
-        delete data.isMe
         setValues(userProfile)
     }, [userProfile?.name])
 
@@ -88,7 +87,7 @@ export default function EditSection() {
         })
     }, [file])
 
-    if (!userProfile.isMe) {
+    if (!isMe) {
         return <Typography>
             Don't have access to edit someone else's profile.
         </Typography>

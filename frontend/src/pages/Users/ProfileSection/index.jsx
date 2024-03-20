@@ -14,6 +14,9 @@ import useUserProfile from '../../../hooks/useUserProfile';
 import TeamSection from '../../../components/Sections/TeamSection';
 import MatchSection from '../../../components/Sections/MatchSection';
 
+import LoadingIndicator from '../../../UI/LoadingIndicator'
+import ErrorBlock from '../../../UI/ErrorBlock'
+
 const roles = ['user', 'jmcr', 'admin']
 
 function RoleChangeMenu({ role, user }) {
@@ -90,7 +93,7 @@ function RoleChangeMenu({ role, user }) {
 export default function ProfileSection() {
 
     const { user, signout } = useContext(AuthContext)
-    const userProfile = useUserProfile()
+    const { userProfile, isMe, isPending, isError } = useUserProfile()
     const navigate = useNavigate()
 
     const deleteAccountHandler = async () => {
@@ -104,14 +107,12 @@ export default function ProfileSection() {
         }
     }
 
-    if (!userProfile?.name) {
-        return (
-            <Stack mt={12} mb={6} mx={4} py={6} sx={{ alignItems: 'center' }}>
-                <Typography variant='h3' fontWeight={700} color='GrayText'>
-                    User Not Exist
-                </Typography>
-            </Stack>
-        )
+    if (isPending) {
+        return <LoadingIndicator pt={12} />
+    }
+
+    if (isError) {
+        return <ErrorBlock pt={12} />
     }
 
     return (
@@ -144,7 +145,7 @@ export default function ProfileSection() {
                                 <RoleChangeMenu role={user?.role} user={userProfile} />
                             </Stack>
                         </Stack>
-                        {userProfile.isMe && <Button variant='contained' fullWidth size='large' sx={{mb: 2}} startIcon={<EditIcon />} onClick={() => navigate('./edit')}>Edit Profile</Button>}
+                        {isMe && <Button variant='contained' fullWidth size='large' sx={{ mb: 2 }} startIcon={<EditIcon />} onClick={() => navigate('./edit')}>Edit Profile</Button>}
                         {userProfile?.phone_number && <Link href={`tel:${userProfile?.phone_number}`} target='_blank' style={{ textDecoration: 'none' }}>
                             <Stack direction='row' gap={1} sx={{ color: 'white', ":hover": { color: 'red' } }}>
                                 <PhoneIcon fontSize='large' />
@@ -187,7 +188,7 @@ export default function ProfileSection() {
                                 </Typography>
                             </Stack>
                         </Link>}
-                        {userProfile?.isMe && (
+                        {isMe && (
                             <Stack gap={1} sx={{ width: '100%' }}>
                                 <Button onClick={signout} size='large' variant='contained' fullWidth sx={{ mt: 3 }}>
                                     Sign Out

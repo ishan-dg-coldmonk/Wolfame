@@ -35,7 +35,7 @@ export default function EventSection({ event }) {
                     })
                 }
             </Grid>
-            {selectedMenu === 'Teams' && <TeamSection params={{ event }} sx={{ p: 0, pt: 1 }} />}
+            {selectedMenu === 'Teams' && <TeamSection params={{ event }} sx={{ p: 0, pt: 1 }} hide={{event: true}} />}
             {selectedMenu === 'Matches' && <MatchSection params={{ event }} sx={{p: 0, pt: 2}} hide={{event: true}} />}
         </Stack >
     )

@@ -93,20 +93,14 @@ export default function MainAppBar() {
                         </Link>
                     </Stack>
                     <Navbar />
-                    <Stack direction='row' gap={2} sx={{alignItems: 'center'}}>
+                    <Stack direction='row' gap={2} sx={{ alignItems: 'center' }}>
                         {user ?
                             <Link to={`/users/${user?._id}`}>
                                 <Avatar sx={{ bgcolor: 'red' }} alt={user.name} src={user.image} />
                             </Link> :
-                            <>
-                                <Button variant='outlined' size='large' onClick={() => {navigate('/signin')}}>
-                                    Sign In
-                                </Button>
-                                <Typography>Or</Typography>
-                                <Button variant='outlined' size='large' onClick={() => {navigate('/signup')}}>
-                                    Sign Up
-                                </Button>
-                            </>
+                            <Button variant='outlined' size='large' onClick={() => { navigate('/signin') }}>
+                                Sign In
+                            </Button>
                         }
                     </Stack>
                 </Stack>
