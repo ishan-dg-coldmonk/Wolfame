@@ -3,10 +3,11 @@ import { Button, Grid, IconButton, Paper, Stack, Typography } from '@mui/materia
 
 import TeamSection from '../../components/Sections/TeamSection'
 import MatchSection from '../../components/Sections/MatchSection'
+import WinnerSection from '../../components/Sections/WinnerSection'
 
 export default function EventSection({ event }) {
 
-    const [selectedMenu, setSelectedMenu] = useState('Teams')
+    const [selectedMenu, setSelectedMenu] = useState('Winners')
 
     const menuChangeHandler = (menuItem) => {
         setSelectedMenu(menuItem)
@@ -16,10 +17,10 @@ export default function EventSection({ event }) {
         <Stack py={2}>
             <Grid container spacing={1} sx={{ justifyContent: 'center', width: 1, p: 1 }} >
                 {
-                    ['Teams', 'Matches'].map((name) => {
+                    ['Winners', 'Teams', 'Matches'].map((name) => {
                         const isSelected = selectedMenu === name
                         return (
-                            <Grid key={name} item xs={6}>
+                            <Grid key={name} item xs={4}>
                                 <Button
                                     size='large'
                                     fullWidth
@@ -35,8 +36,9 @@ export default function EventSection({ event }) {
                     })
                 }
             </Grid>
-            {selectedMenu === 'Teams' && <TeamSection params={{ event }} sx={{ p: 0, pt: 1 }} hide={{event: true}} />}
-            {selectedMenu === 'Matches' && <MatchSection params={{ event }} sx={{p: 0, pt: 2}} hide={{event: true}} />}
+            {selectedMenu === 'Teams' && <TeamSection params={{ event }} sx={{ p: 0, pt: 1 }} hide={{ event: true }} />}
+            {selectedMenu === 'Matches' && <MatchSection params={{ event }} sx={{ p: 0, pt: 2 }} hide={{ event: true }} />}
+            {selectedMenu === 'Winners' && <WinnerSection params={{ event }} sx={{ p: 0, pt: 2 }} />}
         </Stack >
     )
 }

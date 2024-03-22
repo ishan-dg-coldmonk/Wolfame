@@ -15,55 +15,11 @@ import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import { useQuery } from '@tanstack/react-query';
+
+import TeamSelectInput from '../../components/TeamSelectInput'
 
 const vsImage = 'https://upload.wikimedia.org/wikipedia/commons/7/70/Street_Fighter_VS_logo.png'
-
-function TeamSelectInput({ index, selectedTeams = [], teamsList = [], setTeams }) {
-    const filteredTeamsList = teamsList.filter(
-        (team) => !selectedTeams.find(
-            (id, i) => index !== i && team?._id === id)
-    )
-
-    return (
-        <FormControl fullWidth sx={{ maxWidth: '450px' }}>
-            <InputLabel id={`team-label-${index}`}>{`Team ${index + 1}`}</InputLabel>
-            <Select
-                labelId={`team-label-${index}`}
-                id={`team-${index}`}
-                fullWidth
-                defaultValue={'Select Team'}
-                value={selectedTeams[index]}
-                onChange={(e) => {
-                    const newTeamsList = [...selectedTeams]
-                    newTeamsList[index] = e.target.value
-                    setTeams(newTeamsList)
-                }}
-                label="Team"
-                name='team'
-            > {
-                    filteredTeamsList.length === 0 && (<Stack sx={{ alignItems: 'center', p: 2 }}><Typography variant='h4'>No Team</Typography></Stack>)
-                }
-                {filteredTeamsList.map((team) => {
-                    const { name, residence, _id } = team
-                    const residenceData = residenceList.find((data) => data.name === residence)
-                    return (
-                        <MenuItem key={name} value={_id} selected={_id == selectedTeams[index]}>
-                            <Stack direction='row' gap={2} sx={{ alignItems: 'center' }}>
-                                <Avatar src={residenceData?.image} variant="rounded">{name?.[0]}</Avatar>
-                                <Typography variant='h5' fontWeight={500} sx={{ opacity: 0.6, color: 'inherit' }} >
-                                    {name}
-                                </Typography>
-                                <Typography variant='h5' fontWeight={700} sx={{ opacity: 0.6, color: residenceData?.color }} >
-                                    {residence}
-                                </Typography>
-                            </Stack>
-                        </MenuItem>
-                    )
-                })}
-            </Select>
-        </FormControl>
-    )
-}
 
 export default function CreateTeamSection() {
 
@@ -97,22 +53,14 @@ export default function CreateTeamSection() {
             },
         });
 
-    const [teamsList, setTeamsList] = useState([])
-
-    const fetchTeam = async () => {
-        try {
-            const { data } = await axios.get('/team', { params: { event: values?.event } })
-            return data
-        }
-        catch (e) {
-            return []
-        }
-    }
+    const { data: teamsList } = useQuery({
+        queryKey: ['teams', values?.event],
+        queryFn: () => axios.get('/team', { params: { event: values?.event } }).then(response => response.data),
+        // enabled: values?.event
+    })
 
     useEffect(() => {
-        if (!values?.event) return
         setFieldValue('teams', ['', ''])
-        fetchTeam().then((data) => setTeamsList(data))
     }, [values?.event])
 
     const setTeams = (newTeamsList) => {
@@ -179,7 +127,7 @@ export default function CreateTeamSection() {
                     {errors.teams}
                 </Typography>
             )}
-            <Stack direction='row' gap={2} width={{xs: '100%', md: '50%'}}>
+            <Stack direction='row' gap={2} width={{ xs: '100%', md: '50%' }}>
                 <Button fullWidth type="submit" size='large' variant='contained'>
                     Create
                 </Button>

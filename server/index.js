@@ -4,6 +4,7 @@ const cors = require('cors');
 const userRouter = require("./routers/user")
 const teamRouter = require("./routers/team")
 const matchRouter = require("./routers/match")
+const winnerRouter = require("./routers/winner")
 
 const port = process.env.PORT || 3001
 const app = express()
@@ -13,6 +14,7 @@ app.use(express.json())
 app.use('/user', userRouter)
 app.use('/team', teamRouter)
 app.use('/match', matchRouter)
+app.use('/winner', winnerRouter)
 
 
 app.listen(port, () => {

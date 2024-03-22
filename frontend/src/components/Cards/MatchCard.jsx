@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState, useRef } from 'react'
-import { Avatar, Grid, Paper, Stack, Typography, Link, AvatarGroup, Tooltip, Button, CircularProgress } from '@mui/material'
+import { Avatar, Grid, Paper, Stack, Typography, Link, AvatarGroup, Tooltip, Button, CircularProgress, Box } from '@mui/material'
 import Tilt from 'react-parallax-tilt';
 
 
@@ -31,15 +31,19 @@ function SelectWinnerSection({ matchId, teams = [], winner }) {
     const anchorRef = useRef(null);
 
     const { mutate, isPending } = useMutation({
-        mutationFn: async (winner) => {
-            setWinnerTeam(winner)
-            return axios.patch(`/match/${matchId}`, { winner }).then(response => response.data)
+        mutationFn: (winner) => axios.patch(`/match/${matchId}`, { winner }),
+        onMutate: async (winner) => {
+            const matchData = queryClient.getQueryData(['matches', {}])
+            if (!matchData) return
+            const matchDataDummy = [...matchData]
+            const index = matchDataDummy.findIndex(({ _id }) => _id === matchId)
+            matchDataDummy[index] = { ...matchDataDummy[index], winner }
+            queryClient.setQueryData(['matches', {}], matchDataDummy)
+            setOpen(false)
         },
-        onSuccess: () => {
-            queryClient.invalidateQueries({
-                queryKey: ['matches']
-            })
-        },
+        onSettled: () => {
+            queryClient.invalidateQueries(['matches', {}])
+        }
     })
 
     useEffect(() => {
@@ -58,7 +62,6 @@ function SelectWinnerSection({ matchId, teams = [], winner }) {
         if (anchorRef.current && anchorRef.current.contains(event.target)) {
             return;
         }
-
         setOpen(false);
     };
     return (
@@ -78,7 +81,7 @@ function SelectWinnerSection({ matchId, teams = [], winner }) {
                 ref={anchorRef}
                 aria-label="Button group with a nested menu"
             >
-                <Button onClick={handleToggle} fullWidth>{isPending ? 'Updating...' : winnerTeam?.name || 'None'}</Button>
+                <Button onClick={handleToggle} fullWidth>{winnerTeam?.name || 'None'}</Button>
                 <Button
                     sx={{ width: '3rem' }}
                     size="large"
@@ -94,6 +97,7 @@ function SelectWinnerSection({ matchId, teams = [], winner }) {
             <Popper
                 sx={{
                     zIndex: 1,
+                    width: '20rem'
                 }}
                 open={open}
                 anchorEl={anchorRef.current}
@@ -112,7 +116,7 @@ function SelectWinnerSection({ matchId, teams = [], winner }) {
                         <Paper>
                             <ClickAwayListener onClickAway={handleClose}>
                                 <MenuList id="split-button-menu" autoFocusItem>
-                                    <MenuItem selected={!winner} >None</MenuItem>
+                                    <MenuItem onClick={() => handleMenuItemClick(null)} selected={!winner} >None</MenuItem>
                                     {teams.map((team, index) => {
                                         const { _id, name } = team
                                         return <MenuItem
@@ -149,85 +153,92 @@ function TeamBox({ team = { name: '', residence: '', players: [], _id: '' }, win
         </Stack>
     )
     return (
-        <Tilt
-            scale={1.15}
-            tiltReverse={true}
-            perspective={500}
-            glareEnable={true}
-            glareMaxOpacity={0.45}
-            glareBorderRadius='1rem'
-            className='parallax-effect'
-            style={{
-                width: '10rem',
-                height: '12rem',
-                borderRadius: '0.8rem',
-                backgroundColor: chroma(residenceData?.color || 'black').darken().alpha(0.8).hex(),
-                // backgroundImage: `url(${image})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                display: 'flex',
-                // justifyContent: 'center',
-                alignItems: 'center',
-                cursor: 'pointer',
-                border: 'none',
-                // borderColor: 'red',
-            }}
-        >
-            <Stack className='inner-element' p={3} gap={1} sx={{ alignItems: 'center', justifyContent: 'space-between', height: '100%' }}>
-                <Link href={`/teams/${_id}`} sx={{ textDecoration: 'none', 'hover': { color: 'red' } }}>
-                    <Typography
-                        variant='h5'
+        <Box width={{ xs: '8rem', md: '10rem' }} sx={{ minHeight: { xs: '10rem', md: '12rem' } }}>
+            <Tilt
+                scale={1.15}
+                tiltReverse={true}
+                perspective={500}
+                glareEnable={true}
+                glareMaxOpacity={0.45}
+                glareBorderRadius='1rem'
+                className='parallax-effect'
+                style={{
+                    minHeight: '10rem',
+                    width: '100%',
+                    height: '100%',
+                    borderRadius: '0.8rem',
+                    backgroundColor: chroma(residenceData?.color || 'black').hex(),
+                    // backgroundImage: `url(${image})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    display: 'flex',
+                    // justifyContent: 'center',
+                    alignItems: 'center',
+                    cursor: 'pointer',
+                    border: 'none',
+                    // borderColor: 'red',
+                }}
+            >
+                <Stack className='inner-element' p={3} gap={1} sx={{ alignItems: 'center', justifyContent: 'space-between', height: '100%' }}>
+                    <Link href={`/teams/${_id}`} sx={{ textDecoration: 'none', 'hover': { color: 'red' } }}>
+                        <Typography
+                            variant='h5'
+                            fontWeight={700}
+                            textAlign='center'
+                            sx={{ textShadow: '0px 2px 0 #000' }}
+                        >
+                            {name}
+                        </Typography>
+                    </Link>
+                    <Link href={`/residence/${residence.replaceAll(' ', '')}`} sx={{ textDecoration: 'none', ':hover': { color: 'red' } }}>
+                        <Typography
+                            variant='h5'
+                            fontWeight={700}
+                            textAlign='center'
+                            sx={{ textShadow: '0px 2px 0 #000' }}
+                        >
+                            {residence}
+                        </Typography>
+                    </Link>
+                    <Tooltip title={playersList}>
+                        <AvatarGroup max={2}>
+                            {players.map((player) => {
+                                const { name, image, _id } = player
+                                return <Avatar key={_id} src={image}>{name[0]}</Avatar>
+                            })}
+                        </AvatarGroup>
+                    </Tooltip>
+                    {_id == winner && <Paper sx={{ p: 1, bgcolor: chroma(residenceData?.color || 'black').darken().hex() }}><Typography
+                        variant='h4'
                         fontWeight={700}
                         textAlign='center'
-                        sx={{ textShadow: '0px 2px 0 #000' }}
                     >
-                        {name}
-                    </Typography>
-                </Link>
-                <Link href={`/residence/${residence.replaceAll(' ', '')}`} sx={{ textDecoration: 'none', ':hover': { color: 'red' } }}>
-                    <Typography
-                        variant='h6'
-                        fontWeight={400}
-                        textAlign='center'
-                        sx={{ textShadow: '0px 2px 0 #000' }}
-                    >
-                        {residence}
-                    </Typography>
-                </Link>
-                <Tooltip title={playersList}>
-                    <AvatarGroup max={3}>
-                        {players.map((player) => {
-                            const { name, image, _id } = player
-                            return <Avatar key={_id} src={image}>{name[0]}</Avatar>
-                        })}
-                    </AvatarGroup>
-                </Tooltip>
-                {_id == winner && <Paper sx={{ p: 1, bgcolor: chroma(residenceData?.color || 'black').hex() }}><Typography
-                    variant='h4'
-                    fontWeight={700}
-                    textAlign='center'
-                    sx={{}}
-                >
-                    Winner
-                </Typography></Paper>}
-            </Stack>
-        </Tilt>
+                        Winner
+                    </Typography></Paper>}
+                </Stack>
+            </Tilt>
+        </Box>
     )
 }
 
 export default function MatchCard({ match, ...props }) {
-
 
     const { teams, event, time, _id } = match
     const { user } = useContext(AuthContext)
     const navigate = useNavigate()
 
     const isAdmin = user?.role === 'admin'
-    const { mutate: deleteMatchHandler } = useMutation({
+    const { mutate: deleteMatchHandler, isPending } = useMutation({
         mutationFn: () => axios.delete(`/match/${_id}`).then(response => response.data),
-        onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['matches'] })
-        }
+        onMutate: () => {
+            const matchData = queryClient.getQueryData(['matches', {}])
+            if (!matchData) return
+            const matchDataDummy =  matchData.filter(({ _id: matchId }) => _id !== matchId)
+            queryClient.setQueryData(['matches', {}], matchDataDummy)
+        },
+        onSettled: () => {
+            queryClient.invalidateQueries({ queryKey: ['matches', {}] })
+        },
     })
 
     return (
@@ -243,9 +254,6 @@ export default function MatchCard({ match, ...props }) {
                     >
                         <span className="text-gradient">{event}</span>
                     </Typography>
-                    {/* {!props?.hideSummary && <Button size='large' variant='contained' sx={{ mb: 2 }} onClick={() => navigate(`/matches/${_id}`)}>
-                        Show Match Summary
-                    </Button>} */}
                     <Typography
                         variant='h5'
                         fontWeight={400}
@@ -274,8 +282,8 @@ export default function MatchCard({ match, ...props }) {
             {isAdmin && (
                 <>
                     <SelectWinnerSection matchId={_id} teams={teams} winner={match?.winner} />
-                    <Button size='large' variant='contained' fullWidth onClick={deleteMatchHandler}>
-                        Delete Match
+                    <Button size='large' variant='contained' fullWidth disabled={isPending} onClick={deleteMatchHandler}>
+                        {isPending ? 'Deleting...' : 'Delete Match'}
                     </Button>
                 </>
             )}

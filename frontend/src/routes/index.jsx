@@ -22,6 +22,7 @@ import Matches from '../pages/Matches'
 import CreateMatchSection from '../pages/Matches/CreateMatchSection'
 import Error from '../pages/Error'
 import MatchPageSection from "../pages/Matches/MatchPageSection";
+import Winners from '../pages/Winners'
 
 const router = createBrowserRouter([
     {
@@ -133,6 +134,10 @@ const router = createBrowserRouter([
                         element: <MatchPageSection />
                     }
                 ]
+            },
+            {
+                path: '/winners',
+                element: <Winners />
             },
             {
                 path: '/signup',
