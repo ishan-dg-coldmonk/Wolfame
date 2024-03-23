@@ -46,10 +46,12 @@ function PointsBlock({ label, winnerList }) {
 
     const filteredResidenceList = residenceList.filter(({ category }) => category.toLowerCase() === label.toLowerCase()).map((data) => {
         let points = 0
-        winnerList.forEach(({ team, event, rank }) => {
-            if (team.residence != data.name) return;
+        winnerList.filter(({ team }) => team.residence == data.name).forEach(({ event, rank }) => {
+            // console.log(eventData.points?.[parseInt(rank)])
+            if (rank > 3) return;
             const eventData = eventsList.find(({ label }) => label == event);
-            points += (eventData.points?.[rank] || 0)
+            console.log(data.name, eventData.points[rank - 1], rank)
+            points += parseInt(eventData.points?.[parseInt(rank) - 1])
         })
         return { points, ...data }
     }).sort((a, b) => b.points - a.points)
@@ -59,9 +61,11 @@ function PointsBlock({ label, winnerList }) {
             <Typography variant='h2' fontWeight={700}>
                 {label}
             </Typography>
-            {filteredResidenceList.map((data, i) => {
-                return <TableCard key={data.name} {...data} odd={i & 1} />
-            })}
+            <Stack gap={1} sx={{ width: '100%', alignItems: 'center' }}>
+                {filteredResidenceList.map((data, i) => {
+                    return <TableCard key={data.name} {...data} odd={i & 1} />
+                })}
+            </Stack>
         </Stack>
     )
 }
@@ -74,7 +78,7 @@ function PointsTable() {
     })
 
     return (
-        <Stack py={2} gap={1} pr={{ xs: 0, md: 2 }}>
+        <Stack py={2} gap={3} pr={{ xs: 0, md: 2 }}>
             <PointsBlock label={'Men'} winnerList={winnerList} />
             <PointsBlock label={'Women'} winnerList={winnerList} />
         </Stack>

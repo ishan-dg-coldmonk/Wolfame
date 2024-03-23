@@ -31,7 +31,7 @@ export default function Winners() {
         mutationFn: (body) => axios.post('/winner', body).then(response => response.data),
         onSuccess: () => {
             queryClient.invalidateQueries(['winners'])
-            resetForm()
+            // resetForm({})
         }
     })
 

@@ -21,7 +21,7 @@ export default function MatchSection({ params = {}, sx = {}, hide = {} }) {
         queryFn: () => fetchMatches(params),
     })
 
-    const [filters, setFilters] = useState({ date: new Date().getDate(), event: 'All', residence: 'All' })
+    const [filters, setFilters] = useState({ date: 'All', event: 'All', residence: 'All' })
 
     if (isPending) {
         return <LoadingIndicator />

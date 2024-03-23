@@ -26,17 +26,19 @@ function WinnerBlock({ label, winnerList }) {
                     <Typography variant='h2' fontWeight={700}>
                         {label}
                     </Typography>
-                    {filteredWinerList.map(({ team, rank }) => {
-                        return (
-                            <Stack direction='row' gap={1} sx={{ width: '100%', alignItems: 'center', }}>
-                                <Paper elevation={15} sx={{ height: '100%', aspectRatio: '1/1', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                    <Typography variant='h2'>
-                                        {rank}
-                                    </Typography>
-                                </Paper>
-                                <TeamCard key={team._id} team={team} />
-                            </Stack>)
-                    })}
+                    <Stack gap={1} sx={{ width: 1, alignItems: 'center' }}>
+                        {filteredWinerList.map(({ team, rank }) => {
+                            return (
+                                <Stack direction='row' gap={1} sx={{ width: '100%', alignItems: 'center', }}>
+                                    <Paper elevation={15} sx={{ height: '4rem', aspectRatio: '1/1', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                        <Typography variant='h2'>
+                                            {rank}
+                                        </Typography>
+                                    </Paper>
+                                    <TeamCard key={team._id} team={team} />
+                                </Stack>)
+                        })}
+                    </Stack>
                 </Stack>
             </Grid>
         </Grid>
