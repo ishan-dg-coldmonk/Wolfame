@@ -134,7 +134,7 @@ function HeroSection() {
                                 fontFamily: "'Nosifer', sans-serif",
                                 fontSize: "3.6rem",
                                 cursor: "pointer",
-                                background: "linear-gradient(to right, red 0%, rgb(251, 29, 29) 50%, rgb(228, 27, 27) 100%)",
+                                background: "linear-gradient(to bottom right, red 0%, rgb(237, 23, 23) 50%, rgb(133, 48, 48) 100%)",
                                 WebkitBackgroundClip: "text",
                                 WebkitTextFillColor: "transparent",
                                 textShadow: "0 2px 2px rgba(0, 0, 0, 0)",
@@ -198,10 +198,10 @@ function HeroSection() {
                         variants={fadeIn}
                         transition={{ delay: 1.2 }}
                     >
-                        <a href="#eventsSection" className="btn btn--white btn--animated" onClick={(e) => {
-    e.preventDefault(); // Prevent default anchor behavior
-    scrollToSection("eventsSection"); // Trigger smooth scroll
-  }}>Events</a>
+                                        <a href="#eventsSection" className="btn btn--white btn--animated" onClick={(e) => {
+                    e.preventDefault(); // Prevent default anchor behavior
+                    scrollToSection("eventsSection"); // Trigger smooth scroll
+                }}>Events</a>
                     </motion.div>
                 </Stack>
             </Stack>

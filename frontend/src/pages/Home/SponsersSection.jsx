@@ -1,7 +1,8 @@
-import React, { Fragment } from 'react'
-import { Grid, Grow, Paper, Stack, Typography } from '@mui/material'
-import Tilt from 'react-parallax-tilt';
+import React, { Fragment } from 'react';
+import { Grid, Paper, Stack, Typography } from '@mui/material';
+import { motion } from 'framer-motion'; // Import framer-motion
 
+import monster from "../../assets/home-page/sponsors-section/monster.jpeg"
 import cocaCola from "../../assets/home-page/sponsors-section/coca-cola.jpg";
 import decathlon from "../../assets/home-page/sponsors-section/decathlon.jpg";
 import elm from "../../assets/home-page/sponsors-section/elm.jpg";
@@ -10,174 +11,214 @@ import grapevine from "../../assets/home-page/sponsors-section/grapevine.jpg";
 import lic from "../../assets/home-page/sponsors-section/lic.jpg";
 import mtv from "../../assets/home-page/sponsors-section/mtv.jpg";
 import nba from "../../assets/home-page/sponsors-section/nba.jpg";
-import talentwala from "../../assets/home-page/sponsors-section/talentwala.jpg";
-import theGlobalHues from "../../assets/home-page/sponsors-section/the-global-hues.jpg";
-import waaMomo from "../../assets/home-page/sponsors-section/waa-momo.jpg";
+import nivia from "../../assets/home-page/sponsors-section/nivia.png";
+import bisleri from "../../assets/home-page/sponsors-section/bisleri.png";
+import wowMomo from "../../assets/home-page/sponsors-section/wowmomo.jpeg";
+import sting from "../../assets/home-page/sponsors-section/sting.jpeg";
+import bgImage from "../../assets/home-page/sponsors-section/sponsor-bg.jpg";
 
 const sponsors = [
-    {
-        title: 'Monster Energy',
-        logo: 'https://github.com/Satyam-2001/Wolfame/assets/88069082/f3a52e6f-00f4-45cb-99c0-e9b9403a83d9',
-        backgroundColor: 'black'
-    },
-    {
-        title: 'Predator Energy',
-        logo: 'https://github.com/Satyam-2001/Wolfame/assets/88069082/0ae82ac5-a7ab-4929-b15d-62c482602378',
-        backgroundColor: 'black'
-    },
-]
-
-const titleSponser = [
     {
         title: 'Coca Cola',
         logo: cocaCola,
         backgroundColor: 'white',
     },
-]
-
-const poweredBy = [
     {
         logo: decathlon,
         title: "Decathlon",
         backgroundColor: "#0082c6",
     },
-]
-
-const associateSponser = [
+    {
+        logo: nivia,
+        title: "nivia",
+        backgroundColor: "white"
+    },
+    {
+        title: 'Sting',
+        logo: sting,
+        backgroundColor: '#c2112c'
+    },
+    {
+        logo: bisleri,
+        title: "Bisleri",
+        backgroundColor: "#00B3A1",
+    },
+    {
+        logo: wowMomo,
+        title: "wow momo",
+        backgroundColor: "#facb23",
+    },
     {
         logo: lic,
-        title: "lic",
-        backgroundColor: "#000000"
-    },
-]
-
-const youthPartner = [
-    {
-        logo: grapevine,
-        title: "Grapevine",
-        backgroundColor: "#000000",
-    },
-]
-
-const artistPartner = [
-    {
-        logo: talentwala,
-        title: "talentwala",
-        backgroundColor: "#000000",
-    },
-]
-
-const mediaPartners = [
-    {
-        logo: nba,
-        title: "nba",
-        backgroundColor: "#d81f32"
+        title: "LIC",
+        backgroundColor: "black",
     },
     {
         logo: mtv,
         title: "mtv",
-        backgroundColor: "#000000"
+        backgroundColor: "black"
     },
     {
-        logo: theGlobalHues,
-        title: "the global hues",
-        backgroundColor: "#ffffff",
+        title: 'Monster Energy',
+        logo: monster,
+        backgroundColor: 'black'
     },
-]
-
-const otherPartners = [
-    {
-        logo: elm,
-        title: "E-learn markets",
-        backgroundColor: "#ffffff",
-    },
-    {
-        logo: fusionGrill,
-        title: "Fusion grill",
-        backgroundColor: "#ff5d11",
-    },
-    {
-        logo: waaMomo,
-        title: "waa momo",
-        backgroundColor: "#f7e32c",
-    },
-]
+];
 
 function SponsorCard({ logo, title, backgroundColor }) {
     return (
-        <Tilt
-            scale={1.15}
-            tiltReverse={true}
-            perspective={500}
-            glareEnable={true}
-            glareMaxOpacity={0.45}
-            glareBorderRadius='1rem'
+        <Paper 
+            sx={{ 
+                bgcolor: backgroundColor, 
+                borderRadius: '1rem',
+                padding: '0.3rem',
+                outline: "3px solid black",
+                boxShadow: "1px 2px 10px rgba(0,0,0,0.8)",
+                margin: '1rem', // Margin around the card
+                position: 'relative', // For the border animation
+                overflow: 'hidden', // Hide overflow for the border animation
+                transition: 'transform 0.3s ease, box-shadow 0.3s ease', // Smooth transition for scale and shadow
+                '&:hover': {
+                    transform: 'scale(1.1)', // Scale effect on hover
+                    boxShadow: '3px 5px 40px rgba(255, 0, 0, 0.8)', // Red glow effect
+                },
+            }}
         >
-            <Paper sx={{ bgcolor: backgroundColor, borderRadius: '1rem', p: 2 }}>
-                <img
-                    src={logo}
-                    alt={title}
-                    style={{
-                        width: '15rem',
-                        height: '15rem',
-                        objectFit: 'contain',
-                    }} />
-            </Paper>
-        </Tilt >
-    )
-}
-
-function SponserGroup({ title, sponsers }) {
-    return (
-        <Stack gap={2} alignItems='center'>
-            <Typography variant='h3' fontWeight={700} sx={{ opacity: 0.6 }} >
-                {title}
-            </Typography>
-            <Stack direction={{ xs: 'column', md: 'row' }} gap={{ xs: 2, md: 5 }}>
-                {sponsers.map((item) => <SponsorCard key={item.title} {...item} />)}
-            </Stack>
-        </Stack>
-    )
+            <img
+                src={logo}
+                alt={title}
+                style={{
+                    width: '15rem',
+                    height: '15rem',
+                    objectFit: 'contain',
+                    position: 'relative', // Ensure the image is above the border animation
+                    zIndex: 1, // Place the image above the border animation
+                }} 
+            />
+        </Paper>
+    );
 }
 
 function SponsersSection() {
+    // Animation variants for the title and cards
+    const titleVariants = {
+        hidden: { opacity: 0, y: -50 }, // Start hidden and slightly above
+        visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }, // Animate to visible
+    };
+
+    const cardVariants = {
+        hidden: { opacity: 0, y: 50 }, // Start hidden and slightly below
+        visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }, // Animate to visible
+    };
+
     return (
         <Fragment>
-            <Stack p={4} sx={{ alignItems: 'center' }} gap={3}>
-                <Typography variant='h1' fontFamily={"'Nosifer', sans-serif"}>
-                    <span className="text-gradient">Sponsors</span>
-                </Typography>
-                <SponserGroup title={''} sponsers={sponsors} />
-            </Stack>
-            <Stack p={4} sx={{ alignItems: 'center' }} gap={3}>
-                <Typography variant='h1' fontFamily={"'Nosifer', sans-serif"} textAlign='center'>
-                    <span className="text-gradient">Past Sponsors</span>
-                </Typography>
-                <Grid container spacing={3}>
-                    <Grid item xs={12} md={4} order={{ xs: 1, md: 2 }}>
-                        <SponserGroup title={'Title Sponser'} sponsers={titleSponser} />
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4} order={{ xs: 2, md: 1 }}>
-                        <SponserGroup title={'Powered By'} sponsers={poweredBy} />
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4} order={{ xs: 3, md: 3 }}>
-                        <SponserGroup title={'Associate Sponser'} sponsers={associateSponser} />
-                    </Grid>
+            <Stack 
+                p={4} 
+                sx={{ 
+                    alignItems: 'center', 
+                    justifyContent: 'center', // Center content vertically
+                    minHeight: '100vh', // Take up the full viewport height
+                    paddingBottom: '2rem',
+                    backgroundImage: `url(${bgImage})`, // Set the background image
+                    backgroundSize: 'contain', // Ensure the image covers the entire section
+                    backgroundPosition: 'center', // Center the background image
+                    position: 'relative', // Ensure the Stack is positioned relatively
+                }} 
+                gap={3}
+            >
+                {/* Translucent Overlay */}
+                <div
+                    style={{
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
+                        width: "100%",
+                        height: "100%",
+                        backgroundColor: "rgba(0, 0, 0, 0.64)", // Dark overlay for better contrast
+                        zIndex: 0, // Place the overlay above the background image but below the content
+                    }}
+                ></div>
+
+                {/* Past Sponsors Title with Margin */}
+                <motion.div
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.2 }} // Trigger animation when 20% of the element is visible
+                    variants={titleVariants}
+                >
+                    <Typography 
+                        variant='h1' 
+                        fontFamily={"'Nosifer', sans-serif"}
+                        sx={{ 
+                            textAlign: "center",
+                            mt: 8, // Margin top
+                            mb: 3, // Margin bottom
+                            fontSize: { xs: '2.5rem', md: '3.6rem' },
+                            fontWeight: 500,
+                            background: "linear-gradient(to bottom, red 0%, rgb(237, 23, 23) 50%, rgb(133, 48, 48) 100%)",
+                            WebkitBackgroundClip: "text",
+                            WebkitTextFillColor: "transparent",
+                            position: 'relative', // Ensure the title is above the overlay
+                            zIndex: 1, // Place the title above the overlay
+                        }}
+                    >
+                        <span>Past Sponsors</span>
+                    </Typography>
+                </motion.div>
+
+                {/* Sponsors Grid */}
+                <Grid 
+                    container 
+                    spacing={4} // Spacing between cards
+                    justifyContent="center" // Center the cards
+                    sx={{ 
+                        maxWidth: '1200px', // Limit the maximum width of the grid
+                        position: 'relative', // Ensure the grid is above the overlay
+                        zIndex: 1, // Place the grid above the overlay
+                    }}
+                >
+                    {sponsors.map((item, index) => (
+                        <Grid 
+                            item 
+                            xs={12} sm={6} md={4} // 3 cards per row on medium and larger screens
+                            key={index}
+                            sx={{ 
+                                display: 'flex', 
+                                justifyContent: 'center', // Center the card horizontally
+                            }}
+                        >
+                            <motion.div
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true, amount: 0.2 }} // Trigger animation when 20% of the element is visible
+                                variants={cardVariants}
+                            >
+                                <SponsorCard {...item} />
+                            </motion.div>
+                        </Grid>
+                    ))}
                 </Grid>
-                <Grid container spacing={3}>
-                    <Grid item xs={12}>
-                        <SponserGroup title={'Youth Partner'} sponsers={youthPartner} />
-                    </Grid>
-                </Grid>
-                <Grid spacing={3} sx={{ display: 'flex', alignItems: 'center' }}>
-                    <SponserGroup title={'Media Partners'} sponsers={mediaPartners} />
-                </Grid>
-                <Grid spacing={3} sx={{ display: 'flex', alignItems: 'center' }}>
-                    <SponserGroup title={'Other Partners'} sponsers={otherPartners} />
-                </Grid>
+
+                {/* Sponsor Us Button */}
+                <motion.div
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.2 }} // Trigger animation when 20% of the element is visible
+                    variants={titleVariants}
+                    sx={{ 
+                        marginTop: '2rem', // Margin top
+                        marginBottom: '10rem', // Margin bottom
+                        textAlign: 'center', // Center the text
+                        position: 'relative', // Ensure the button is above the overlay
+                        zIndex: 1, // Place the button above the overlay
+                    }}
+                >
+                    <a href="https://drive.google.com/file/d/1p62uRbgVVm4YYi0f7A3czT-zCGo9MRMh/view?usp=sharing" className="btn btn--white btn--animated btn-mg-bottom-mg-top">Sponsor Us</a>
+                </motion.div>
             </Stack>
         </Fragment>
-    )
+    );
 }
 
-export default SponsersSection
+export default SponsersSection;
