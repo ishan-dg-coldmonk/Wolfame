@@ -54,6 +54,7 @@ function AboutCard({ title, src, children, direction = 'left', sx = {}, index })
                         alignItems: 'center', 
                         justifyContent: 'center', 
                         height: { xs: '250px', md: '350px' },
+                        overflow: 'hidden', // Ensure image doesn't overflow
                     }}
                 >
                     <motion.img 
@@ -72,7 +73,7 @@ function AboutCard({ title, src, children, direction = 'left', sx = {}, index })
                         style={{ 
                             height: "100%", 
                             width: "100%", 
-                            objectFit: 'cover',
+                            objectFit: 'cover', // Ensure image covers the area without distortion
                         }} 
                     />
                 </Grid>
@@ -84,7 +85,12 @@ function AboutCard({ title, src, children, direction = 'left', sx = {}, index })
                     p={{ xs: 3, md: 4 }} 
                     gap={2} 
                     boxSizing='border-box' 
-                    sx={{ flexGrow: 1, flexShrink: 1, flexBasis: 'auto' }}
+                    sx={{ 
+                        flexGrow: 1, 
+                        flexShrink: 1, 
+                        flexBasis: 'auto',
+                        overflow: 'hidden', // Prevent text overflow
+                    }}
                 >
                     <motion.div
                         initial={{ opacity: 0, y: 10 }}  // Reduced y distance
