@@ -78,8 +78,8 @@ function EventSection() {
                 category: eventObj.event, // Static category
                 content: (
                   <div>
-                    <p>{eventObj.description}</p>
-                    <h3>Rules:</h3>
+                    <h1 className="a-center bloody-text">{eventObj.event}</h1>
+                    <h3 >Rules:</h3>
                     <ul>
                       {eventObj.rules.map((rule, i) => (
                         <li key={i} dangerouslySetInnerHTML={{ __html: rule }} />
@@ -93,6 +93,15 @@ function EventSection() {
                         </li>
                       ))}
                     </ul>
+                    <div className="a-center">
+                    <a 
+                      href="#" 
+                      className="btn btn--white btn--animated" 
+                      style={{ fontSize: '0.9rem' }} // Reduce font size
+                    >
+                      Register
+                    </a>
+                    </div>
                   </div>
                 ),
               }}

@@ -134,8 +134,6 @@ export const Card = ({ card, index }) => {
               <button onClick={handleClose} className="modal-close">
                 <IconX />
               </button>
-              <p className="modal-category">{card.category}</p>
-              <p className="modal-title">{card.title}</p>
               <div className="modal-body">{card.content}</div>
             </motion.div>
           </div>

@@ -70,6 +70,10 @@
     left: 0;
     z-index: -1;
     transition: all .4s; }
+
+  .btn-center{
+    margin: 0 auto;
+  }
   
   .btn--animated {
     animation: moveInBottom .5s ease-out .75s;
@@ -104,5 +108,24 @@
   .hero-logo {
       flex: 0 0 80% !important;
       max-width: 100% !important;
+  }
+}
+
+.btn-small {
+  text-align: center;
+  font-size: 1.2rem !important;
+}
+
+.bloody-text{
+  font-family: 'Nosifer', sans-serif;
+  font-weight: 500;
+  background: linear-gradient(to bottom, red 0%, rgb(237, 23, 23) 50%, rgb(133, 48, 48) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@media (max-width: 420px) {
+  .bloody-text{
+    font-size: 2rem !important;
   }
 }
