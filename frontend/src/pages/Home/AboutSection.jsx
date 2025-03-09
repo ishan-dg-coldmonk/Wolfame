@@ -31,7 +31,7 @@ function AboutCard({ title, src, children, direction = 'left', sx = {}, index })
             viewport={{ once: true, amount: 0.2 }}
             sx={{ 
                 height: { xs: 'auto', md: '22rem' }, 
-                width: { xs: '100%', md: '85%' },
+                width: { xs: '100%', sm:'85%', md: '85%' },
                 borderRadius: '2rem', 
                 zIndex: "3",
                 backgroundColor: "rgba(0, 0, 0, 0.4)",
@@ -120,7 +120,19 @@ function AboutCard({ title, src, children, direction = 'left', sx = {}, index })
                         }}
                         viewport={{ once: true, amount: 0.2 }}
                     >
-                        <Typography variant='body1' fontSize={'1rem'} sx={{ py: { xs: 1, md: 2 } }}>
+                        <Typography 
+                            variant='body1' 
+                            sx={{ 
+                                py: { xs: 1, md: 2 }, 
+                                fontSize: { 
+                                    xs: '1rem', // Default font size for small screens
+                                    sm: '1.3rem', // Default font size for small-medium screens
+                                    md: '1rem', // Default font size for medium screens
+                                    lg: '1rem', // Increased font size for iPad screens (700px to 1100px)
+                                    xl: '1rem', // Default font size for large screens
+                                },
+                            }}
+                        >
                             {children}
                         </Typography>
                     </motion.div>

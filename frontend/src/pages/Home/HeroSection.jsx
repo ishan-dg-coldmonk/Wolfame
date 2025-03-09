@@ -5,6 +5,17 @@ import wolfPng from "../../assets/logo.png";
 import heroBg from "../../assets/home-page/hero-section/hero-bg.jpeg";
 import "./index.css";
 
+
+const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({
+        behavior: "smooth", // Smooth scroll behavior
+        block: "start", // Align to the top of the section
+      });
+    }
+  };
+
 function HeroSection() {
     // Animation variants for different elements
     const fadeInUp = {
@@ -187,7 +198,10 @@ function HeroSection() {
                         variants={fadeIn}
                         transition={{ delay: 1.2 }}
                     >
-                        <a href="#" className="btn btn--white btn--animated">Events</a>
+                        <a href="#eventsSection" className="btn btn--white btn--animated" onClick={(e) => {
+    e.preventDefault(); // Prevent default anchor behavior
+    scrollToSection("eventsSection"); // Trigger smooth scroll
+  }}>Events</a>
                     </motion.div>
                 </Stack>
             </Stack>
