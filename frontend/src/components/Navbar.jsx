@@ -42,7 +42,7 @@ function ButtonElement({ to, name, icon }) {
                     sx={{
                         width: '75%',
                         borderRadius: '10px',
-                        background: isActive ? 'linear-gradient(135deg, #cc0000 2.34%, #e96214d6 100.78%)' : 'transparent',
+                        background: isActive ? 'linear-gradient(135deg,rgb(242, 7, 7) 2.34%,rgb(147, 22, 10) 100.78%)' : 'transparent',
                         color: theme.palette.text.primary,
                     }}
                 >

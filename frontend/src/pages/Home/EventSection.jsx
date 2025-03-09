@@ -1,64 +1,52 @@
-import React from 'react'
-import { Grid, Paper, Stack, Typography } from '@mui/material'
-import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCoverflow, Pagination } from "swiper";
-import "swiper/css";
-import "swiper/css/effect-coverflow";
-import "swiper/css/pagination";
-
-import eventsList from '../../data/events';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Stack, Typography } from "@mui/material";
+import { Carousel, Card } from "../../components/AppleCardsCarousel.jsx"; // Import the carousel and card components
+import "../../components/AppleCardsCarousel.css"; // Import the CSS for styling
+import eventsList from "../../data/events.js"; // Import the events data
 
 function EventSection() {
-    return (
-        <Stack p={4} sx={{ alignItems: 'center' }} gap={5}>
-            <Typography variant='h1' fontFamily={"'Nosifer', sans-serif"}>
-                <span className="text-gradient">Events</span>
-            </Typography>
-            <Stack>
-                <Swiper
-                    effect="coverflow"
-                    grabCursor
-                    centeredSlides
-                    slidesPerView="auto"
-                    pagination={{
-                        dynamicBullets: true,
-                        clickable: false,
-                    }}
-                    modules={[EffectCoverflow, Pagination]}
-                    className="events-swiper"
-                >
-                    {eventsList.map((eventObj, i) => (
+  return (
+    <Stack p={4} sx={{ alignItems: "center" }} gap={5}>
+      {/* Title */}
+      <Typography variant="h1" fontFamily={"'Nosifer', sans-serif"}>
+        <span className="text-gradient">Events</span>
+      </Typography>
 
-                        <SwiperSlide
-                            key={i}
-                            className="event-slide"
-                            style={{
-                                backgroundImage: `url(${eventObj.image})`,
-                                backgroundPosition: "center center",
-                                backgroundRepeat: "no-repeat",
-                                backgroundSize: "cover",
-                                display: "flex",
-                                height: '75vh',
-                                width: '75vw',
-                            }}
-                        >
-                            <Stack width='100%' sx={{ alignItems: 'center', justifyContent: 'center' }}>
-                                <Link to={`/leaderboard/${eventObj.label.replaceAll(' ', '').toLowerCase()}`} style={{ textDecoration: 'none' }}>
-                                    <Typography variant='h2' fontWeight={800}  >
-                                        {eventObj.event}
-                                    </Typography>
-                                </Link>
-                                <Typography variant='body1' fontSize={'1rem'} sx={{ py: { xs: 1, md: 2 } }}>
-                                    {eventObj.description}
-                                </Typography>
-                            </Stack>
-                        </SwiperSlide>
+      {/* Apple Cards Carousel */}
+      <Carousel
+        items={eventsList.map((eventObj, index) => (
+          <Card
+            key={index}
+            card={{
+              src: eventObj.image, // Event image
+              title: eventObj.event, // Event name
+              category: "Event", // Static category
+              content: (
+                <div>
+                  <p>{eventObj.description}</p>
+                  <h3>Rules:</h3>
+                  <ul>
+                    {eventObj.rules.map((rule, i) => (
+                      <li key={i} dangerouslySetInnerHTML={{ __html: rule }} />
                     ))}
-                </Swiper>
-            </Stack>
-        </Stack >
-    )
+                  </ul>
+                  <h3>Coordinators:</h3>
+                  <ul>
+                    {eventObj.coordinators.map((coordinator, i) => (
+                      <li key={i}>
+                        {coordinator.name} - {coordinator.contact}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ),
+            }}
+            index={index}
+          />
+        ))}
+      />
+    </Stack>
+  );
 }
 
-export default EventSection
+export default EventSection;

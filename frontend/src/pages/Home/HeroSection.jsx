@@ -1,110 +1,198 @@
-import { forwardRef, useRef } from "react";
-import Tilt from 'react-parallax-tilt';
-
+import { Stack, Typography } from "@mui/material";
+import { motion } from "framer-motion";
+import { Typewriter } from "react-simple-typewriter";
 import wolfPng from "../../assets/logo.png";
-import slideshow6 from "../../assets/home-page/hero-section/slideshow6.jpg";
-import slideshow7 from "../../assets/home-page/hero-section/slideshow7.jpg";
-import slideshow8 from "../../assets/home-page/hero-section/slideshow8.jpg";
-import slideshow9 from "../../assets/home-page/hero-section/slideshow9.jpg";
-import slideshow15 from "../../assets/home-page/hero-section/slideshow15.jpg";
-import slideshow16 from "../../assets/home-page/hero-section/slideshow16.jpg";
-import slideshow17 from "../../assets/home-page/hero-section/slideshow17.jpg";
-import slideshow18 from "../../assets/home-page/hero-section/slideshow18.jpg";
-import { Box, Stack } from "@mui/system";
-
-import { Fade, Grid, Paper, Typography, Zoom } from "@mui/material";
-import ImageSlider from "../../components/ImageSlider";
-import Mirror from "../../UI/Mirror";
-// import './ParallaxEffect.demozap.css';
-
-
-const topSlideshow = [slideshow6, slideshow7, slideshow8, slideshow9];
-const bottomSlideshow = [slideshow15, slideshow16, slideshow17, slideshow18];
-
-const HeroContent = (props) => {
-    return (
-        <Mirror elevation={5}>
-            <Stack p={1} py={2} sx={{ justifyContent: 'center', alignItems: 'center' }} gap={2}>
-                <Typography variant='h1' fontFamily={"'Nosifer', sans-serif"} sx={{ textAlign: 'center' }} >
-                    <span className="text-gradient">WOLFAME 2k24</span>
-                </Typography>
-                <Typography variant='h5' textAlign={'center'} sx={{ color: 'rgba(255, 255, 255, 0.85)' }}  >
-                    <span className="text-gradient">Wolfame</span> is a sports and cultural festival
-                    organised by Wolfenden Hall annually. The four day
-                    long event involves a plethora of activities, both
-                    indoor and outdoor, attended by enthusiastic students
-                    willing to prove their mettle. The much anticipated
-                    festival has returned to reignite the spark of
-                    competition among the students and will be witnessed
-                    by an approximate of 6,500+ people.<br /><br />
-                    <span className="text-gradient">Wolfenden Hall</span> is back with Wolfame, the best of the
-                    tournaments, and the largest so far. 4 days of
-                    adrenaline charged, sweat drenched, electrifying
-                    events, the grandest prizes for the taking and the dopest
-                    after party. And let's not forget the ultimate medal of
-                    honour, thetrophy of thechampion of champions.
-                </Typography>
-            </Stack>
-        </Mirror>
-    )
-}
+import heroBg from "../../assets/home-page/hero-section/hero-bg.jpeg";
+import "./index.css";
 
 function HeroSection() {
+    // Animation variants for different elements
+    const fadeInUp = {
+        hidden: { opacity: 0, y: 30 },
+        visible: { 
+            opacity: 1, 
+            y: 0,
+            transition: { duration: 0.8, ease: "easeOut" }
+        }
+    };
+
+    const fadeIn = {
+        hidden: { opacity: 0 },
+        visible: { 
+            opacity: 1,
+            transition: { duration: 1, ease: "easeOut" }
+        }
+    };
+
+    const logoAnimation = {
+        hidden: { opacity: 0, scale: 1 },
+        visible: { 
+            opacity: 1, 
+            scale: 1,
+            transition: { 
+                duration: 1.2, 
+                ease: [0.25, 0.1, 0.25, 1.0] // Custom cubic bezier for fluid motion
+            }
+        }
+    };
+
+    const titleAnimation = {
+        hidden: { opacity: 0, y: 20 },
+        visible: { 
+            opacity: 1, 
+            y: 0,
+            transition: { 
+                duration: 0.9, 
+                delay: 0.3,
+                ease: "easeOut"
+            }
+        }
+    };
 
     return (
-        <Paper elevation={3} sx={{ overflow: 'hidden' }} >
-            <Stack sx={{ position: 'relative', boxSizing: 'border-box', overflow: 'hidden' }}>
-                <ImageSlider images={topSlideshow} direction='left' />
-                <ImageSlider images={bottomSlideshow} direction='right' />
-                <ImageSlider images={topSlideshow} direction='left' />
-                <ImageSlider sx={{ display: { lg: 'none' } }} images={bottomSlideshow} direction='right' />
-                <Grid position='absolute' container px={2} pt={8} sx={{ background: 'rgba(0, 0, 0, 0.5)', overflow: 'hidden', height: '100%', boxSizing: 'border-box' }} >
-                    <Grid item xs={12} md={6} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', maxWidth: '100%' }}>
-                        <Tilt
-                            scale={1.15}
-                            tiltReverse={true}
-                            style={{ width: '100%', height: '100%' }}
-                            className="parallax-effect"
+        <Stack
+            sx={{
+                height: "110vh",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                position: "relative",
+                backgroundImage: `url(${heroBg})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+            }}
+        >
+            {/* Translucent overlay */}
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1 }}
+                style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "100%",
+                    backgroundColor: "rgba(0, 0, 0, 0.59)",
+                }}
+            ></motion.div>
+            <Stack
+                style={{
+                    padding: "1.6rem",
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    justifyContent: "space-around",
+                    flexWrap: "wrap",
+                    width: "80%",
+                    position: "relative",
+                }}
+            >
+                <motion.div
+                    initial="hidden"
+                    animate="visible"
+                    variants={logoAnimation}
+                    style={{ flex: "0 0 39%", maxWidth: "80%", marginBottom: "6rem" }}
+                    className="hero-logo"
+                >
+                    <img 
+                        src={wolfPng} 
+                        style={{ 
+                            width: "100%", 
+                            height: "auto"
+                        }} 
+                        alt="Wolfame Logo" 
+                    />
+                </motion.div>
+                <Stack
+                    direction="column"
+                    alignItems="center"
+                    justifyContent="space-between"
+                    flex={1}
+                    gap={2}
+                    sx={{ marginTop: "-100px" }}
+                >
+                    <motion.div
+                        initial="hidden"
+                        animate="visible"
+                        variants={titleAnimation}
+                    >
+                        <h1
+                            style={{
+                                textAlign: "center",
+                                fontFamily: "'Nosifer', sans-serif",
+                                fontSize: "3.6rem",
+                                cursor: "pointer",
+                                background: "linear-gradient(to right, red 0%, rgb(251, 29, 29) 50%, rgb(228, 27, 27) 100%)",
+                                WebkitBackgroundClip: "text",
+                                WebkitTextFillColor: "transparent",
+                                textShadow: "0 2px 2px rgba(0, 0, 0, 0)",
+                            }}
                         >
-                            <Zoom in style={{ transitionDelay: '500ms' }}>
-                                <img src={wolfPng} style={{ maxWidth: '60%' }} />
-                            </Zoom>
-                            <Zoom in style={{ transitionDelay: '1000ms' }}>
-                                <Typography
-                                    variant='h1'
-                                    fontFamily={"'Nosifer', sans-serif"}
-                                    sx={{
-                                        position: 'absolute',
-                                        fontSize: '4.5rem',
-                                        color: 'red',
-                                        cursor: 'pointer',
-                                        transform: 'translateZ(60px)',
-                                        mixBlendMode: 'difference'
-                                    }}>
-                                    WOLFAME
-                                </Typography>
-                            </Zoom>
-                        </Tilt>
-                    </Grid>
-                    <Grid item xs={12} md={6} sx={{ display: 'flex', alignItems: 'center' }}>
-                        <Tilt
-                            scale={1.05}
-                            tiltReverse={true}
-                            perspective={500}
-                            glareEnable={true}
-                            glareMaxOpacity={0.45}
+                            WOLFAME 2025
+                        </h1>
+                    </motion.div>
+                    <motion.div
+                        initial="hidden"
+                        animate="visible"
+                        variants={fadeInUp}
+                        transition={{ delay: 0.6 }}
+                    >
+                        <Typography variant="h3" color="white" sx={{
+                            fontWeight: "600", 
+                            fontSize: "2.5rem", 
+                            fontFamily:"Frijole", 
+                            textTransform:"uppercase", 
+                            background: "linear-gradient(to right, white, rgb(162, 158, 159))",
+                            WebkitBackgroundClip: "text",
+                            WebkitTextFillColor: "transparent",
+                            marginBottom: "-10px"
+                        }}>
+                            Feel the
+                        </Typography>
+                    </motion.div>
+                    <motion.div
+                        initial="hidden"
+                        animate="visible"
+                        variants={fadeInUp}
+                        transition={{ delay: 0.9 }}
+                    >
+                        <Typography
+                            variant="h3"
+                            sx={{
+                                background: "linear-gradient(to right, white, rgb(162, 158, 159))",
+                                WebkitBackgroundClip: "text",
+                                WebkitTextFillColor: "transparent",
+                                fontWeight: "600", 
+                                fontSize: "2.5rem", 
+                                fontFamily:"Frijole", 
+                                textTransform:"uppercase"
+                            }}
                         >
-                            <Fade in style={{ transitionDelay: '1500ms' }}>
-                                <section>
-                                    <HeroContent />
-                                </section>
-                            </Fade>
-                        </Tilt>
-                    </Grid>
-                </Grid>
+                            <Typewriter
+                                words={["Adrenaline", "Thrill", "Glory"]}
+                                loop={0}
+                                cursor
+                                cursorStyle="|"
+                                cursorColor="white"
+                                typeSpeed={60}
+                                deleteSpeed={30}
+                                delaySpeed={1500}
+                            />
+                        </Typography>
+                    </motion.div>
+                    <motion.div
+                        initial="hidden"
+                        animate="visible"
+                        variants={fadeIn}
+                        transition={{ delay: 1.2 }}
+                    >
+                        <a href="#" className="btn btn--white btn--animated">Events</a>
+                    </motion.div>
+                </Stack>
             </Stack>
-        </Paper>
-    )
+        </Stack>
+    );
 }
 
-export default HeroSection
+export default HeroSection;

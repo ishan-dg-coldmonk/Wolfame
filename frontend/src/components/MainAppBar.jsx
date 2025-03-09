@@ -17,10 +17,9 @@ const drawerWidth = 280;
 
 export default function MainAppBar() {
     const theme = useTheme();
-    const navigate = useNavigate()
-
+    const navigate = useNavigate();
     const [mobileOpen, setMobileOpen] = React.useState(false);
-    const { user } = React.useContext(AuthContext)
+    const { user } = React.useContext(AuthContext);
 
     const handleDrawerToggle = () => {
         setMobileOpen((prevState) => !prevState);
@@ -30,8 +29,8 @@ export default function MainAppBar() {
 
     const drawer = (
         <Stack onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-            <Stack justifyContent='space-between' alignItems='center' >
-                <Stack gap={2} p={2} alignItems='center' maxWidth='auto' >
+            <Stack justifyContent='space-between' alignItems='center'>
+                <Stack gap={2} p={2} alignItems='center' maxWidth='auto'>
                     <img src={logo} style={{ width: '50%' }} />
                     <Typography variant='h3' fontFamily={"'Nosifer', sans-serif"}>
                         <span className="text-gradient">Wolfame</span>
@@ -51,27 +50,38 @@ export default function MainAppBar() {
                     variant="temporary"
                     open={mobileOpen}
                     onClose={handleDrawerToggle}
-                    ModalProps={{
-                        keepMounted: true,
-                    }}
+                    ModalProps={{ keepMounted: true }}
                     sx={{
                         display: { xs: 'block' },
-                        '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+                        '& .MuiDrawer-paper': {
+                            boxSizing: 'border-box',
+                            width: drawerWidth,
+                            background: 'rgba(128, 128, 128, 0.2)', // Translucent gray
+                            backdropFilter: 'blur(10px)', // Blur effect
+                        },
                     }}
                 >
                     {drawer}
                 </Drawer>
             </nav>
-            <AppBar position="fixed" sx={{ backgroundColor: chroma(theme.palette.background.paper).alpha(0.8).hex(), borderRadius: '20px', boxSizing: 'border-box', top: '10px', width: '95%', left: '2.5%', backdropFilter: 'blur(4px)' }}>
-                <Stack direction='row' justifyContent='space-between' alignItems='center' height='4rem' px={2} >
+            <AppBar
+                position="fixed"
+                sx={{
+                    backgroundColor: 'rgba(0, 0, 0, 0.6)', // Translucent gray
+                    boxSizing: 'border-box',
+                    top: '0px',
+                    width: '100%',
+                    left: '0px',
+                    // backdropFilter: 'blur(10px)', // Subtle blur effect
+                }}
+            >
+                <Stack direction='row' justifyContent='space-between' alignItems='center' height='4rem' px={4}>
                     <IconButton
                         size="medium"
                         edge="start"
                         aria-label="open drawer"
                         onClick={handleDrawerToggle}
-                        sx={{
-                            display: { xs: 'block', sm: 'none' },
-                        }}
+                        sx={{ display: { xs: 'block', sm: 'none' } }}
                     >
                         <MenuIcon fontSize='large' />
                     </IconButton>
@@ -85,7 +95,8 @@ export default function MainAppBar() {
                             position: { xs: 'absolute', sm: 'static' },
                             left: { xs: '50%' },
                             transform: { xs: 'translate(-50%,0%)', sm: 'translate(0%,0%)' },
-                        }}>
+                        }}
+                    >
                         <Link to='/'>
                             <Box justifyContent='space-between' alignItems='center' gap={2} sx={{ height: '3.2rem' }}>
                                 <img src={logo} style={{ height: '95%' }} />
@@ -93,15 +104,16 @@ export default function MainAppBar() {
                         </Link>
                     </Stack>
                     <Navbar />
-                    <Stack direction='row' gap={2} sx={{ alignItems: 'center' }}>
-                        {user ?
+                    <Stack direction='row' gap={2} sx={{ alignItems: 'center', justifyContent: 'space-around' }}>
+                        {user ? (
                             <Link to={`/users/${user?._id}`}>
                                 <Avatar sx={{ bgcolor: 'red' }} alt={user.name} src={user.image} />
-                            </Link> :
-                            <Button variant='outlined' size='large' onClick={() => { navigate('/signin') }}>
+                            </Link>
+                        ) : (
+                            <Button variant='outlined' size='large' onClick={() => navigate('/signin')}>
                                 Sign In
                             </Button>
-                        }
+                        )}
                     </Stack>
                 </Stack>
             </AppBar>
