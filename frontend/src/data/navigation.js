@@ -9,7 +9,7 @@ import GroupsIcon from '@mui/icons-material/Groups';
 
 const navigationList = [
     { name: 'Home', to: '/', icon: <HomeIcon fontSize='large' /> },
-    { name: 'Events', to: '/events', icon: <CalendarMonthIcon fontSize='large' /> },
+    { name: 'Schedule', to: '/schedule', icon: <CalendarMonthIcon fontSize='large' /> },
     { name: 'Matches', to: '/matches', icon: <SportsHandballIcon fontSize='large' /> },
     { name: 'Leader Board', to: '/leaderboard', icon: <EmojiEventsIcon fontSize='large' /> },
     { name: 'Gallery', to: '/gallery', icon: <ImageIcon fontSize='large' /> },

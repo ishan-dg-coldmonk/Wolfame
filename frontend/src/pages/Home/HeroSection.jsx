@@ -157,6 +157,7 @@ function HeroSection() {
                             background: "linear-gradient(to right, white, rgb(162, 158, 159))",
                             WebkitBackgroundClip: "text",
                             WebkitTextFillColor: "transparent",
+                            marginTop: "-1rem",
                             marginBottom: "-10px"
                         }}>
                             Feel the
@@ -198,7 +199,7 @@ function HeroSection() {
                         variants={fadeIn}
                         transition={{ delay: 1.2 }}
                     >
-                                        <a href="#eventsSection" className="btn btn--white btn--animated" onClick={(e) => {
+                                        <a href="#eventsSection" className="btn btn--white btn--animated m-top" onClick={(e) => {
                     e.preventDefault(); // Prevent default anchor behavior
                     scrollToSection("eventsSection"); // Trigger smooth scroll
                 }}>Events</a>

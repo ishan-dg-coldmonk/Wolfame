@@ -67,3 +67,32 @@ code {
   transform: translateZ(2.5rem);
   cursor: pointer;
 }
+
+/* Global glow effect */
+.text-gradient {
+  background: linear-gradient(90deg, #ff0000, #ff6666);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Scroll animations */
+@keyframes glow {
+  0% { box-shadow: 0 0 10px rgba(255, 0, 0, 0.5); }
+  50% { box-shadow: 0 0 20px rgba(255, 0, 0, 0.8); }
+  100% { box-shadow: 0 0 10px rgba(255, 0, 0, 0.5); }
+}
+
+.vertical-timeline-element-content {
+  animation: glow 0.2s infinite;
+}
+
+@keyframes glow {
+  0% {
+      opacity: 0.5;
+      box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+  }
+  100% {
+      opacity: 1;
+      box-shadow: 0 0 20px rgba(255, 0, 0, 1);
+  }
+}

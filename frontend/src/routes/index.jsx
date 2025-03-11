@@ -2,7 +2,7 @@ import { createBrowserRouter, Outlet } from "react-router-dom";
 
 import App from '../App'
 import Home from '../pages/Home'
-import Events from '../pages/Events'
+import Events from '../pages/Schedule'
 import Gallery from '../pages/Gallery'
 import LeaderBoard from '../pages/Leader Board'
 import ContactUs from '../pages/ContactUs'
@@ -40,7 +40,7 @@ const router = createBrowserRouter([
                 element: <Gallery />
             },
             {
-                path: '/events',
+                path: '/schedule',
                 element: <Events />
             },
             {

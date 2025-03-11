@@ -6,16 +6,16 @@ import culturalPhoto from '../assets/events-page/cultural-bg.jpg'
 
 const timelineList = [
     {
-        title: "FIRST DAY",
-        date: "19 March 2024",
+        title: "DAY 1",
+        date: "17 March 2025",
         image: inaugurationPhoto,
         events: ["INITIATION",
             "INAUGURATION CEREMONY",
             "MATCHES BEGINS",],
     },
     {
-        title: "SECOND DAY",
-        date: "20 March 2024",
+        title: "DAY 2",
+        date: "18 March 2025",
         image: firstdayPhoto,
         events: [
             "HUSTLE BEGINS",
@@ -24,8 +24,8 @@ const timelineList = [
         ],
     },
     {
-        title: "THIRD DAY",
-        date: "21 March 2024",
+        title: "DAY 3",
+        date: "19 March 2025",
         image: seconddayPhoto,
         events: [
             "MATCHES PROCEED TO THE NEXT ROUND",
@@ -44,8 +44,8 @@ const timelineList = [
     //     ],
     // },
     {
-        title: "CULTURAL DAY",
-        date: "22 March 2024",
+        title: "DAY 4",
+        date: "20 March 2025",
         image: culturalPhoto,
         events: [
             "CULTURAL NIGHT",
