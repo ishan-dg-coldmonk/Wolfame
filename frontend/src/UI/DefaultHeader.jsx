@@ -1,9 +1,10 @@
 import React from 'react';
 import { Paper, Stack, Typography, IconButton } from '@mui/material';
 import bgPhoto from '../assets/contact-bg.jpg';
+import skullImage from '../assets/skull.png'; // Import the skull image
 import './DefaultHeader.css'; // Import custom CSS for animations and gradients
 
-function DefaultHeader({ title, image, subtitle }) {
+function DefaultHeader({ title, image, subtitle, height, showArrow = true }) {
     // Function to handle smooth scrolling to the end of the header
     const handleScrollDown = () => {
         const headerEnd = document.getElementById('header-end');
@@ -15,11 +16,10 @@ function DefaultHeader({ title, image, subtitle }) {
     return (
         <Paper
             elevation={3}
-            
             sx={{
                 overflow: 'hidden',
                 marginBottom: "-3rem",
-                height: '100vh', // Set height to 100vh
+                height: { height }, // Set height to 100vh
                 background: `url(${image || bgPhoto}) no-repeat center`,
                 backgroundSize: 'cover',
                 display: 'flex',
@@ -74,31 +74,62 @@ function DefaultHeader({ title, image, subtitle }) {
                     {subtitle}
                 </Typography>
 
-                {/* Down Arrow Button */}
+                {/* Conditionally render the arrow or skull inside a glowy circle */}
                 <IconButton
                     onClick={handleScrollDown}
                     sx={{
                         position: 'absolute',
-                        bottom: { xs: '16.5rem', sm: '23rem', md:'31rem', lg:'11rem' }, 
+
+                        bottom: { xs: '13.5rem', sm: '20rem', md: '28rem', lg: '8rem' },
                         animation: 'blink 1s infinite ease-in-out', // Glow animation
                     }}
                 >
-                    <svg
-                        width="40"
-                        height="40"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                        style={{ filter: 'drop-shadow(0 0 8px rgba(255, 0, 0, 0.8))' }} // Reddish glow
-                    >
-                        <path
-                            d="M12 4V20M12 20L18 14M12 20L6 14"
-                            stroke="red"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                        />
-                    </svg>
+                    {showArrow ? (
+                        // Arrow SVG
+                        <svg
+                            width="40"
+                            height="40"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            style={{ filter: 'drop-shadow(0 0 8px rgba(255, 0, 0, 0.8))' }} // Reddish glow
+                        >
+                            <path
+                                d="M12 4V20M12 20L18 14M12 20L6 14"
+                                stroke="red"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            />
+                        </svg>
+                    ) : (
+                        // Glowy red circle with skull.png inside
+                        <div
+                            style={{
+                                marginTop: '10px',
+                                width: '50px',
+                                height: '50px',
+                                borderRadius: '50%', // Makes it a circle
+                                background: 'rgba(255, 0, 0, 0.6)', // Semi-transparent red background
+                                // boxShadow: '0 0 5px 5px rgba(255, 0, 0, 0.8)', // Red glow
+                                display: 'flex',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                animation: 'blink 1s infinite ease-in-out', // Glow animation
+                            }}
+                        >
+                            <img
+                                src={skullImage} // Use the imported skull image
+                                alt="Skull"
+                                style={{
+                                    marginRight: '5%',
+                                    width: '30px', // Adjust size of the skull
+                                    height: '30px',
+                                    filter: 'drop-shadow(0 0 5px rgba(255, 0, 0, 0.8))', // Reddish glow
+                                }}
+                            />
+                        </div>
+                    )}
                 </IconButton>
             </Stack>
 

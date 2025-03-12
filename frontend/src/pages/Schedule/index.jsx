@@ -21,7 +21,7 @@ function Index() {
                 background: 'radial-gradient(circle, #1a1a1a, #000000)', // Dark gradient background
             }}
         >
-            <DefaultHeader title='Schedule' image={eventsbgPhoto} subtitle={subtitleText} />
+            <DefaultHeader title='Schedule' image={eventsbgPhoto} subtitle={subtitleText} height="100vh" />
             <div
                 style={{
                     paddingTop: '4rem',

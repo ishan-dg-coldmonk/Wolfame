@@ -85,22 +85,17 @@ function EventSection() {
                         <li key={i} dangerouslySetInnerHTML={{ __html: rule }} />
                       ))}
                     </ul>
-                    <h3>Coordinators:</h3>
-                    <ul>
-                      {eventObj.coordinators.map((coordinator, i) => (
-                        <li key={i}>
-                          {coordinator.name} - {coordinator.contact}
-                        </li>
-                      ))}
-                    </ul>
                     <div className="a-center">
-                    <a 
-                      href="#" 
-                      className="btn btn--white btn--animated" 
-                      style={{ fontSize: '0.9rem' }} // Reduce font size
-                    >
-                      Register
-                    </a>
+                      <div className="tooltip">
+                        <a 
+                          href="#" 
+                          className="btn btn--white btn--animated" 
+                          style={{ fontSize: '0.9rem' }} // Reduce font size
+                        >
+                          Register
+                        </a>
+                        <span className="tooltiptext">Registrations will begin shortly</span>
+                      </div>
                     </div>
                   </div>
                 ),
@@ -115,3 +110,12 @@ function EventSection() {
 }
 
 export default EventSection;
+
+ {/* <h3>Coordinators:</h3>
+                    <ul>
+                      {eventObj.coordinators.map((coordinator, i) => (
+                        <li key={i}>
+                          {coordinator.name} - {coordinator.contact}
+                        </li>
+                      ))}
+                    </ul> */}

@@ -104,3 +104,29 @@
         filter: drop-shadow(0 0 8px rgba(255, 0, 0, 0.8));
     }
 }
+
+/* Infinite typing and erasing animation */
+@keyframes typing-erasing {
+    0% {
+        width: 0;
+    }
+    50% {
+        width: 100%;
+    }
+    
+    
+    100% {
+        width: 0;
+    }
+}
+
+/* Cursor blink animation */
+@keyframes blink-caret {
+    from,
+    to {
+        border-color: transparent;
+    }
+    50% {
+        border-color: white;
+    }
+}
