@@ -104,7 +104,7 @@ export default function MainAppBar() {
                         </Link>
                     </Stack>
                     <Navbar />
-                    <Stack direction='row' gap={2} sx={{ alignItems: 'center', justifyContent: 'space-around' }}>
+                    {/* <Stack direction='row' gap={2} sx={{ alignItems: 'center', justifyContent: 'space-around' }}>
                         {user ? (
                             <Link to={`/users/${user?._id}`}>
                                 <Avatar sx={{ bgcolor: 'red' }} alt={user.name} src={user.image} />
@@ -114,7 +114,7 @@ export default function MainAppBar() {
                                 Sign In
                             </Button>
                         )}
-                    </Stack>
+                    </Stack> */}
                 </Stack>
             </AppBar>
         </Box>

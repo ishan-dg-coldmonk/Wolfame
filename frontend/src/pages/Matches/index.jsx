@@ -16,7 +16,7 @@ function Matches() {
 
     return (
         <Stack pb={4} sx={{ flexGrow: 1, flexShrink: 1, flexBasis: 'auto', overflowX: 'hidden' }}>
-            <DefaultHeader title='Matches' image={bgImage} subtitle={subTitle} height="100vh" showArrow={false} />
+            <DefaultHeader title='Matches' image={bgImage} subtitle={subTitle} height="110vh" showArrow={false} />
             {user?.role === 'admin' && (
                 <Paper>
                     <Stack py={2} sx={{ alignItems: 'center' }}>

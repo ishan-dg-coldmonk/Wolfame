@@ -6,11 +6,9 @@ import './index.css'
 import GallerySection from './GallerySection'
 
 function index() {
-    return (
-        <Stack gap={2} pb={4} sx={{ flexGrow: 1, flexShrink: 1, flexBasis: 'auto', overflowX: 'hidden' }}>
-            <HeroSection />
-            <GallerySection />
-        </Stack>
+    return (<React.Fragment><HeroSection />
+            <GallerySection /></React.Fragment>
+            
     )
 }
 

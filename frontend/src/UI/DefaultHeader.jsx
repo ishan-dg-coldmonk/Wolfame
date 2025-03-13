@@ -1,7 +1,6 @@
 import React from 'react';
 import { Paper, Stack, Typography, IconButton } from '@mui/material';
 import bgPhoto from '../assets/contact-bg.jpg';
-import skullImage from '../assets/skull.png'; // Import the skull image
 import './DefaultHeader.css'; // Import custom CSS for animations and gradients
 
 function DefaultHeader({ title, image, subtitle, height, showArrow = true }) {
@@ -74,18 +73,16 @@ function DefaultHeader({ title, image, subtitle, height, showArrow = true }) {
                     {subtitle}
                 </Typography>
 
-                {/* Conditionally render the arrow or skull inside a glowy circle */}
-                <IconButton
-                    onClick={handleScrollDown}
-                    sx={{
-                        position: 'absolute',
-
-                        bottom: { xs: '13.5rem', sm: '20rem', md: '28rem', lg: '8rem' },
-                        animation: 'blink 1s infinite ease-in-out', // Glow animation
-                    }}
-                >
-                    {showArrow ? (
-                        // Arrow SVG
+                {/* Conditionally render the Down Arrow Button based on showArrow prop */}
+                {showArrow && (
+                    <IconButton
+                        onClick={handleScrollDown}
+                        sx={{
+                            position: 'absolute',
+                            bottom: { xs: '16.5rem', sm: '23rem', md: '31rem', lg: '11rem' },
+                            animation: 'blink 1s infinite ease-in-out', // Glow animation
+                        }}
+                    >
                         <svg
                             width="40"
                             height="40"
@@ -102,35 +99,8 @@ function DefaultHeader({ title, image, subtitle, height, showArrow = true }) {
                                 strokeLinejoin="round"
                             />
                         </svg>
-                    ) : (
-                        // Glowy red circle with skull.png inside
-                        <div
-                            style={{
-                                marginTop: '10px',
-                                width: '50px',
-                                height: '50px',
-                                borderRadius: '50%', // Makes it a circle
-                                background: 'rgba(255, 0, 0, 0.6)', // Semi-transparent red background
-                                // boxShadow: '0 0 5px 5px rgba(255, 0, 0, 0.8)', // Red glow
-                                display: 'flex',
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                                animation: 'blink 1s infinite ease-in-out', // Glow animation
-                            }}
-                        >
-                            <img
-                                src={skullImage} // Use the imported skull image
-                                alt="Skull"
-                                style={{
-                                    marginRight: '5%',
-                                    width: '30px', // Adjust size of the skull
-                                    height: '30px',
-                                    filter: 'drop-shadow(0 0 5px rgba(255, 0, 0, 0.8))', // Reddish glow
-                                }}
-                            />
-                        </div>
-                    )}
-                </IconButton>
+                    </IconButton>
+                )}
             </Stack>
 
             {/* Marker for the end of the header */}

@@ -15,7 +15,7 @@ function ContactSection() {
     return (
         <Stack>
             <Paper>
-                <Grid container sx={{ justifyContent: 'center', width: 1, p: 1 }} >
+                <Grid container sx={{ justifyContent: 'center', width: 1, p: 5 , mt:3.5, mb:-3}} >
                     {
                         contactList.map((contactItem) => {
                             const { title } = contactItem

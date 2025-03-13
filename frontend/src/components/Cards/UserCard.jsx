@@ -24,7 +24,7 @@ export default function UserCard({ user, hide = {} }) {
                 glareBorderRadius='1rem'
                 className='parallax-effect'
                 style={{
-                    // height: '15rem',
+                    height: '22rem',
                     width: '12rem',
                     borderRadius: '1rem',
                     backgroundColor: 'rgba(60, 60, 60, 0.2)',

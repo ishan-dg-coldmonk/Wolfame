@@ -11,10 +11,10 @@ const navigationList = [
     { name: 'Home', to: '/', icon: <HomeIcon fontSize='large' /> },
     { name: 'Schedule', to: '/schedule', icon: <CalendarMonthIcon fontSize='large' /> },
     { name: 'Matches', to: '/matches', icon: <SportsHandballIcon fontSize='large' /> },
-    { name: 'Leader Board', to: '/leaderboard', icon: <EmojiEventsIcon fontSize='large' /> },
+    // { name: 'Leader Board', to: '/leaderboard', icon: <EmojiEventsIcon fontSize='large' /> },
     { name: 'Gallery', to: '/gallery', icon: <ImageIcon fontSize='large' /> },
-    { name: 'Residence', to: '/residence', icon: <ApartmentIcon fontSize='large' /> },
-    { name: 'Teams', to: '/teams', icon: <GroupsIcon fontSize='large' /> },
+    // { name: 'Residences', to: '/residence', icon: <ApartmentIcon fontSize='large' /> },
+    // { name: 'Teams', to: '/teams', icon: <GroupsIcon fontSize='large' /> },
     { name: 'Contact Us', to: '/contactUs', icon: <PersonIcon fontSize='large' /> },
 ]
 

@@ -82,7 +82,7 @@ function GallerySection() {
                                 glareBorderRadius='1rem'
                                 style={{ cursor: 'pointer' }}
                             >
-                                <img src={path} onClick={() => imageSelectHandler(index)} style={{ height: '10rem', objectFit: 'cover', borderRadius: '0.5rem' }} />
+                                <img src={path} onClick={() => imageSelectHandler(index)} style={{ height: '10rem', width:'15rem', objectFit: 'cover', borderRadius: '0.5rem' }} />
                             </Tilt>
                         </Grid>
                     )

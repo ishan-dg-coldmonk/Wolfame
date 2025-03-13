@@ -3,25 +3,32 @@ const contactList = [
         title: 'Coordinator',
         contact: [
             {
-                name: 'Sumit Godara',
-                phone_number: '9001575600',
+                name: 'Ayush Goyal',
+                phone_number: '+91 85020 76979',
                 image: '',
-                linkedin: 'https://in.linkedin.com/in/sumit-godara-97a201262',
-                email: 'godarasumit16@gmail.com'
+                // linkedin: 'https://in.linkedin.com/in/sumit-godara-97a201262',
+                email: 'ayushgoyal70@gmail.com'
             },
             {
-                name: 'Harsh Joshi',
-                phone_number: '8979396773',
+                name: 'Pial Sarkar Turjo',
+                phone_number: '07048908158',
                 image: '',
-                linkedin: 'https://in.linkedin.com/in/harsh-joshi-920150232',
-                email: 'harshjoshi4219@gmail.com',
+                // linkedin: 'https://in.linkedin.com/in/harsh-joshi-920150232',
+                email: 'turjosarkar1999@gmail.com',
             },
             {
-                name: 'Ankur Roy Chowdhury',
-                phone_number: '8420474705',
+                name: 'Suprotim Bhattacharya',
+                phone_number: '+91 7003200121',
                 image: '',
-                linkedin: '',
-                email: '',
+                // linkedin: '',
+                email: 'suprotim71@gmail.com',
+            },
+            {
+                name: 'Sourik Saha',
+                phone_number: '+91 8944913915',
+                image: '',
+                // linkedin: '',
+                email: 'souriksaha81@gmail.com',
             },
         ],
     },
@@ -29,11 +36,11 @@ const contactList = [
         title: 'Technical Team',
         contact: [
             {
-                name: 'Satyam Lohiya',
-                phone_number: '9414118891',
-                image: 'https://media-ccu1-1.cdn.whatsapp.net/v/t61.24694-24/375913222_2297297070659040_6420605060213818667_n.jpg?ccb=11-4&oh=01_AdTqH4q_E6CLUvq_QW2hHXJTE9OVikz0W09TP1yMR9TMBg&oe=66034CA1&_nc_sid=e6ed6c&_nc_cat=103',
-                linkedin: 'https://in.linkedin.com/in/satyam-lohiya-536879229',
-                email: 'lohiyasatyam@gmail.com'
+                name: 'Ishan Dasgupta',
+                phone_number: '9432394957',
+                image: '',
+                // linkedin: 'https://in.linkedin.com/in/satyam-lohiya-536879229',
+                email: 'ishan.dasgupta.2003@gmail.com'
             },
         ]
     },
