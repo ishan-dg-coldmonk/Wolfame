@@ -55,7 +55,7 @@ const eventsList = [
         description: "Tussle For the trophy",
         rules: [
             "At most 2 teams can participate from each hall/hostel.",
-            "Each team can have at most 5 members.",
+            "Each team can have at most 5 players with 2 substitute players.",
             "One person can only be a part of one team.",
             "Any player found touching or lying on the ground for more than 5 seconds will be given a foul and will lead to a loss of the team.",
             "In case of any dispute, referee's call will be final.",
@@ -65,12 +65,12 @@ const eventsList = [
         players: [5, 5],
         coordinators: [
             {
-                name: 'Akash Choudhary',
-                contact: '6207689007'
+                name: 'Pantho Propan Debnath',
+                contact: '+91 7003471232'
             },
             {
-                name: 'Puru Maharishi',
-                contact: '7877675654'
+                name: 'Wriddhiraj Dev',
+                contact: '+91 9863057356'
             },
         ],
     },
@@ -140,25 +140,26 @@ const eventsList = [
             "The position shall be decided by a toss",
             "The game will be played on a regular 3x3 playing court with 1 basket.",
             "Each team can have at most 4 players (3 players on the court and 1 substitute).",
-            "Remote coaching from outside the court is not allowed.",
-            "Every shot from inside the arc (1-point field goal area) shall be awarded 1 point.",
-            "Every shot from behind the arc (2-point field goal area) shall be awarded 2 points.",
+            "Every shot from inside the arc (2-point field goal area) shall be awarded 1 point.",
+            "Every shot from behind the arc (3-point field goal area) shall be awarded 2 points.",
             "Every successful free throw shall be awarded 1 point.",
-            "Each team shall be granted 1 time-out. Time-out lasts for 30 seconds.",
-            "A team is in a penalty situation after it has committed 6 fouls.",
+            "Each team shall be granted 2 time-out per half. Time-out lasts for 30 seconds.",
+            "A team is in a penalty situation after it has committed 5 fouls.",
             "All games will be played according to FIBA official 3x3 rules.",
+            "Game duration for league matches is 8 minutes or first to 15 points (whichever comes first)",
+            "Game duration for semi-finals and final is 10 minutes or first to 21 points (whichever comes first)",
         ],
         points: [50, 30, 15],
         team: 2,
         players: [3, 5],
         coordinators: [
             {
-                name: 'Alex Horo ',
+                name: 'Alex Horo',
                 contact: '8249199487'
             },
             {
-                name: 'Pururav Singh Gautam',
-                contact: '8698961728'
+                name: 'Sumeet Soreng',
+                contact: '+91 9337643338'
             },
         ],
     },
@@ -244,8 +245,8 @@ const eventsList = [
         players: [5, 5],
         coordinators: [
             {
-                name: 'Abhinav Singh',
-                contact: '7541075363'
+                name: 'Kiran Pal',
+                contact: '+91 95645 09253'
             },
             {
                 name: 'Rajarshi Ghosh',
@@ -287,26 +288,27 @@ const eventsList = [
         image: powerliftingPhoto,
         description: "Let the bar ring your bells",
         rules: [
-            "The event will consist of 2 activities - Deadlifting and Powerlifting squat.",
-            "RULES FOR DEADLIFT:-",
-            "There will be 3 rounds in this event.",
-            "The participants will be given 1 attempt to make a successful lift in each round.",
-            "The participants cannot increase the weight in the next round until a successful lift is made.",
-            "There will be 4 judges, who will decide whether the lift was proper or not.",
-            "A lift will be considered successful if at least 3 out of the 4 judges vote in its favour.",
-            "The participant shall be disqualified if he or she fails in all the rounds.",
-            "The right technique for deadlifting is described below -<br />The bar cannot travel downward before reaching the final position.<br />You must stand erect with the shoulders back.<br />You must stand with your knees straight at the completion of the lift.<br />You cannot have the bar rest on the thighs during the lift.<br />You cannot step forward or back or move the feet laterally during the 'up phase'.<br />You must return the bar to the floor while maintaining control with both hands.<br />You must listen to the referee's command- 'DOWN' — that is when you lower the weight.",
-            "No straps can be used to aid your grip on deadlifts. Must use either double overhand, mixed grip or hook grip.",
-            "RULES FOR SQUATS:-",
-            "There will be 3 rounds in this event.",
-            "The participants will be given one attempt to make a successful squat in a round.",
-            "The participants cannot increase the weight in the next round until a successful squat is done.",
-            "There will be 4 judges who will decide whether the squat was proper or not.",
-            "A squat will be considered successful if at li ast 3 out of the 4 judges vote in its favour.",
-            "The participant shall be disqualified if he or she fail in all the rounds.",
-            "The right technique for powerlifting squat is described below -<br />You need to bend your knees and lower the body until the top surface of the leg (upper quad at the hip joint) is lower than the top of the knee.<br />You need to have your knees locked at both the beginning and end of the movement.<br />You can't step forward or backward, or move your feet: laterally while squatting — you can't lose your balance.<br />You must listen to the referee's commands- 'SQUAT and 'RACK' to start and finish the squat respectively.<br />You can't touch your elbows or arms with your legs which deliberately supports the movement.<br />You can't 'double bounce' at the bottom (go up, the down then up again), or have any downward movement of the bar.",
-            "Criteria for deciding the winners: The sum of weights successfully lifted in all the 6 rounds (i.e. 3 rounds of deadlifts and 3 rounds of squats) will be added and divided by the body weight of the lifter to calculate a ratio. The participants will be awarded with a position according to this ratio, where the participant with the maximum ratio will be awarded the 1st position and so on.",
-            "The entire event will be recorded.",
+            "TBD",
+            // "The event will consist of 2 activities - Deadlifting and Powerlifting squat.",
+            // "RULES FOR DEADLIFT:-",
+            // "There will be 3 rounds in this event.",
+            // "The participants will be given 1 attempt to make a successful lift in each round.",
+            // "The participants cannot increase the weight in the next round until a successful lift is made.",
+            // "There will be 4 judges, who will decide whether the lift was proper or not.",
+            // "A lift will be considered successful if at least 3 out of the 4 judges vote in its favour.",
+            // "The participant shall be disqualified if he or she fails in all the rounds.",
+            // "The right technique for deadlifting is described below -<br />The bar cannot travel downward before reaching the final position.<br />You must stand erect with the shoulders back.<br />You must stand with your knees straight at the completion of the lift.<br />You cannot have the bar rest on the thighs during the lift.<br />You cannot step forward or back or move the feet laterally during the 'up phase'.<br />You must return the bar to the floor while maintaining control with both hands.<br />You must listen to the referee's command- 'DOWN' — that is when you lower the weight.",
+            // "No straps can be used to aid your grip on deadlifts. Must use either double overhand, mixed grip or hook grip.",
+            // "RULES FOR SQUATS:-",
+            // "There will be 3 rounds in this event.",
+            // "The participants will be given one attempt to make a successful squat in a round.",
+            // "The participants cannot increase the weight in the next round until a successful squat is done.",
+            // "There will be 4 judges who will decide whether the squat was proper or not.",
+            // "A squat will be considered successful if at li ast 3 out of the 4 judges vote in its favour.",
+            // "The participant shall be disqualified if he or she fail in all the rounds.",
+            // "The right technique for powerlifting squat is described below -<br />You need to bend your knees and lower the body until the top surface of the leg (upper quad at the hip joint) is lower than the top of the knee.<br />You need to have your knees locked at both the beginning and end of the movement.<br />You can't step forward or backward, or move your feet: laterally while squatting — you can't lose your balance.<br />You must listen to the referee's commands- 'SQUAT and 'RACK' to start and finish the squat respectively.<br />You can't touch your elbows or arms with your legs which deliberately supports the movement.<br />You can't 'double bounce' at the bottom (go up, the down then up again), or have any downward movement of the bar.",
+            // "Criteria for deciding the winners: The sum of weights successfully lifted in all the 6 rounds (i.e. 3 rounds of deadlifts and 3 rounds of squats) will be added and divided by the body weight of the lifter to calculate a ratio. The participants will be awarded with a position according to this ratio, where the participant with the maximum ratio will be awarded the 1st position and so on.",
+            // "The entire event will be recorded.",
         ],
         points: [50, 30, 15],
         team: undefined,
@@ -346,12 +348,12 @@ const eventsList = [
         players: [4, 5],
         coordinators: [
             {
-                name: 'Tryambak Bhunya',
-                contact: '7980766414'
+                name: 'Devans Soni',
+                contact: '+91 6376322548'
             },
             {
-                name: 'Rajat Rahar',
-                contact: '6378251367'
+                name: 'Rohit Yadav',
+                contact: '9079627232'
             },
         ],
     },
@@ -378,8 +380,8 @@ const eventsList = [
         players: [1, 1],
         coordinators: [
             {
-                name: 'Rohit Yadav',
-                contact: '9079627232'
+                name: 'Sourik Saha',
+                contact: '8944913915'
             },
         ],
     },
@@ -391,7 +393,7 @@ const eventsList = [
         rules: [
             "The format will be : Tournament Knockout Type(1v1).",
             "Maximum 6 players can take part from a hall/hostel",
-            "Team strength must not be more than 3000",
+            "Team strength must not be more than 3100",
             "All the matches will be of 6 minutes and if result is not decided direct penalty",
             "Quarter final matches will be of 10 minutes and extra time and penalty must be on ",
             "Semi final matches will be of 12 minutes and extra time and penalty must be on",
@@ -414,10 +416,10 @@ const eventsList = [
         image: pushup,
         description: "Push Hard, Pull Strong",
         rules: [
-            // "The event will consist of 3 activities- Forearm Plank, Sprinting and Bodyweight Squats.",
-            // "The participants are required to do :- plank (duration - 1.5 minutes), 100 metre sprint and 30 Bodyweight squats.",
-            // "There will be 4 judges.",
-            // "The participants will have to complete all the 3 tasks in one go, following the correct techniques.",
+            "Each participant will be alloted a time of 1 minute each for pushup and pullup respectively",
+            "Total no of pushup and pull-ups will be counted as total score of one participant",
+            "Pushups and pull-ups with proper form shall be counted and decided by the coordinator ",
+            "The pushups and pull-ups may or may not be continuous for the entire time. You can stop ,take rest and then continue again with in the time limit of one minute",
             // "The participant will be disqualified if she fails to do all the 3 tasks.",
             // "In the event of any controversy, related to the judges' decision, a slow motion video recording will be consulted.",
             // "The right technique for the activities is described below.",
@@ -431,8 +433,8 @@ const eventsList = [
         players: [1, 1],
         coordinators: [
             {
-                name: 'Rohit Yadav',
-                contact: '9079627232'
+                name: 'Sourik Saha',
+                contact: '8944913915'
             },
         ],
     },
