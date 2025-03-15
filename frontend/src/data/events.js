@@ -116,6 +116,8 @@ const eventsList = [
             "Each player can play at most 2 matches but cannot play 2 single matches.",
             "Scoring system will be decided by the referee based on the stage of matches.",
             "BWF rules will be followed during all matches.",
+            "Linesman, match referee and coordinator decision will be final.",
+            "All general rules should be followed.",
         ],
         points: [100, 60, 30],
         team: 2,
