@@ -103,7 +103,7 @@ function HeroSection() {
                     initial="hidden"
                     animate="visible"
                     variants={logoAnimation}
-                    style={{ flex: "0 0 39%", maxWidth: "80%", marginBottom: "6rem" }}
+                    style={{ flex: "0 0 39%", maxWidth: "80%", marginBottom: "6rem", marginTop: "-1.3rem" }}
                     className="hero-logo"
                 >
                     <img 
