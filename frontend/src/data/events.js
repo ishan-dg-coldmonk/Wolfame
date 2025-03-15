@@ -25,7 +25,7 @@ const eventsList = [
             "At most 2 teams can participate from each hall/hostel.",
             "Each team will be made of 5+2 players.",
             "Rolling substitution is allowed.",
-            "Game length:<br />Group stage - Each half 10 minutes<br />Semi-finals - Each half 15 minutes<br />Final - Each half 20 minutes",
+            // "Game length:<br />Group stage - Each half 10 minutes<br />Semi-finals - Each half 15 minutes<br />Final - Each half 20 minutes",
             "No one is allowed to play for more than one team.",
             "Teams will be warned at most 2 times for shooting above a certain height.",
             "The opponent's goal post, and the same will lead to a penalty at the third time (not considering deflections). In this situation, the assistant referee's call will be final.",
@@ -39,12 +39,12 @@ const eventsList = [
         players: [6, 8],
         coordinators: [
             {
-                name: 'Jishu Sit',
-                contact: '7908455761'
+                name: 'Suman',
+                contact: '+91 6297295070'
             },
             {
-                name: 'Shridhar Murmu',
-                contact: '7365060664'
+                name: 'Shridhar',
+                contact: '+91 7365060664'
             },
         ],
     },
@@ -65,11 +65,11 @@ const eventsList = [
         players: [5, 5],
         coordinators: [
             {
-                name: 'Pantho Propan Debnath',
+                name: 'Pantho',
                 contact: '+91 7003471232'
             },
             {
-                name: 'Wriddhiraj Dev',
+                name: 'Wriddhiraj',
                 contact: '+91 9863057356'
             },
         ],
@@ -94,12 +94,16 @@ const eventsList = [
         players: [7, 7],
         coordinators: [
             {
-                name: 'Akash Choudhary',
-                contact: '6207689007'
+                name: 'Subir',
+                contact: '+91 9002205594'
             },
             {
-                name: 'Ashwini Ranjan',
-                contact: '7352225631'
+                name: 'Dipak',
+                contact: '+91 9073527607'
+            },
+            {
+                name: 'Sarthi',
+                contact: '+91 9125804980'
             },
         ],
     },
@@ -124,12 +128,12 @@ const eventsList = [
         players: [5, 5],
         coordinators: [
             {
-                name: 'Sanjay Sharma',
-                contact: '6376153144'
+                name: 'Arka',
+                contact: '+91 8918124750'
             },
             {
-                name: 'Abhishek Kumar',
-                contact: '8529926657'
+                name: 'Sayandip',
+                contact: '+91 8167500901'
             },
         ],
     },
@@ -156,12 +160,12 @@ const eventsList = [
         players: [3, 5],
         coordinators: [
             {
-                name: 'Alex Horo',
-                contact: '8249199487'
+                name: 'Alex',
+                contact: '+91 8249199487'
             },
             {
-                name: 'Sumeet Soreng',
-                contact: '+91 9337643338'
+                name: 'Sumeet',
+                contact: '+91 7325908070'
             },
         ],
     },
@@ -186,12 +190,16 @@ const eventsList = [
         players: [3, 3],
         coordinators: [
             {
-                name: 'Siddharata Jana',
-                contact: '9800245106'
+                name: 'Arnab',
+                contact: '+91 9474617725'
             },
             {
-                name: 'Pritam Jana',
-                contact: '7384950614'
+                name: 'Barnik',
+                contact: '+91 9641443116'
+            },
+            {
+                name: 'Nafis',
+                contact: '+91 8420807274'
             },
         ],
     },
@@ -202,7 +210,9 @@ const eventsList = [
         description: "Rani akele nahi milegi",
         rules: [
             "Each team will consist of 2 members.",
-            "There can be maximum 3 teams from each hall/hostel.",
+            "Red coin does not have any value. So the red coin will be picked up from the board after the first strike.",
+            "Maximum time allotted to a particular round will be 10 minutes. If a team finishes the board before that time, that team will win the match, otherwise, the team with the lowest number of coins present on the board will win the match.",
+            // "There can be maximum 3 teams from each hall/hostel.",
             "Each match will be knockout.",
             "When placing the striker on the board to shoot, the striker must touch both 'base lines'.",
             "The striker may not touch the diagonal arrow line. For 'back-shots' you may only use your thumb or the scissors technique.",
@@ -218,12 +228,12 @@ const eventsList = [
         players: [2, 2],
         coordinators: [
             {
-                name: 'Hemanta Besra',
-                contact: '9883868346'
+                name: 'Prayas',
+                contact: '+91 9679061739'
             },
             {
-                name: 'Paramjeet Hansda',
-                contact: '6207601312'
+                name: 'Rajdeep',
+                contact: '+91 8509267506'
             },
         ],
     },
@@ -246,12 +256,16 @@ const eventsList = [
         players: [5, 5],
         coordinators: [
             {
-                name: 'Kiran Pal',
+                name: 'Hitesh',
+                contact: '+91 7703914079'
+            },
+            {
+                name: 'Kiran',
                 contact: '+91 95645 09253'
             },
             {
-                name: 'Rajarshi Ghosh',
-                contact: '9641319775'
+                name: 'Astitva',
+                contact: '+91 9167571733'
             },
         ],
     },
@@ -274,12 +288,12 @@ const eventsList = [
         players: [8, 8],
         coordinators: [
             {
-                name: 'Sougat Mahato ',
-                contact: '7001392492'
+                name: 'Dishan',
+                contact: '+91 8918892152'
             },
             {
-                name: 'Rishikesh Kumar',
-                contact: '9142116466'
+                name: 'Soukarsha',
+                contact: '+91 8509577139'
             },
         ],
     },
@@ -289,39 +303,38 @@ const eventsList = [
         image: powerliftingPhoto,
         description: "Let the bar ring your bells",
         rules: [
-            "TBD",
-            // "The event will consist of 2 activities - Deadlifting and Powerlifting squat.",
-            // "RULES FOR DEADLIFT:-",
-            // "There will be 3 rounds in this event.",
+            "The event will consist of Deadlifting for both men and women and Powerlifting Squats for men only.",
+            "RULES FOR DEADLIFT:-",
+            "There will be 3 rounds in this event - 1 attempt per round",
             // "The participants will be given 1 attempt to make a successful lift in each round.",
-            // "The participants cannot increase the weight in the next round until a successful lift is made.",
-            // "There will be 4 judges, who will decide whether the lift was proper or not.",
+            "The participants cannot increase the weight in the next round until a successful lift is made.",
+            "There will be 4 judges, who will decide whether the lift was proper or not. Atleast 3 votes will be required for a successful lift.",
             // "A lift will be considered successful if at least 3 out of the 4 judges vote in its favour.",
-            // "The participant shall be disqualified if he or she fails in all the rounds.",
-            // "The right technique for deadlifting is described below -<br />The bar cannot travel downward before reaching the final position.<br />You must stand erect with the shoulders back.<br />You must stand with your knees straight at the completion of the lift.<br />You cannot have the bar rest on the thighs during the lift.<br />You cannot step forward or back or move the feet laterally during the 'up phase'.<br />You must return the bar to the floor while maintaining control with both hands.<br />You must listen to the referee's command- 'DOWN' — that is when you lower the weight.",
-            // "No straps can be used to aid your grip on deadlifts. Must use either double overhand, mixed grip or hook grip.",
-            // "RULES FOR SQUATS:-",
-            // "There will be 3 rounds in this event.",
+            "The participant shall be disqualified if he or she fails in all the rounds.",
+            "The right technique for deadlifting is described below -<br />The bar cannot travel downward before reaching the final position.<br />You must stand erect with the shoulders back.<br />You must stand with your knees straight at the completion of the lift.<br />You cannot have the bar rest on the thighs during the lift.<br />You cannot step forward or back or move the feet laterally during the 'up phase'.<br />You must return the bar to the floor while maintaining control with both hands.<br />You must listen to the referee's command- 'DOWN' — that is when you lower the weight.",
+            "No straps can be used to aid your grip on deadlifts. Must use either double overhand, mixed grip or hook grip.",
+            "RULES FOR SQUATS:-",
+            "There will be 3 rounds in this event - 1 attempt per round",
             // "The participants will be given one attempt to make a successful squat in a round.",
-            // "The participants cannot increase the weight in the next round until a successful squat is done.",
-            // "There will be 4 judges who will decide whether the squat was proper or not.",
+            "The participants cannot increase the weight in the next round until a successful squat is done.",
+            "There will be 4 judges who will decide whether the squat was proper or not. Atleast 3 votes will be required for a successful squat.",
             // "A squat will be considered successful if at li ast 3 out of the 4 judges vote in its favour.",
-            // "The participant shall be disqualified if he or she fail in all the rounds.",
-            // "The right technique for powerlifting squat is described below -<br />You need to bend your knees and lower the body until the top surface of the leg (upper quad at the hip joint) is lower than the top of the knee.<br />You need to have your knees locked at both the beginning and end of the movement.<br />You can't step forward or backward, or move your feet: laterally while squatting — you can't lose your balance.<br />You must listen to the referee's commands- 'SQUAT and 'RACK' to start and finish the squat respectively.<br />You can't touch your elbows or arms with your legs which deliberately supports the movement.<br />You can't 'double bounce' at the bottom (go up, the down then up again), or have any downward movement of the bar.",
-            // "Criteria for deciding the winners: The sum of weights successfully lifted in all the 6 rounds (i.e. 3 rounds of deadlifts and 3 rounds of squats) will be added and divided by the body weight of the lifter to calculate a ratio. The participants will be awarded with a position according to this ratio, where the participant with the maximum ratio will be awarded the 1st position and so on.",
-            // "The entire event will be recorded.",
+            "The participant shall be disqualified if he or she fail in all the rounds.",
+            "The right technique for powerlifting squat is described below -<br />You need to bend your knees and lower the body until the top surface of the leg (upper quad at the hip joint) is lower than the top of the knee.<br />You need to have your knees locked at both the beginning and end of the movement.<br />You can't step forward or backward, or move your feet: laterally while squatting — you can't lose your balance.<br />You must listen to the referee's commands- 'SQUAT and 'RACK' to start and finish the squat respectively.<br />You can't touch your elbows or arms with your legs which deliberately supports the movement.<br />You can't 'double bounce' at the bottom (go up, the down then up again), or have any downward movement of the bar.",
+            "The participant with highest DOTS score will be declared the winner. (Average for men, Best for women)",
+            "The participants are suggested to lookup the DOTS scoring methodology on the Internet."
         ],
         points: [50, 30, 15],
         team: undefined,
         players: [1, 1],
         coordinators: [
             {
-                name: 'Indranil Bain',
-                contact: '9547894515'
+                name: 'Sourik',
+                contact: '+91 8944913915'
             },
             {
-                name: 'Puru Maharishi',
-                contact: '7877675654'
+                name: 'Dildahar',
+                contact: '+91 7082844272'
             },
         ],
     },
@@ -338,7 +351,7 @@ const eventsList = [
             "If a team/player fail to join the room in time, their squad/they will be given 0 points for it.",
             "The exploitation of bugs that hinders fair play will result in disqualification.",
             "For the tiebreaker of the points, position points will be considered for breaking the tie.",
-            "For the further tiebreaker, number of chicken dinners will be considered.",
+            "For the further tiebreaker, number of chicken dinners will be considered. TDM matchers will be conducted if it goes further.",
             "Organizers would not be held responsible for connectivity issues on the participant's side.",
             "POINT SYSTEM:<br />Kill - 1 point.<br />1st - 10 points.<br />2nd - 8 points.<br />3rd - 6 points.<br />4th - 5 points.<br />5th - 4 points.<br />6th - 3 points.<br />7th - 2 points.<br />8th - 12th - 1 point.<br />13th - 16th - 0 point.",
             "MAPS: ERANGLE, MIRAMAR, SANHOK.",
@@ -349,12 +362,12 @@ const eventsList = [
         players: [4, 5],
         coordinators: [
             {
-                name: 'Devans Soni',
+                name: 'Devans',
                 contact: '+91 6376322548'
             },
             {
-                name: 'Rohit Yadav',
-                contact: '9079627232'
+                name: 'Rohit',
+                contact: '+91 9079627232'
             },
         ],
     },
@@ -381,8 +394,12 @@ const eventsList = [
         players: [1, 1],
         coordinators: [
             {
-                name: 'Sourik Saha',
-                contact: '8944913915'
+                name: 'Rohit',
+                contact: '+91 9079627232'
+            },
+            {
+                name: 'Turjo',
+                contact: '+91 7048908158'
             },
         ],
     },
@@ -394,20 +411,26 @@ const eventsList = [
         rules: [
             "The format will be : Tournament Knockout Type(1v1).",
             "Maximum 6 players can take part from a hall/hostel",
-            "Team strength must not be more than 3100",
-            "All the matches will be of 6 minutes and if result is not decided direct penalty",
+            "Team strength must not be more than 3000",
+            "All the matches will be of 8 minutes and if result is not decided direct penalty",
             "Quarter final matches will be of 10 minutes and extra time and penalty must be on ",
             "Semi final matches will be of 12 minutes and extra time and penalty must be on",
             "Final match will be of 15 minutes.",
             "Extra time and Penalties must be On",
+            "Back Passing not allowed (You can backpass to build the play but time wasting is strictly not allowed)",
+            "If any connection problems occur and the match is not completed, then the players need to play the remaining time with the same scoreline that they had.",
         ],
         points: [50, 30, 15],
         team: undefined,
         players: [1, 1],
         coordinators: [
             {
-                name: 'Rohit Yadav',
-                contact: '9079627232'
+                name: 'Biswajit',
+                contact: '+91 8961120732'
+            },
+            {
+                name: 'Ashim',
+                contact: '+91 9800631107'
             },
         ],
     },
@@ -434,8 +457,8 @@ const eventsList = [
         players: [1, 1],
         coordinators: [
             {
-                name: 'Sourik Saha',
-                contact: '8944913915'
+                name: 'Sanjay',
+                contact: '+91 6376153144'
             },
         ],
     },
@@ -460,12 +483,12 @@ const eventsList = [
         players: [5, 20],
         coordinators: [
             {
-                name: 'Alex Horo',
-                contact: '8249199487'
+                name: 'Anish',
+                contact: '+91 9031038277'
             },
             {
-                name: 'Ankush Dutta',
-                contact: '8617051935'
+                name: 'Pritam',
+                contact: '+91 9905358075'
             },
         ],
     },
@@ -491,12 +514,12 @@ const eventsList = [
         players: [1, 1],
         coordinators: [
             {
-                name: 'Utsav Kumar Vishwakarma',
-                contact: '8709825784'
+                name: 'Suprotim',
+                contact: '+91 7003200121'
             },
             {
-                name: 'Pial Sarkar Turjo',
-                contact: '8961807378'
+                name: 'Tonmay',
+                contact: '+91 '
             },
         ],
     },

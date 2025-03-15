@@ -85,6 +85,14 @@ function EventSection() {
                         <li key={i} dangerouslySetInnerHTML={{ __html: rule }} />
                       ))}
                     </ul>
+                    <h3>Coordinators:</h3>
+                    <ul>
+                      {eventObj.coordinators.map((coordinator, i) => (
+                        <li key={i}>
+                          {coordinator.name} - {coordinator.contact}
+                        </li>
+                      ))}
+                    </ul>
                     {/* <div className="a-center">
                       <div className="tooltip">
                         <a 
@@ -111,11 +119,4 @@ function EventSection() {
 
 export default EventSection;
 
- {/* <h3>Coordinators:</h3>
-                    <ul>
-                      {eventObj.coordinators.map((coordinator, i) => (
-                        <li key={i}>
-                          {coordinator.name} - {coordinator.contact}
-                        </li>
-                      ))}
-                    </ul> */}
+ 
