@@ -63,7 +63,7 @@ function HeroSection() {
     return (
         <Stack
             sx={{
-                height: "110vh",
+                height:{xs:"100vh", sm:"110vh"},
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
@@ -103,7 +103,7 @@ function HeroSection() {
                     initial="hidden"
                     animate="visible"
                     variants={logoAnimation}
-                    style={{ flex: "0 0 39%", maxWidth: "80%", marginBottom: "6rem", marginTop: "-1.3rem" }}
+                    style={{ flex: "0 0 39%", maxWidth: "80%", marginBottom: "6rem", marginTop: {xs: "-2rem", sm:"-1.3rem" }}}
                     className="hero-logo"
                 >
                     <img 
