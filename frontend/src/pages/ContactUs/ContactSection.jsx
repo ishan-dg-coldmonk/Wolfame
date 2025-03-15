@@ -4,9 +4,12 @@ import React, { useState } from 'react'
 import contactList from '../../data/contact'
 import UserCard from '../../components/Cards/UserCard';
 
-
 function ContactSection() {
-    const [selectedContactMenu, setSelectedContactMenu] = useState(contactList[contactList.length - 1])
+    // Find the "Coordinator" contact item from the contactList
+    const coordinatorContact = contactList.find(contactItem => contactItem.title === "Coordinator");
+
+    // Set the initial state to the "Coordinator" contact item
+    const [selectedContactMenu, setSelectedContactMenu] = useState(coordinatorContact || contactList[0]);
 
     const contactMenuChangeHandler = (contactItem) => {
         setSelectedContactMenu(contactItem)

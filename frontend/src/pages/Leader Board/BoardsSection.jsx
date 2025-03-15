@@ -3,7 +3,7 @@ import { Grid, Paper, Typography, Stack, Button } from '@mui/material'
 import Tilt from 'react-parallax-tilt';
 
 import eventsList from '../../data/events';
-import sportsPhoto from '../../assets/sports.jpg'
+import sportsPhoto from '../../assets/sports.webp'
 import { NavLink, Outlet } from 'react-router-dom';
 
 function EventCard({ to, label = '', event, image, ...other }) {

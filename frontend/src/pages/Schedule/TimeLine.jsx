@@ -5,8 +5,8 @@ import 'react-vertical-timeline-component/style.min.css';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import timelineList from '../../data/timeline';
-import skullPhoto from '../../assets/skull.png';
-import backgroundImage from '../../assets/events-page/hero-bg-1.jpg'; // Replace with your background image path
+import skullPhoto from '../../assets/skull.webp';
+import backgroundImage from '../../assets/events-page/hero-bg-1.webp'; // Replace with your background image path
 
 // Animation variants for framer-motion
 const cardVariants = {

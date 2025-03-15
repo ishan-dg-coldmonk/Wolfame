@@ -1,13 +1,16 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Stack, Paper, Typography, Link, Button } from '@mui/material'
 import DefaultHeader from '../../UI/DefaultHeader'
 import MatchSection from '../../components/Sections/MatchSection'
 import { AuthContext } from '../../context/AuthProvider'
 import { useNavigate } from 'react-router'
-import bgImage from '../../assets/matches-page/hero-bg.jpg'
+import bgImage from '../../assets/matches-page/hero-bg.webp'
 import StayTuned from '../../components/StayTuned.jsx'
 
 function Matches() {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      }, []);
     const { user } = useContext(AuthContext)
     const navigate = useNavigate()
 

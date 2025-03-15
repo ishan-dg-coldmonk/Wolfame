@@ -1,9 +1,10 @@
 import React from 'react';
 import { Grid, Paper, Stack, Typography } from '@mui/material';
 import { motion } from 'framer-motion';
-import aboutBg from "../../assets/about-page/about-bg.jpeg";
-import iiestImage from "../../assets/about-page/iiest.png";
-import wolfImage from "../../assets/about-page/wolf.JPG";
+import aboutBg from "../../assets/about-page/about-bg.webp";
+import iiestImage from "../../assets/about-page/iiest.webp";
+import wolfImage from "../../assets/about-page/wolf.webp";
+import wolfMoon from "../../assets/about-page/wolf-moon.webp";
 
 // Wrap the Paper component with motion
 const MotionPaper = motion(Paper);
@@ -198,7 +199,7 @@ function AboutSection() {
 
             <AboutCard 
                 title={'Wolfame'} 
-                src={"https://i.pinimg.com/736x/4d/76/65/4d7665854eddacbcd6d9c14c1446073d.jpg"}
+                src={wolfMoon}
                 index={0}
             >
                 Wolfame is a sports and cultural festival organised by Wolfenden Hall annually. The four-day-long event involves a plethora of activities, both indoor and outdoor, attended by enthusiastic students willing to prove their mettle. The much-anticipated festival has returned to reignite the spark of competition among the students and will be witnessed by an approximate of 6,500+ people.

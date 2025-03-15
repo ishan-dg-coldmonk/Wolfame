@@ -1,6 +1,6 @@
 import React from 'react';
 import { Paper, Stack, Typography, IconButton } from '@mui/material';
-import bgPhoto from '../assets/contact-bg.jpg';
+import bgPhoto from '../assets/contact-bg.webp';
 import './DefaultHeader.css'; // Import custom CSS for animations and gradients
 
 function DefaultHeader({ title, image, subtitle, height, showArrow = true }) {

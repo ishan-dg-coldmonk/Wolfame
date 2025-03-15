@@ -1,6 +1,6 @@
 import { Stack, Typography } from '@mui/material'
 import React from 'react'
-import skullPhoto from '../../assets/skull.png'
+import skullPhoto from '../../assets/skull.webp'
 
 export default function Error() {
     return (

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import FacebookIcon from '@mui/icons-material/Facebook';
 
-import logo from '../assets/logo.png'
+import logo from '../assets/logo.webp'
 import { Container } from '@mui/system';
 import chroma from 'chroma-js';
 import navigationList from '../data/navigation';

@@ -6,7 +6,7 @@ function importAll(r) {
     return r.keys().map(r);
 }
 
-const images = importAll(require.context('../../assets/home-page/gallery-section', false, /\.(png|jpe?g|svg)$/));
+const images = importAll(require.context('../../assets/home-page/gallery-section', false, /\.(webp)$/));
 
 function HeroSection() {
     return (

@@ -1,4 +1,4 @@
-import trophyPhoto from '../assets/boards-page/hero-bg.jpg'
+import trophyPhoto from '../assets/boards-page/hero-bg.webp'
 
 const registration = {
     label: 'Registration Rules',

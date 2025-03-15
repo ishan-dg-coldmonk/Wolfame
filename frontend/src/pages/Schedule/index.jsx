@@ -1,13 +1,15 @@
-import React from 'react';
+import React,  {useEffect} from 'react'
 import { Stack } from '@mui/material';
 import TimeLine from './TimeLine';
 import DefaultHeader from '../../UI/DefaultHeader';
-import eventsbgPhoto from '../../assets/events-page/hero-bg.jpg';
-import sectionBgPhoto from '../../assets/events-page/black-bg.jpg'; // Add your background image
+import eventsbgPhoto from '../../assets/events-page/hero-bg.webp';
+import sectionBgPhoto from '../../assets/events-page/black-bg.webp'; // Add your background image
 
-function Index() {
+function Schedule() {
     const subtitleText = `Mark your calendars and sync your adrenaline! Here’s the ultimate timeline of Wolfame 2025 – where every second counts and every moment thrills.`;
-
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      }, []);
     return (
         <Stack
             gap={2}
@@ -47,4 +49,4 @@ function Index() {
     );
 }
 
-export default Index;
+export default Schedule;

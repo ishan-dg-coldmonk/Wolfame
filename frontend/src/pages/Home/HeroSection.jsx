@@ -1,8 +1,8 @@
 import { Stack, Typography } from "@mui/material";
 import { motion } from "framer-motion";
 import { Typewriter } from "react-simple-typewriter";
-import wolfPng from "../../assets/logo.png";
-import heroBg from "../../assets/home-page/hero-section/hero-bg.jpeg";
+import wolfPng from "../../assets/logo.webp";
+import heroBg from "../../assets/home-page/hero-section/hero-bg.webp";
 import "./index.css";
 
 

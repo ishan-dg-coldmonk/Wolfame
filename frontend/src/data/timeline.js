@@ -1,8 +1,8 @@
-import inaugurationPhoto from '../assets/events-page/inauguration-bg.jpg'
-import firstdayPhoto from '../assets/home-page/gallery-section/gallery2.jpg'
-import seconddayPhoto from '../assets/home-page/gallery-section/gallery3.jpg'
-import thirddayPhoto from '../assets/home-page/gallery-section/gallery7.jpg'
-import culturalPhoto from '../assets/events-page/cultural-bg.jpg'
+import inaugurationPhoto from '../assets/events-page/inauguration-bg.webp'
+import firstdayPhoto from '../assets/home-page/gallery-section/gallery2.webp'
+import seconddayPhoto from '../assets/home-page/gallery-section/gallery3.webp'
+import thirddayPhoto from '../assets/home-page/gallery-section/gallery7.webp'
+import culturalPhoto from '../assets/events-page/cultural-bg.webp'
 
 const timelineList = [
     {

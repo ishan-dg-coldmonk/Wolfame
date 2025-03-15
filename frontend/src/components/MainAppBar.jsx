@@ -7,7 +7,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { Avatar, Button, Stack, useTheme } from '@mui/material';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
-import logo from '../assets/logo.png';
+import logo from '../assets/logo.webp';
 import Navbar, { NavDrawer } from './Navbar';
 import { Link, useNavigate } from 'react-router-dom';
 import chroma from "chroma-js";

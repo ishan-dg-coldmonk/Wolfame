@@ -2,20 +2,20 @@ import React, { Fragment } from 'react';
 import { Grid, Paper, Stack, Typography } from '@mui/material';
 import { motion } from 'framer-motion'; // Import framer-motion
 
-import monster from "../../assets/home-page/sponsors-section/monster.jpeg"
-import cocaCola from "../../assets/home-page/sponsors-section/coca-cola.jpg";
-import decathlon from "../../assets/home-page/sponsors-section/decathlon.jpg";
+import monster from "../../assets/home-page/sponsors-section/monster.webp"
+import cocaCola from "../../assets/home-page/sponsors-section/coca-cola.webp";
+import decathlon from "../../assets/home-page/sponsors-section/decathlon.webp";
 import elm from "../../assets/home-page/sponsors-section/elm.jpg";
 import fusionGrill from "../../assets/home-page/sponsors-section/fusion-grill.jpg";
 import grapevine from "../../assets/home-page/sponsors-section/grapevine.jpg";
-import lic from "../../assets/home-page/sponsors-section/lic.jpg";
-import mtv from "../../assets/home-page/sponsors-section/mtv.jpg";
+import lic from "../../assets/home-page/sponsors-section/lic.webp";
+import mtv from "../../assets/home-page/sponsors-section/mtv.webp";
 import nba from "../../assets/home-page/sponsors-section/nba.jpg";
-import nivia from "../../assets/home-page/sponsors-section/nivia.png";
-import bisleri from "../../assets/home-page/sponsors-section/bisleri.png";
-import wowMomo from "../../assets/home-page/sponsors-section/wowmomo.jpeg";
-import sting from "../../assets/home-page/sponsors-section/sting.jpeg";
-import bgImage from "../../assets/home-page/sponsors-section/sponsor-bg.jpg";
+import nivia from "../../assets/home-page/sponsors-section/nivia.webp";
+import bisleri from "../../assets/home-page/sponsors-section/bisleri.webp";
+import wowMomo from "../../assets/home-page/sponsors-section/wowmomo.webp";
+import sting from "../../assets/home-page/sponsors-section/sting.webp";
+import bgImage from "../../assets/home-page/sponsors-section/sponsor-bg.webp";
 
 const sponsors = [
     {

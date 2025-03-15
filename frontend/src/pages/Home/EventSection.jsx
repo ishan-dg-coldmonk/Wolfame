@@ -3,7 +3,7 @@ import { Stack, Typography } from "@mui/material";
 import { Carousel, Card } from "../../components/AppleCardsCarousel.jsx"; // Import the carousel and card components
 import "../../components/AppleCardsCarousel.css"; // Import the CSS for styling
 import eventsList from "../../data/events.js"; // Import the events data
-import eventBg from "../../assets/home-page/event-bg.jpg"; // Import the background image
+import eventBg from "../../assets/home-page/event-bg.webp"; // Import the background image
 import { motion } from "framer-motion"; // Import framer-motion
 
 function EventSection() {
