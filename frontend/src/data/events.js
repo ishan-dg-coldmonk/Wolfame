@@ -211,7 +211,6 @@ const eventsList = [
             "After sinking the striker, your opponent places the due piece(s) within the center.",
             "If a piece jumps off the board, it is placed on the center spot. If pieces land on end or are overlapping they are left that way.",
             "If you sink your opponent's piece, you lose your turn.",
-            "A game consists of 29 points or 6 boards, whichever comes first.",
             "In case of any dispute, organizer's decision will be final.",
         ],
         points: [50, 30, 15],
