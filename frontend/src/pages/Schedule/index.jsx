@@ -1,4 +1,4 @@
-import React,  {useEffect} from 'react'
+import React, { useLayoutEffect, useRef } from 'react';
 import { Stack } from '@mui/material';
 import TimeLine from './TimeLine';
 import DefaultHeader from '../../UI/DefaultHeader';
@@ -7,9 +7,16 @@ import sectionBgPhoto from '../../assets/events-page/black-bg.webp'; // Add your
 
 function Schedule() {
     const subtitleText = `Mark your calendars and sync your adrenaline! Here’s the ultimate timeline of Wolfame 2025 – where every second counts and every moment thrills.`;
-    useEffect(() => {
-        window.scrollTo(0, 0);
-      }, []);
+    const headerRef = useRef(null); // Create a ref for the DefaultHeader
+
+    // Use useLayoutEffect to ensure the scroll happens before the page is painted
+    useLayoutEffect(() => {
+        if (headerRef.current) {
+            // Scroll the DefaultHeader into view
+            headerRef.current.scrollIntoView({ behavior: 'auto', block: 'start' });
+        }
+    }, []);
+
     return (
         <Stack
             gap={2}
@@ -23,7 +30,15 @@ function Schedule() {
                 background: 'radial-gradient(circle, #1a1a1a, #000000)', // Dark gradient background
             }}
         >
-            <DefaultHeader title='Schedule' image={eventsbgPhoto} subtitle={subtitleText} height="100vh" />
+            {/* Attach the ref to the DefaultHeader */}
+            <div ref={headerRef}>
+                <DefaultHeader
+                    title='Schedule'
+                    image={eventsbgPhoto}
+                    subtitle={subtitleText}
+                    height="100vh"
+                />
+            </div>
             <div
                 style={{
                     paddingTop: '4rem',
@@ -34,12 +49,12 @@ function Schedule() {
                     color: 'white',
                     textAlign: 'center',
                     fontFamily: '"Space Grotesk", sans-serif',
-                    fontSize:  '2.8rem', // Fixed font size
+                    fontSize: '2.8rem', // Fixed font size
                     fontWeight: '800',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    letterSpacing: '0.3rem'
+                    letterSpacing: '0.3rem',
                 }}
             >
                 TIMELINE

@@ -85,7 +85,7 @@ function EventSection() {
                         <li key={i} dangerouslySetInnerHTML={{ __html: rule }} />
                       ))}
                     </ul>
-                    <div className="a-center">
+                    {/* <div className="a-center">
                       <div className="tooltip">
                         <a 
                           href="#" 
@@ -96,7 +96,7 @@ function EventSection() {
                         </a>
                         <span className="tooltiptext">Registrations will begin shortly</span>
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                 ),
               }}

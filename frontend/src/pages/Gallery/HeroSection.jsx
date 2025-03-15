@@ -24,7 +24,7 @@ function HeroSection() {
                     position='absolute'
                     height='100%'
                     width='110%'
-                    sx={{ background: 'rgba(0, 0, 0, 0.82)' }}
+                    sx={{ background: 'rgba(0, 0, 0, 0.78)' }}
                 />
 
                 {/* Gallery Text with Animation */}
