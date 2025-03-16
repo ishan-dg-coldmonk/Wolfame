@@ -1,7 +1,7 @@
 import React from 'react';
 import { Stack, Typography } from '@mui/material';
 import { motion } from 'framer-motion';
-import rulesBg from "../../assets/home-page/rules-section/rulesBg.jpg";
+import rulesBg from "../../assets/home-page/rules-section/rulesBg.webp";
 
 const containerVariants = {
     hidden: { opacity: 0, y: 30 },

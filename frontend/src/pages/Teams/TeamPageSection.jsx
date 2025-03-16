@@ -93,7 +93,7 @@ export default function TeamPageSection() {
                                 </Link>
                             </Stack>
                         </Paper>
-                        <Paper elevation={5} >
+                        {/* <Paper elevation={5} >
                             <Stack py={1} sx={{ alignItems: 'center' }}>
                                 <Stack direction='row' gap={2} sx={{ alignItems: 'center', justifyContent: 'center' }}>
                                     <Typography variant='h4' >
@@ -108,7 +108,7 @@ export default function TeamPageSection() {
                                     Contact your JMCR to get approved.
                                 </Typography>
                             </Stack>
-                        </Paper>
+                        </Paper> */}
                         <Paper elevation={5}>
                             <Stack p={2} gap={2} sx={{ alignItems: 'center' }}>
                                 <Typography variant='h4' fontWeight={700} >
@@ -121,7 +121,7 @@ export default function TeamPageSection() {
                                 </Stack>
                             </Stack>
                         </Paper>
-                        {rightToDelete && <Button size='large' variant='outlined' onClick={deleteTeamHandler} disabled={isDeleting}>Delete Team</Button>}
+                        {/* {rightToDelete && <Button size='large' variant='outlined' onClick={deleteTeamHandler} disabled={isDeleting}>Delete Team</Button>} */}
                     </Stack>
                 </Paper>
             </Grid>

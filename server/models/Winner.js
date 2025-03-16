@@ -9,7 +9,7 @@ const winnerSchema = new mongoose.Schema({
     },
     rank: {
         type: Number,
-        min: [1, 'Rank shoulb be atleast 1'],
+        min: [1, 'Rank should be atleast 1'],
     },
     event: {
         type: String,

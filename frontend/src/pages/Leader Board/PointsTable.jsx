@@ -27,7 +27,7 @@ function TableCard({ name, image, odd, points = 0 }) {
                 <Link href={`/residence/${name.replaceAll(' ', '')}`} sx={{ textDecoration: 'none', color: 'white', ':hover': { color: 'red' } }}>
                     <Stack direction='row' gap={2} sx={{ justifyContent: 'center', alignItems: 'center' }}>
                         <Avatar src={image} variant="rounded">{name?.[0]}</Avatar>
-                        <Typography variant='h5' fontWeight={500} sx={{ opacity: 0.6, color: 'inherit' }} >
+                        <Typography variant='h5' fontWeight={500} sx={{ textAlign:"center", opacity: 0.6, color: 'inherit' }} >
                             {name}
                         </Typography>
                     </Stack>
@@ -57,7 +57,7 @@ function PointsBlock({ label, winnerList }) {
     }).sort((a, b) => b.points - a.points)
 
     return (
-        <Stack gap={3} sx={{ width: '100%', alignItems: 'center' }}>
+        <Stack gap={3} sx={{ width: '100%', alignItems: 'center'}}>
             <Typography variant='h2' fontWeight={700}>
                 {label}
             </Typography>

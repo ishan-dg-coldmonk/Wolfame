@@ -457,8 +457,12 @@ const eventsList = [
         players: [1, 1],
         coordinators: [
             {
-                name: 'Sanjay',
-                contact: '+91 6376153144'
+                name: 'Sourik',
+                contact: '+91 8944913915'
+            },
+            {
+                name: 'Dildahar',
+                contact: '+91 7082844272'
             },
         ],
     },

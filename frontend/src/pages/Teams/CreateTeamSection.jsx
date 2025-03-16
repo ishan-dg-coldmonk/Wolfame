@@ -1,26 +1,26 @@
-import React, { Fragment, useContext, useEffect, useState } from 'react'
-import { Stack, Grid, Typography, Paper, Avatar, Snackbar, Alert, MenuItem, Select, InputLabel, FormControl, useTheme, Button, IconButton } from '@mui/material'
+import React, { Fragment, useContext, useEffect, useState } from 'react';
+import { Stack, Grid, Typography, Paper, Avatar, Snackbar, Alert, MenuItem, Select, InputLabel, FormControl, useTheme, Button, IconButton } from '@mui/material';
 import TextField from "@mui/material/TextField";
-import { useFormik } from 'formik'
+import { useFormik } from 'formik';
 import axios from '../../services/axiosinstance';
 import { useSearchParams, useNavigate, Link } from 'react-router-dom';
-import RuleBook from '../../components/RuleBook'
+import RuleBook from '../../components/RuleBook';
 
-import residenceList from '../../data/residence'
-import eventsList from '../../data/events'
+import residenceList from '../../data/residence';
+import eventsList from '../../data/events';
 
-import { teamSchema } from '../../schemas/team'
+import { teamSchema } from '../../schemas/team';
 import CloseIcon from '@mui/icons-material/Close';
 
 import { useQuery, useMutation } from '@tanstack/react-query';
-import { fetchUsers, queryClient } from '../../services/http'
+import { fetchUsers, queryClient } from '../../services/http';
 import { AuthContext } from '../../context/AuthProvider';
 
 function PlayerSelectInput({ index, selectedPlayers = [], playersList = [], setPlayers }) {
     const filteredPlayersList = playersList.filter(
         (player) => !selectedPlayers.some(
             (id, i) => index !== i && player?._id === id)
-    )
+    );
 
     return (
         <FormControl fullWidth>
@@ -33,9 +33,9 @@ function PlayerSelectInput({ index, selectedPlayers = [], playersList = [], setP
                     defaultValue={'Select Player'}
                     value={selectedPlayers[index]}
                     onChange={(e) => {
-                        const newPlayersList = [...selectedPlayers]
-                        newPlayersList[index] = e.target.value
-                        setPlayers(newPlayersList)
+                        const newPlayersList = [...selectedPlayers];
+                        newPlayersList[index] = e.target.value;
+                        setPlayers(newPlayersList);
                     }}
                     label="Player"
                     name='player'
@@ -44,7 +44,7 @@ function PlayerSelectInput({ index, selectedPlayers = [], playersList = [], setP
                         filteredPlayersList.length === 0 && (<Stack sx={{ alignItems: 'center', p: 2 }}><Typography variant='h4'>No Player</Typography></Stack>)
                     }
                     {filteredPlayersList.map((player) => {
-                        const { name, image, _id } = player
+                        const { name, image, _id } = player;
                         return (
                             <MenuItem key={name} value={_id} selected={_id == selectedPlayers[index]}>
                                 <Stack direction='row' gap={2} sx={{ alignItems: 'center' }}>
@@ -54,19 +54,19 @@ function PlayerSelectInput({ index, selectedPlayers = [], playersList = [], setP
                                     </Typography>
                                 </Stack>
                             </MenuItem>
-                        )
+                        );
                     })}
                 </Select>
                 <Button variant='outlined' onClick={() => {
-                    const newPlayersList = [...selectedPlayers]
-                    newPlayersList.splice(index, 1)
-                    setPlayers(newPlayersList)
+                    const newPlayersList = [...selectedPlayers];
+                    newPlayersList.splice(index, 1);
+                    setPlayers(newPlayersList);
                 }}>
                     <CloseIcon />
                 </Button>
             </Stack>
         </FormControl>
-    )
+    );
 }
 
 export default function CreateTeamSection() {
@@ -76,24 +76,24 @@ export default function CreateTeamSection() {
         residence: '',
         event: '',
         players: [''],
-    }
+    };
 
-    const navigate = useNavigate()
-    const { user } = useContext(AuthContext)
+    const navigate = useNavigate();
+    const { user } = useContext(AuthContext);
 
     const { mutate, isPending } = useMutation({
         mutationFn: (values) => axios.post('/team', values),
         onSuccess: (response) => {
-            queryClient.invalidateQueries({ queryKey: ['teams'] })
-            const { data: team } = response
-            navigate(`/teams/${team._id}`)
+            queryClient.invalidateQueries({ queryKey: ['teams'] });
+            const { data: team } = response;
+            navigate(`/teams/${team._id}`);
         },
         onError: (e) => {
             if (e.response?.status === 406) {
-                setErrors(e.response.data)
+                setErrors(e.response.data);
             }
         }
-    })
+    });
 
     const { values, handleBlur, handleChange, handleSubmit, errors, touched, setFieldValue, setErrors } =
         useFormik({
@@ -102,15 +102,8 @@ export default function CreateTeamSection() {
             validateOnChange: true,
             validateOnBlur: false,
             onSubmit: async (values, action) => {
-                const filteredPlayers = values.players.filter((value) => value)
-                const playersCount = filteredPlayers.length
-                if (user?.role === 'admin' || (playersCount >= eventData.players[0] && playersCount <= eventData.players[1])) {
-                    return mutate({ ...values, players: filteredPlayers })
-                }
-                if (eventData.players[0] === eventData.players[1]) {
-                    return action.setErrors({ players: `There must exist exactly ${eventData.players[0]} players in a ${eventData.label} team` })
-                }
-                action.setErrors({ players: `There must exist atleat ${eventData.players[0]} and atmost ${eventData.players[0]} players in a ${eventData.label} team` })
+                const filteredPlayers = values.players.filter((value) => value);
+                return mutate({ ...values, players: filteredPlayers });
             },
         });
 
@@ -118,17 +111,17 @@ export default function CreateTeamSection() {
         queryKey: ['users', values.residence],
         queryFn: () => fetchUsers({ residence: values.residence }),
         enabled: !!values.residence
-    })
+    });
 
     const addPlayer = () => {
-        setFieldValue('players', [...values.players, ''])
-    }
+        setFieldValue('players', [...values.players, '']);
+    };
 
     const setPlayers = (newPlayersList) => {
-        setFieldValue('players', newPlayersList)
-    }
+        setFieldValue('players', newPlayersList);
+    };
 
-    const eventData = eventsList.find(({ label }) => label === values.event)
+    const eventData = eventsList.find(({ label }) => label === values.event);
 
     return (
         <Grid container p={{ xs: 1, md: 3 }} mt={9} mb={6}>
@@ -173,7 +166,7 @@ export default function CreateTeamSection() {
                             error={errors.residence && touched.residence}
                         >
                             {residenceList.map(({ name }) => {
-                                return <MenuItem key={name} value={name}>{name}</MenuItem>
+                                return <MenuItem key={name} value={name}>{name}</MenuItem>;
                             })}
                         </Select>
                     </FormControl>
@@ -197,7 +190,7 @@ export default function CreateTeamSection() {
                             error={errors.event && touched.event}
                         >
                             {eventsList.map(({ label }) => {
-                                return <MenuItem key={label} value={label}>{label}</MenuItem>
+                                return <MenuItem key={label} value={label}>{label}</MenuItem>;
                             })}
                         </Select>
                     </FormControl>
@@ -210,11 +203,11 @@ export default function CreateTeamSection() {
                         Select Players
                     </Typography>
                     {values.players.map((value, index) => {
-                        return <PlayerSelectInput key={`${index}${value._id}`} index={index} selectedPlayers={values.players} playersList={playersList} setPlayers={setPlayers} />
+                        return <PlayerSelectInput key={`${index}${value._id}`} index={index} selectedPlayers={values.players} playersList={playersList} setPlayers={setPlayers} />;
                     })}
-                    {values.players.length < eventData?.players?.[1] && <Button variant='outlined' onClick={addPlayer} size='large' fullWidth>
+                    <Button variant='outlined' onClick={addPlayer} size='large' fullWidth>
                         Add Player
-                    </Button>}
+                    </Button>
                     {errors.players && (
                         <Typography color='error'>
                             {errors.players}
@@ -232,5 +225,5 @@ export default function CreateTeamSection() {
                 </Stack>
             </Grid>
         </Grid>
-    )
+    );
 }

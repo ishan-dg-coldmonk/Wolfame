@@ -36,11 +36,11 @@ function PointsCard({ points }) {
                     </Stack>
                 </Mirror>
             </Tilt>
-            <Button size='large' variant='contained' >
+            {/* <Button size='large' variant='contained' >
                 <Typography variant='h5' fontWeight={700}  >
                     Register Now
                 </Typography>
-            </Button>
+            </Button> */}
         </Fragment>
     )
 }

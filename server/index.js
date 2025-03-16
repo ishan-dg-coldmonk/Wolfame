@@ -6,7 +6,7 @@ const teamRouter = require("./routers/team")
 const matchRouter = require("./routers/match")
 const winnerRouter = require("./routers/winner")
 
-const port = process.env.PORT || 3001
+const port = process.env.PORT || 8001
 const app = express()
 
 app.use(cors())

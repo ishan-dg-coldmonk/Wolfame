@@ -17,7 +17,7 @@ const contactList = [
                 email: 'turjosarkar1999@gmail.com',
             },
             {
-                name: 'Suprotim Bhattacharya',
+                name: 'Suprotim B.',
                 phone_number: '+91 7003200121',
                 image: '',
                 // linkedin: '',

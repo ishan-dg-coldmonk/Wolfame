@@ -6,6 +6,17 @@ require('dotenv').config()
 
 const roles = ['user', 'jmcr', 'admin']
 
+// Route to create a user without JWT
+router.post('/create', async (req, res) => {
+    try {
+        const user = new User(req.body); // Create a new user with the provided data
+        await user.save(); // Save the user to the database
+        res.status(201).send({ user }); // Send the created user as the response (no token)
+    } catch (e) {
+        res.status(500).send(e); // Handle errors
+    }
+});
+
 router.post('/signup', async (req, res) => {
     try {
         const user = new User(req.body)

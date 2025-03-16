@@ -12,18 +12,15 @@ const userSchema = new mongoose.Schema({
     },
     email: {
         type: String,
-        validate: [isEmail, 'Please fill a valid email address']
+        trim: true
     },
     linkedin: {
         type: String,
         trim: true,
-        validate: [isURL, 'Please fill a valid linkedin url']
     },
     phone_number: {
         type: String,
         trim: true,
-        required: true,
-        validate: [isMobilePhone, 'Please fill a valid phone number']
     },
     residence: {
         type: String,
@@ -32,8 +29,7 @@ const userSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        trim: true,
-        required: true
+        trim: true
     },
     image: {
         type: String,

@@ -39,9 +39,9 @@ export default function UserCard({ user, hide = {} }) {
                     boxSizing: 'border-box'
                 }}
             >
-                <Link to={userPathName ? `/users/${userPathName}` : '#'}>
+                {/* <Link to={userPathName ? `/users/${userPathName}` : '#'}> */}
                     <ProfileImage image={user.image} />
-                </Link>
+                {/* </Link> */}
 
                 <Stack
                     className='inner-element'

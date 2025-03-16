@@ -11,7 +11,7 @@ function EventCard({ to, label = '', event, image, ...other }) {
     const route = label.replaceAll(' ', '')
 
     return (
-        <Grid item xs={4} sm={3} md={1.5} >
+        <Grid item xs={4} sm={3} md={1.5}>
             <NavLink to={to || `./${route}`} style={{ textDecoration: 'none' }} {...other} >
                 {({ isActive }) => {
                     return (
@@ -57,10 +57,11 @@ function EventCard({ to, label = '', event, image, ...other }) {
 function BoardsSection() {
 
     return (
+
         <Grid container spacing={2}>
             <Outlet />
             <Grid item xs={12} order={1}>
-                <Grid container spacing={2} sx={{ pt: 2, textTransform: 'uppercase' }}>
+                <Grid container spacing={2} sx={{ textTransform: 'uppercase' }}>
                     <EventCard to='/leaderboard' event='All Events' image={sportsPhoto} end />
                     {eventsList.map((eventItem) => <EventCard key={eventItem.event} {...eventItem} />)}
                 </Grid>

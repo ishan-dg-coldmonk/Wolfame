@@ -31,7 +31,7 @@ function Matches() {
                     image={bgImage}
                     subtitle={subTitle}
                     height="110vh"
-                    showArrow={false}
+                    showArrow={true}
                 />
             </div>
             {user?.role === 'admin' && (
@@ -43,7 +43,7 @@ function Matches() {
                     </Stack>
                 </Paper>
             )}
-            {/* <MatchSection /> */}
+            <MatchSection />
             {/* <StayTuned /> */}
         </Stack>
     );

@@ -17,7 +17,7 @@ function BodySection({ residence }) {
     return (
         <Stack>
             <Paper>
-                <Grid container spacing={1} sx={{ justifyContent: 'center', width: 1, p: 1 }} >
+                <Grid container spacing={1} sx={{ justifyContent: 'center', width: 1, p: 1, m:1 }} >
                     {
                         ['Players', 'Teams', 'Matches'].map((name) => {
                             const isSelected = selectedMenu === name

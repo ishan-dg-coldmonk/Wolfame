@@ -1,8 +1,8 @@
 import trophyPhoto from '../assets/boards-page/hero-bg.webp'
 
 const registration = {
-    label: 'Registration Rules',
-    name: "REGISTRATION RULES",
+    label: 'GENERAL RULES',
+    name: "GENERAL RULES",
     image: trophyPhoto,
     rules: [
         "All interested students are required to report to their respective hall/hostel JMCR.",

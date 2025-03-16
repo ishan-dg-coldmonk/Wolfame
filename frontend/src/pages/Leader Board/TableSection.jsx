@@ -23,13 +23,13 @@ function TableSection() {
                 <RuleBook event={event} />
             </Grid>
             <Grid item xs={12} md={6} order={3}>
-                <Stack direction='row' gap={1} alignItems='flex-end'>
+                <Stack direction='row' gap={1} alignItems='flex-end'justifyContent="center">
                     <Typography variant='h2' fontWeight={700} sx={{ opacity: 0.6 }} >
                         {eventDeatils?.label}
                     </Typography>
-                    <Button variant='outlined' onClick={() => navigate('/teams/create')} sx={{ml: 'auto'}}>
+                    {/* <Button variant='outlined' onClick={() => navigate('/teams/create')} sx={{ml: 'auto'}}>
                         Register
-                    </Button>
+                    </Button> */}
                 </Stack>
                 <EventSection event={eventDeatils.label} />
             </Grid>

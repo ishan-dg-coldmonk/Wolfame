@@ -1,69 +1,59 @@
-const express = require('express')
-const auth = require('../middleware/auth')
-const router = new express.Router()
-const Team = require("../models/Team")
-require('dotenv').config()
+const express = require('express');
+const router = new express.Router();
+const Team = require("../models/Team");
+require('dotenv').config();
 
-const roles = ['user', 'jmcr', 'admin']
-
+// GET all teams with optional query parameters for filtering
 router.get('/', async (req, res) => {
     try {
-        const teams = await Team.find(req.query || {}).sort({ residence: 'ascending' })
-        res.send(teams)
+        const teams = await Team.find(req.query || {}).sort({ residence: 'ascending' });
+        res.send(teams);
+    } catch (e) {
+        res.status(500).send();
     }
-    catch (e) {
-        res.status(500).send()
-    }
-})
+});
 
+// GET a specific team by ID
 router.get('/:id', async (req, res) => {
     try {
-        const team = await Team.findById(req.params.id)
-        await team.populate('players')
-        res.send(team)
+        const team = await Team.findById(req.params.id);
+        await team.populate('players'); // Populate the players field
+        res.send(team);
+    } catch (e) {
+        res.status(500).send();
     }
-    catch (e) {
-        res.status(500).send()
-    }
-})
+});
 
-router.post('/', auth, async (req, res) => {
+// POST (create) a new team
+router.post('/', async (req, res) => {
     try {
-        const team = new Team({ ...req.body, createdBy: req.user._id })
-        await team.save()
-        res.status(201).send(team)
+        const team = new Team({ ...req.body, createdBy: null }); // createdBy is set to null since authentication is not required
+        await team.save();
+        res.status(201).send(team);
+    } catch (e) {
+        res.status(500).send();
     }
-    catch (e) {
-        res.status(500).send()
-    }
-})
+});
 
-router.patch('/:id', auth, async (req, res) => {
+// PATCH (update) a specific team by ID
+router.patch('/:id', async (req, res) => {
     try {
-        if (req.user.role != 'admin') {
-            return res.status(403).send({ msg: 'Only admin can approve a team.' })
-        }
-        const team = await Team.findByIdAndUpdate(req.params.id, { $set: req.body }, { new: true })
-        res.send()
+        const team = await Team.findByIdAndUpdate(req.params.id, { $set: req.body }, { new: true });
+        res.send(team);
+    } catch (e) {
+        console.log(e);
+        res.status(500).send();
     }
-    catch (e) {
-        console.log(e)
-        res.status(500).send()
-    }
-})
+});
 
-router.delete('/:id', auth, async (req, res) => {
+// DELETE a specific team by ID
+router.delete('/:id', async (req, res) => {
     try {
-        const team = await Team.findById(req.params.id)
-        if (req.user.role === 'admin' || (req.user.role === 'jmcr' && req.user.residence == team.residence) || team.createdBy.toString() == req.user._id.toString()) {
-            await Team.deleteOne({ _id: req.params.id })
-            return res.send()
-        }
-        res.status(403).send()
+        await Team.deleteOne({ _id: req.params.id });
+        res.send();
+    } catch (e) {
+        res.status(500).send();
     }
-    catch (e) {
-        res.status(500).send()
-    }
-})
+});
 
-module.exports = router
+module.exports = router;

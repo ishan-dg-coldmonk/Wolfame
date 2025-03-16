@@ -206,14 +206,14 @@ export default function ProfileSection() {
                     <Grid item xs={12}>
                         <Paper elevation={10} sx={{ borderRadius: '2rem', p: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                             <Stack gap={1} sx={{ alignItems: 'center' }}>
-                                <Typography variant='h2' fontWeight={700} sx={{ opacity: 0.6 }} >
+                                <Typography variant='h2' fontWeight={700} sx={{ opacity: 0.6, pb:3 }} >
                                     Teams
                                 </Typography>
-                                <Link href='/teams/create' sx={{ textDecoration: 'none', ':hover': { color: 'red' } }}>
+                                {/* <Link href='/teams/create' sx={{ textDecoration: 'none', ':hover': { color: 'red' } }}>
                                     <Typography variant='h3' fontWeight={700} sx={{ opacity: 0.6, color: 'inherit' }} >
                                         (Create Team)
                                     </Typography>
-                                </Link>
+                                </Link> */}
                             </Stack>
                             <TeamSection params={{ players: userProfile?._id }} sx={{ p: 0, py: 2 }} />
                         </Paper>

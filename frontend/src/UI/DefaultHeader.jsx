@@ -3,7 +3,7 @@ import { Paper, Stack, Typography, IconButton } from '@mui/material';
 import bgPhoto from '../assets/contact-bg.webp';
 import './DefaultHeader.css'; // Import custom CSS for animations and gradients
 
-function DefaultHeader({ title, image, subtitle, height, showArrow = true }) {
+function DefaultHeader({ title, image, subtitle, height, showArrow = true, noGradient=false}) {
     // Function to handle smooth scrolling to the end of the header
     const handleScrollDown = () => {
         const headerEnd = document.getElementById('header-end');
@@ -41,23 +41,43 @@ function DefaultHeader({ title, image, subtitle, height, showArrow = true }) {
                     padding: { xs: '4rem', sm: '4rem' }, // Responsive padding
                 }}
             >
-                <Typography
-                    variant='h1'
-                    fontFamily={"'Nosifer', sans-serif"}
-                    sx={{
-                        position: "relative",
-                        mt: 2,
-                        mb: 2,
-                        fontSize: { xs: '2.9rem', sm: '4rem', md: '4.9rem' },
-                        fontWeight: 500,
-                        background: "linear-gradient(to bottom, red 0%, rgb(237, 23, 23) 50%, rgb(133, 48, 48) 100%)",
-                        WebkitBackgroundClip: "text",
-                        WebkitTextFillColor: "transparent",
-                        animation: 'slideIn 1s ease-in-out', // Text entry animation
-                    }}
-                >
-                    <span>{title}</span>
-                </Typography>
+                {noGradient ? (
+    <Typography
+        variant='h1'
+        fontFamily={"'Nosifer', sans-serif"}
+        sx={{
+            position: "relative",
+            mt: 2,
+            mb: 2,
+            fontSize: { xs: '2.9rem', sm: '4rem', md: '4.9rem' },
+            fontWeight: 500,
+            background: "linear-gradient(red 0%, rgb(237, 23, 23) 50%, rgb(233, 48, 48) 100%)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            animation: 'slideIn 1s ease-in-out', // Text entry animation
+        }}
+    >
+        <span>{title}</span>
+    </Typography>
+) : (
+    <Typography
+        variant='h1'
+        fontFamily={"'Nosifer', sans-serif"}
+        sx={{
+            position: "relative",
+            mt: 2,
+            mb: 2,
+            fontSize: { xs: '2.9rem', sm: '4rem', md: '4.9rem' },
+            fontWeight: 500,
+            background: "linear-gradient(to bottom, red 0%,red 100%)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            animation: 'slideIn 1s ease-in-out', // Text entry animation
+        }}
+    >
+        <span>{title}</span>
+    </Typography>
+)}
 
                 <Typography
                     variant='subtitle1'

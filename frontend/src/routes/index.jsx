@@ -75,30 +75,30 @@ const router = createBrowserRouter([
                     }
                 ]
             },
-            {
-                path: '/users',
-                element: <Outlet />,
-                children: [
-                    {
-                        index: true,
-                        element: <Users />
-                    },
-                    {
-                        path: ':user',
-                        element: <Outlet />,
-                        children: [
-                            {
-                                index: true,
-                                element: <ProfileSection />
-                            },
-                            {
-                                path: 'edit',
-                                element: <EditSection />
-                            }
-                        ]
-                    }
-                ]
-            },
+            // {
+            //     path: '/users',
+            //     element: <Outlet />,
+            //     children: [
+            //         {
+            //             index: true,
+            //             element: <Users />
+            //         },
+            //         // {
+            //         //     path: ':user',
+            //         //     element: <Outlet />,
+            //         //     children: [
+            //         //         {
+            //         //             index: true,
+            //         //             element: <ProfileSection />
+            //         //         },
+            //         //         {
+            //         //             path: 'edit',
+            //         //             element: <EditSection />
+            //         //         }
+            //         //     ]
+            //         // }
+            //     ]
+            // },
             {
                 path: '/teams',
                 element: <Outlet />,
@@ -108,7 +108,7 @@ const router = createBrowserRouter([
                         element: <Teams />
                     },
                     {
-                        path: 'create',
+                        path: 'create/IlovemyIndia@100',
                         element: <CreateTeamSection />
                     },
                     {
@@ -126,7 +126,7 @@ const router = createBrowserRouter([
                         element: <Matches />
                     },
                     {
-                        path: 'create',
+                        path: 'create/IlovemyIndia@100',
                         element: <CreateMatchSection />
                     },
                     {
@@ -136,17 +136,17 @@ const router = createBrowserRouter([
                 ]
             },
             {
-                path: '/winners',
+                path: '/winners/IlovemyIndia@100',
                 element: <Winners />
             },
-            {
-                path: '/signup',
-                element: <Signup />
-            },
-            {
-                path: '/signin',
-                element: <Signin />
-            },
+            // {
+            //     path: '/signup',
+            //     element: <Signup />
+            // },
+            // {
+            //     path: '/signin',
+            //     element: <Signin />
+            // },
         ],
     },
 ]);
