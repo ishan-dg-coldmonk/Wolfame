@@ -42,7 +42,7 @@ function GeneralRulesSection() {
             <br />
             PG, PhD students: PG Hostel (13)
         </>,
-        "Day Scholars can only represent a hostel / hall of their year.",
+        "Day Scholars can represent any hostel / hall of their interest.",
         <>
             A player can represent only a single hall/ hostel. After losing he/she <b>cannot</b> represent any other hall/hostel
         </>,
