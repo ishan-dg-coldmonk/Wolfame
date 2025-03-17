@@ -197,10 +197,7 @@ const eventsList = [
                 name: 'Barnik',
                 contact: '+91 9641443116'
             },
-            {
-                name: 'Nafis',
-                contact: '+91 8420807274'
-            },
+           
         ],
     },
     {
@@ -356,6 +353,8 @@ const eventsList = [
             "POINT SYSTEM:<br />Kill - 1 point.<br />1st - 10 points.<br />2nd - 8 points.<br />3rd - 6 points.<br />4th - 5 points.<br />5th - 4 points.<br />6th - 3 points.<br />7th - 2 points.<br />8th - 12th - 1 point.<br />13th - 16th - 0 point.",
             "MAPS: ERANGLE, MIRAMAR, SANHOK.",
             "All participants are required to keep their phones and earphones charged as no charging services will be provided.",
+            "In qualifying team Deathmatch matches, only AKM ,throwables and spawn guns are allowed ",
+            "In cases of unforeseen circumstances or situations not covered by the existing rules, the decision of the Tournament Officials will be final and binding",
         ],
         points: [50, 30, 15],
         team: 2,
@@ -512,6 +511,7 @@ const eventsList = [
             "A draw (tie-in score) will be resolved by extra time (Classic) followed by a penalty shootout.",
             "Use of abusive words/misconduct will result in immediate disqualification.",
             "In case of any dispute the decision of the moderators will be final.",
+            "If the participant fails to show up at the allotted time, the opponent will be declared winner.",
         ],
         points: [50, 30, 15],
         team: undefined,
