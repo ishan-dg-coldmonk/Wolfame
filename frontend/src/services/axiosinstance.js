@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const instance = axios.create({
     // baseURL: 'http://localhost:3001/',
-    baseURL: 'http://65.2.81.206:8001/',
+    baseURL: 'https://server.wolfame.co.in/',
 })
 
 instance.interceptors.request.use((request) => {

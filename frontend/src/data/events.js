@@ -523,7 +523,7 @@ const eventsList = [
             },
             {
                 name: 'Tonmay',
-                contact: '+91 '
+                contact: '+91 8910121385'
             },
         ],
     },
