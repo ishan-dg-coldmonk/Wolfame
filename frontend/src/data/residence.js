@@ -15,14 +15,14 @@ const residence = [
     {
         name: 'Macdonald Hall',
         image: 'https://knowiiest.netlify.app/static/media/macdonald.feb126c6.jpg',
-        color: '#ff6600',
+        color: '#cccc00',
         category: 'men',
 
     },
     {
         name: 'Sen Hall',
         image: 'https://knowiiest.netlify.app/static/media/senhall.f6cb231c.jpg',
-        color: '#cccc00',
+        color: '#ff6600',
         category: 'men',
 
     },
