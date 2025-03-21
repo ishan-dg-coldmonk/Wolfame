@@ -16,8 +16,60 @@ import bisleri from "../../assets/home-page/sponsors-section/bisleri.webp";
 import wowMomo from "../../assets/home-page/sponsors-section/wowmomo.webp";
 import sting from "../../assets/home-page/sponsors-section/sting.webp";
 import bgImage from "../../assets/home-page/sponsors-section/sponsor-bg.webp";
+import kts from "../../assets/home-page/sponsors-section/kts.webp";
+import shree from "../../assets/home-page/sponsors-section/shree.webp";
+import space from "../../assets/home-page/sponsors-section/grand-space.webp";
+import redBull from "../../assets/home-page/sponsors-section/red-bull.webp";
 
 const sponsors = [
+    {
+        title: 'Space Grand Infra',
+        logo: space,
+        backgroundColor: 'white',
+    },
+    {
+        title: 'RedBull',
+        logo: redBull,
+        backgroundColor: 'white',
+    },
+    
+    {
+        logo: shree,
+        title: "Shree Diagnostics",
+        backgroundColor: "white"
+    },
+    // {
+    //     title: 'Sting',
+    //     logo: sting,
+    //     backgroundColor: '#c2112c'
+    // },
+    // {
+    //     logo: bisleri,
+    //     title: "Bisleri",
+    //     backgroundColor: "#00B3A1",
+    // },
+    // {
+    //     logo: wowMomo,
+    //     title: "wow momo",
+    //     backgroundColor: "#facb23",
+    // },
+    {
+        logo: lic,
+        title: "LIC",
+        backgroundColor: "black",
+    },
+    {
+        logo: kts,
+        title: "KTS Academy",
+        backgroundColor: "white",
+    },
+    // {
+    //     title: 'Monster Energy',
+    //     logo: monster,
+    //     backgroundColor: 'black'
+    // },
+];
+const presentSponsors = [
     {
         title: 'Coca Cola',
         logo: cocaCola,
@@ -48,11 +100,11 @@ const sponsors = [
         title: "wow momo",
         backgroundColor: "#facb23",
     },
-    {
-        logo: lic,
-        title: "LIC",
-        backgroundColor: "black",
-    },
+    // {
+    //     logo: lic,
+    //     title: "LIC",
+    //     backgroundColor: "black",
+    // },
     {
         logo: mtv,
         title: "mtv",
@@ -163,7 +215,7 @@ function SponsersSection() {
                             zIndex: 1, // Place the title above the overlay
                         }}
                     >
-                        <span>Past Sponsors</span>
+                        <span>Our Sponsors</span>
                     </Typography>
                 </motion.div>
 
@@ -179,6 +231,66 @@ function SponsersSection() {
                     }}
                 >
                     {sponsors.map((item, index) => (
+                        <Grid 
+                            item 
+                            xs={12} sm={6} md={4} // 3 cards per row on medium and larger screens
+                            key={index}
+                            sx={{ 
+                                display: 'flex', 
+                                justifyContent: 'center', // Center the card horizontally
+                            }}
+                        >
+                            <motion.div
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true, amount: 0.2 }} // Trigger animation when 20% of the element is visible
+                                variants={cardVariants}
+                            >
+                                <SponsorCard {...item} />
+                            </motion.div>
+                        </Grid>
+                    ))}
+                </Grid>
+
+                {/* Past Sponsors Title with Margin */}
+                <motion.div
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.2 }} // Trigger animation when 20% of the element is visible
+                    variants={titleVariants}
+                >
+                    <Typography 
+                        variant='h1' 
+                        fontFamily={"'Nosifer', sans-serif"}
+                        sx={{ 
+                            textAlign: "center",
+                            mt: 8, // Margin top
+                            mb: 3, // Margin bottom
+                            fontSize: { xs: '2.5rem', md: '3.6rem' },
+                            fontWeight: 500,
+                            background: "linear-gradient(to bottom, red 0%, rgb(237, 23, 23) 50%, rgb(133, 48, 48) 100%)",
+                            WebkitBackgroundClip: "text",
+                            WebkitTextFillColor: "transparent",
+                            position: 'relative', // Ensure the title is above the overlay
+                            zIndex: 1, // Place the title above the overlay
+                        }}
+                    >
+                        <span>Past Sponsors</span>
+                    </Typography>
+                </motion.div>
+
+                {/* Sponsors Grid */}
+                <Grid 
+                    container 
+                    spacing={4} // Spacing between cards
+                    justifyContent="center" // Center the cards
+                    sx={{ 
+                        maxWidth: '1200px', // Limit the maximum width of the grid
+                        position: 'relative', // Ensure the grid is above the overlay
+                        zIndex: 1, // Place the grid above the overlay
+                    }}
+                >
+                    {presentSponsors.map((item, index) => (
                         <Grid 
                             item 
                             xs={12} sm={6} md={4} // 3 cards per row on medium and larger screens
