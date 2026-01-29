@@ -1,0 +1,90 @@
+/* Base styles */
+.stay-tuned-container {
+    position: fixed;
+    top: -100px; /* Start off-screen */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    transition: top 0.8s ease-in-out;
+  }
+  
+  .stay-tuned-container.visible {
+    top: 20px; /* Move into view */
+  }
+  
+  .stay-tuned-signboard {
+    background-color: black;
+    border: 4px solid red;
+    border-radius: 10px;
+    padding: 20px 40px;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
+    position: relative;
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  .stay-tuned-text {
+    font-family: "Arial Black", sans-serif;
+    font-size: 2.5rem;
+    color: red;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.8), 0 0 20px rgba(255, 0, 0, 0.6);
+    animation: glow 1.5s infinite alternate;
+  }
+  
+  .stay-tuned-lights {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+  }
+  
+  .stay-tuned-lights .light {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    animation: blink 1s infinite;
+  }
+  
+  .stay-tuned-lights .light.red {
+    background-color: red;
+    box-shadow: 0 0 10px red;
+  }
+  
+  .stay-tuned-lights .light.black {
+    background-color: black;
+    box-shadow: 0 0 10px black;
+  }
+  
+  /* Animations */
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  
+  @keyframes glow {
+    0% {
+      text-shadow: 0 0 10px rgba(255, 0, 0, 0.8), 0 0 20px rgba(255, 0, 0, 0.6);
+    }
+    100% {
+      text-shadow: 0 0 20px rgba(255, 0, 0, 1), 0 0 30px rgba(255, 0, 0, 0.8);
+    }
+  }
+  
+  @keyframes blink {
+    0%,
+    50%,
+    100% {
+      opacity: 1;
+    }
+    25%,
+    75% {
+      opacity: 0.5;
+    }
+  }

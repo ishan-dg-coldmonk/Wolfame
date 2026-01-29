@@ -1,0 +1,417 @@
+.carousel-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding-bottom: 5rem; /* Space for scrollbar */
+}
+
+.carousel {
+  display: flex;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: #ff3333 #111;
+  padding-bottom: 2rem; /* Create space between scrollbar and carousel */
+}
+
+/* Custom scrollbar for webkit browsers */
+.carousel::-webkit-scrollbar {
+  height: 2px;
+}
+
+.carousel::-webkit-scrollbar-track {
+  background: #111;
+  border-radius: 10px;
+}
+
+.carousel::-webkit-scrollbar-thumb {
+  background: #ff1818;
+  border-radius: 10px;
+}
+
+.carousel-inner {
+  display: flex;
+  gap: 16px;
+  padding: 0 16px;
+  margin-bottom: 1rem;
+}
+
+.carousel-item {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  transition: transform 0.3s ease;
+}
+
+.carousel-item:hover {
+  transform: translateY(-8px);
+}
+
+.card {
+  position: relative;
+  width: 80vw; /* Default width for screens <500px */
+  height: 50vh;
+  border-radius: 24px;
+  overflow: hidden;
+  background: #f0f0f0;
+  transform: scale(0.95);
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(255, 251, 251, 0.936);
+  transition: all 0.2s ease-in;
+}
+
+/* For screens >=500px and <1100px */
+@media (min-width: 500px) and (max-width: 1099px) {
+  .card {
+    width: 45vw; /* Adjust width for medium screens */
+  }
+}
+
+/* For screens >=1100px */
+@media (min-width: 1100px) {
+  .card {
+    width: 31vw; /* Default width for larger screens */
+    height: 68vh;
+  }
+}
+
+.card:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.523), 2px 2px 20px rgba(255, 0, 0, 0.998);
+  transform: scale(0.9);
+}
+
+.card-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  transition: transform 0.5s ease;
+}
+
+.card:hover .card-image {
+  transform: scale(1.05);
+}
+
+.card-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 16px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent 70%);
+  color: white;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.card:hover .card-content {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.6) 50%, transparent);
+}
+
+.card-category {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 2.4rem;
+  font-weight: 800;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  transform: translateY(0);
+  transition: transform 0.3s ease;
+}
+
+.card:hover .card-category {
+  transform: translateY(-5px);
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+}
+
+.card-title {
+  font-family: "Roboto", sans-serif;
+  text-transform: capitalize;
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  opacity: 0.9;
+  transform: translateY(0);
+  transition: all 0.3s ease;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.card:hover .card-title {
+  opacity: 1;
+  transform: translateY(-5px);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.carousel-controls {
+  display: flex;
+  justify-content: center; /* Center the controls */
+  gap: 16px;
+  margin-top: 20px;
+  position: relative;
+  z-index: 10;
+}
+
+.carousel-controls button {
+  background: #222;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.carousel-controls button:hover:not(:disabled) {
+  background: #ff3333;
+  transform: scale(1.1);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.carousel-controls button:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.carousel-controls button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.card-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+}
+
+.a-center {
+  text-align: center;
+}
+
+.modal-content {
+  position: relative;
+  background: white;
+  border-radius: 24px;
+  padding: 24px;
+  max-width: 600px;
+  width: 90%;
+  z-index: 1001;
+  transform: translateY(30px);
+  font-size: 0.8rem;
+  opacity: 0;
+  animation: slideUp 0.4s ease 0.1s forwards;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes slideUp {
+  from { 
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to { 
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: black;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
+  transition: all 0.2s ease;
+}
+
+.modal-close:hover {
+  background: #ff3333;
+  transform: rotate(90deg);
+}
+
+.modal-body {
+  margin-top: 24px;
+}
+
+/* Modal backdrop with darkish-blackish background */
+.modal-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9); /* Darker background */
+  backdrop-filter: blur(10px); /* More blur for a cooler effect */
+}
+
+/* Modal content with fixed height, less width, and scrollable */
+.modal-content {
+  position: relative;
+  background: #1a1a1a; /* Darkish-blackish background */
+  border-radius: 24px;
+  padding: 24px;
+  max-width: 400px; /* Less wide */
+  width: 80%;
+  height: 70vh; /* Fixed height */
+  overflow-y: auto; /* Make it scrollable */
+  z-index: 6001;
+  transform: translateY(30px);
+  font-size: 0.8rem;
+  opacity: 0;
+  animation: slideUp 0.4s ease 0.1s forwards;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  color: white; /* Text color for better contrast */
+}
+
+/* Custom scrollbar for Webkit browsers */
+.modal-content::-webkit-scrollbar {
+  width: 2px; /* Width of the scrollbar */
+}
+
+.modal-content::-webkit-scrollbar-track {
+  background: #1a1a1a; /* Darkish-blackish track */
+  border-radius: 10px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+  background: #ff3333; /* Red scrollbar thumb */
+  border-radius: 10px;
+}
+
+/* Custom scrollbar for standard browsers (Firefox) */
+.modal-content {
+  scrollbar-width: thin; /* Width of the scrollbar */
+  scrollbar-color: #c71919 #1a1a1a; /* Red thumb and darkish-blackish track */
+}
+
+/* Rest of your existing CSS */
+@keyframes slideUp {
+  from { 
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to { 
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: black;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
+  transition: all 0.2s ease;
+}
+
+.modal-close:hover {
+  background: #ff3333;
+  transform: rotate(90deg);
+}
+
+.modal-body {
+  margin-top: 24px;
+}
+
+/* For screens between 400px and 1100px */
+@media (min-width: 400px) and (max-width: 1100px) {
+  .modal-content {
+    max-width: 800px;
+    font-size: 1.6rem; /* Larger font size for medium screens */
+    z-index: 30000;
+  }
+  
+}
+
+/* For screens less than 400px */
+@media (max-width: 399px) {
+  .modal-content {
+    font-size: 1rem; /* Smaller font size for small screens */
+    z-index: 30000;
+  }
+}
+
+/* Tooltip container */
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 160px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  top: 125%; /* Position below the button */
+  left: 50%;
+  margin-left: -80px; /* Center the tooltip */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* Tooltip arrow */
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  bottom: 100%; /* Arrow points upwards */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent #555 transparent; /* Arrow color */
+}
+
+/* Show the tooltip text on hover */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
