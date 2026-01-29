@@ -22,7 +22,7 @@ function ContactUs() {
                 <DefaultHeader
                     title='Contact Us'
                     height='110vh'
-                    subtitle="Connect with us for inquiries, collaborations, or support. Reach out and let’s make Wolfame 2025 unforgettable."
+                    subtitle="Connect with us for inquiries, collaborations, or support. Reach out and let’s make Wolfame 2026 unforgettable."
                 />
             </div>
             <ContactSection />

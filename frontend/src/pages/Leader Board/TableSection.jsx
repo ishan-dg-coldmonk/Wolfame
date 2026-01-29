@@ -23,7 +23,7 @@ function TableSection() {
                 <RuleBook event={event} />
             </Grid>
             <Grid item xs={12} md={6} order={3}>
-                <Stack direction='row' gap={1} alignItems='flex-end'justifyContent="center">
+                <Stack direction='row' gap={1} alignItems='flex-end' justifyContent="center">
                     <Typography variant='h2' fontWeight={700} sx={{ opacity: 0.6 }} >
                         {eventDeatils?.label}
                     </Typography>
@@ -31,7 +31,7 @@ function TableSection() {
                         Register
                     </Button> */}
                 </Stack>
-                <EventSection event={eventDeatils.label} />
+                <EventSection event={eventDeatils} />
             </Grid>
         </Fragment>
     )

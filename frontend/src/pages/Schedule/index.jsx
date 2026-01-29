@@ -6,7 +6,7 @@ import eventsbgPhoto from '../../assets/events-page/hero-bg.webp';
 import sectionBgPhoto from '../../assets/events-page/black-bg.webp'; // Add your background image
 
 function Schedule() {
-    const subtitleText = `Mark your calendars and sync your adrenaline! Here’s the ultimate timeline of Wolfame 2025 – where every second counts and every moment thrills.`;
+    const subtitleText = `Mark your calendars and sync your adrenaline! Here’s the ultimate timeline of Wolfame 2026 – where every second counts and every moment thrills.`;
     const headerRef = useRef(null); // Create a ref for the DefaultHeader
 
     // Use useLayoutEffect to ensure the scroll happens before the page is painted

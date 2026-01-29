@@ -7,17 +7,19 @@ import WinnerSection from '../../components/Sections/WinnerSection'
 
 export default function EventSection({ event }) {
 
-    const [selectedMenu, setSelectedMenu] = useState('Winners')
+    const [selectedMenu, setSelectedMenu] = useState('Points Table')
 
     const menuChangeHandler = (menuItem) => {
         setSelectedMenu(menuItem)
     }
 
+    if (!event) return null;
+
     return (
         <Stack py={2}>
             <Grid container spacing={1} sx={{ justifyContent: 'center', width: 1, p: 1 }} >
                 {
-                    ['Winners', 'Teams', 'Matches'].map((name) => {
+                    ['Points Table', 'Teams', 'Matches'].map((name) => {
                         const isSelected = selectedMenu === name
                         return (
                             <Grid key={name} item xs={4}>
@@ -36,9 +38,12 @@ export default function EventSection({ event }) {
                     })
                 }
             </Grid>
-            {selectedMenu === 'Teams' && <TeamSection params={{ event }} sx={{ p: 0, pt: 1 }} hide={{ event: true }} />}
-            {selectedMenu === 'Matches' && <MatchSection params={{ event }} sx={{ p: 0, pt: 2 }} hide={{ event: true }} />}
-            {selectedMenu === 'Winners' && <WinnerSection params={{ event }} sx={{ p: 0, pt: 2 }} />}
+            {/* Teams and Matches use the EVENT SLUG (e.g. FUTSAL) */}
+            {selectedMenu === 'Teams' && <TeamSection params={{ event: event.event }} sx={{ p: 0, pt: 1 }} hide={{ event: true }} />}
+            {selectedMenu === 'Matches' && <MatchSection params={{ event: event.event }} sx={{ p: 0, pt: 2 }} hide={{ event: true }} />}
+
+            {/* WinnerSection (now Points Table) uses the EVENT SLUG (e.g. FUTSAL) */}
+            {selectedMenu === 'Points Table' && <WinnerSection params={{ event: event.event }} sx={{ p: 0, pt: 2 }} />}
         </Stack >
     )
 }

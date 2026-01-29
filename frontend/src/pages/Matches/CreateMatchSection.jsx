@@ -45,7 +45,7 @@ export default function CreateTeamSection() {
                     navigate('../')
                 }
                 catch (e) {
-                    console.log(e)
+                    console.error(e)
                     if (e.response?.status === 406) {
                         action.setErrors(e.response.data)
                     }

@@ -24,6 +24,12 @@ const matchSchema = new mongoose.Schema({
         type: Date,
         required: true,
     },
+    matchType: {
+        type: String,
+        enum: ['League Stage', 'Knockout', 'Semi Final', 'Final'],
+        default: 'League Stage',
+        required: true
+    },
     createdBy: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'

@@ -9,19 +9,19 @@ import "./index.css";
 const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({
-        behavior: "smooth", // Smooth scroll behavior
-        block: "start", // Align to the top of the section
-      });
+        element.scrollIntoView({
+            behavior: "smooth", // Smooth scroll behavior
+            block: "start", // Align to the top of the section
+        });
     }
-  };
+};
 
 function HeroSection() {
     // Animation variants for different elements
     const fadeInUp = {
         hidden: { opacity: 0, y: 30 },
-        visible: { 
-            opacity: 1, 
+        visible: {
+            opacity: 1,
             y: 0,
             transition: { duration: 0.8, ease: "easeOut" }
         }
@@ -29,7 +29,7 @@ function HeroSection() {
 
     const fadeIn = {
         hidden: { opacity: 0 },
-        visible: { 
+        visible: {
             opacity: 1,
             transition: { duration: 1, ease: "easeOut" }
         }
@@ -37,11 +37,11 @@ function HeroSection() {
 
     const logoAnimation = {
         hidden: { opacity: 0, scale: 1 },
-        visible: { 
-            opacity: 1, 
+        visible: {
+            opacity: 1,
             scale: 1,
-            transition: { 
-                duration: 1.2, 
+            transition: {
+                duration: 1.2,
                 ease: [0.25, 0.1, 0.25, 1.0] // Custom cubic bezier for fluid motion
             }
         }
@@ -49,11 +49,11 @@ function HeroSection() {
 
     const titleAnimation = {
         hidden: { opacity: 0, y: 20 },
-        visible: { 
-            opacity: 1, 
+        visible: {
+            opacity: 1,
             y: 0,
-            transition: { 
-                duration: 0.9, 
+            transition: {
+                duration: 0.9,
                 delay: 0.3,
                 ease: "easeOut"
             }
@@ -63,7 +63,7 @@ function HeroSection() {
     return (
         <Stack
             sx={{
-                height:{xs:"100vh", sm:"110vh"},
+                height: { xs: "100vh", sm: "110vh" },
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
@@ -103,16 +103,16 @@ function HeroSection() {
                     initial="hidden"
                     animate="visible"
                     variants={logoAnimation}
-                    style={{ flex: "0 0 39%", maxWidth: "80%", marginBottom: "6rem", marginTop: {xs: "-2rem", sm:"-1.3rem" }}}
+                    style={{ flex: "0 0 39%", maxWidth: "80%", marginBottom: "6rem", marginTop: { xs: "-2rem", sm: "-1.3rem" } }}
                     className="hero-logo"
                 >
-                    <img 
-                        src={wolfPng} 
-                        style={{ 
-                            width: "100%", 
+                    <img
+                        src={wolfPng}
+                        style={{
+                            width: "100%",
                             height: "auto"
-                        }} 
-                        alt="Wolfame Logo" 
+                        }}
+                        alt="Wolfame Logo"
                     />
                 </motion.div>
                 <Stack
@@ -150,10 +150,10 @@ function HeroSection() {
                         transition={{ delay: 0.6 }}
                     >
                         <Typography variant="h3" color="white" sx={{
-                            fontWeight: "600", 
-                            fontSize: "2.5rem", 
-                            fontFamily:"Frijole", 
-                            textTransform:"uppercase", 
+                            fontWeight: "600",
+                            fontSize: "2.5rem",
+                            fontFamily: "Frijole",
+                            textTransform: "uppercase",
                             background: "linear-gradient(to right, white, rgb(162, 158, 159))",
                             WebkitBackgroundClip: "text",
                             WebkitTextFillColor: "transparent",
@@ -175,10 +175,10 @@ function HeroSection() {
                                 background: "linear-gradient(to right, white, rgb(162, 158, 159))",
                                 WebkitBackgroundClip: "text",
                                 WebkitTextFillColor: "transparent",
-                                fontWeight: "600", 
-                                fontSize: "2.5rem", 
-                                fontFamily:"Frijole", 
-                                textTransform:"uppercase"
+                                fontWeight: "600",
+                                fontSize: "2.5rem",
+                                fontFamily: "Frijole",
+                                textTransform: "uppercase"
                             }}
                         >
                             <Typewriter
@@ -199,10 +199,10 @@ function HeroSection() {
                         variants={fadeIn}
                         transition={{ delay: 1.2 }}
                     >
-                                        <a href="#eventsSection" className="btn btn--white btn--animated m-top" onClick={(e) => {
-                    e.preventDefault(); // Prevent default anchor behavior
-                    scrollToSection("eventsSection"); // Trigger smooth scroll
-                }}>Events</a>
+                        <a href="#eventsSection" className="btn btn--white btn--animated m-top" onClick={(e) => {
+                            e.preventDefault(); // Prevent default anchor behavior
+                            scrollToSection("eventsSection"); // Trigger smooth scroll
+                        }}>Events</a>
                     </motion.div>
                 </Stack>
             </Stack>

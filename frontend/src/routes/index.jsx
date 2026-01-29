@@ -23,6 +23,7 @@ import CreateMatchSection from '../pages/Matches/CreateMatchSection'
 import Error from '../pages/Error'
 import MatchPageSection from "../pages/Matches/MatchPageSection";
 import Winners from '../pages/Winners'
+import AdminDashboard from '../pages/Admin/Dashboard';
 
 const router = createBrowserRouter([
     {
@@ -75,30 +76,30 @@ const router = createBrowserRouter([
                     }
                 ]
             },
-            // {
-            //     path: '/users',
-            //     element: <Outlet />,
-            //     children: [
-            //         {
-            //             index: true,
-            //             element: <Users />
-            //         },
-            //         // {
-            //         //     path: ':user',
-            //         //     element: <Outlet />,
-            //         //     children: [
-            //         //         {
-            //         //             index: true,
-            //         //             element: <ProfileSection />
-            //         //         },
-            //         //         {
-            //         //             path: 'edit',
-            //         //             element: <EditSection />
-            //         //         }
-            //         //     ]
-            //         // }
-            //     ]
-            // },
+            {
+                path: '/users',
+                element: <Outlet />,
+                children: [
+                    {
+                        index: true,
+                        element: <Users />
+                    },
+                    {
+                        path: ':user',
+                        element: <Outlet />,
+                        children: [
+                            {
+                                index: true,
+                                element: <ProfileSection />
+                            },
+                            {
+                                path: 'edit',
+                                element: <EditSection />
+                            }
+                        ]
+                    }
+                ]
+            },
             {
                 path: '/teams',
                 element: <Outlet />,
@@ -139,14 +140,18 @@ const router = createBrowserRouter([
                 path: '/winners/IlovemyIndia@100',
                 element: <Winners />
             },
-            // {
-            //     path: '/signup',
-            //     element: <Signup />
-            // },
-            // {
-            //     path: '/signin',
-            //     element: <Signin />
-            // },
+            {
+                path: '/signup',
+                element: <Signup />
+            },
+            {
+                path: '/signin',
+                element: <Signin />
+            },
+            {
+                path: '/admin/dashboard',
+                element: <AdminDashboard />
+            },
         ],
     },
 ]);

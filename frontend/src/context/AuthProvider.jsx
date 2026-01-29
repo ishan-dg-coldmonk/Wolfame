@@ -12,12 +12,16 @@ export const AuthContext = createContext({
 })
 
 export const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(undefined)
+    const [user, setUser] = useState(() => {
+        try {
+            const storedUser = localStorage.getItem('user');
+            return (storedUser && storedUser !== "undefined") ? JSON.parse(storedUser) : undefined;
+        } catch (e) {
+            return undefined;
+        }
+    });
 
-    useEffect(() => {
-        const user = localStorage.getItem('user')
-        if (user && user !== "undefined") setUser(JSON.parse(user))
-    }, [])
+
 
     const signin = (user, token) => {
         setUser(user)

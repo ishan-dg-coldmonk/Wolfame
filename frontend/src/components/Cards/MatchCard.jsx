@@ -116,6 +116,15 @@ export default function MatchCard({ match, ...props }) {
                         <span className="text-gradient">{event}</span>
                     </Typography>
                     <Typography
+                        variant='h6'
+                        fontWeight={500}
+                        textAlign='center'
+                        letterSpacing={'0.5px'}
+                        sx={{ mb: 1, color: 'gray' }}
+                    >
+                        {match.matchType || 'League Stage'}
+                    </Typography>
+                    <Typography
                         variant='h5'
                         fontWeight={400}
                         textAlign='center'
@@ -137,7 +146,7 @@ export default function MatchCard({ match, ...props }) {
             </Paper>
             <Stack direction='row' p={{ xs: 1, md: 2 }} gap={{ xs: 1, md: 3 }} sx={{ alignItems: 'stretch', justifyContent: 'space-evenly' }}>
                 <TeamBox team={teams[0]} winner={winner} /> {/* Pass `winner` to TeamBox */}
-                <img src={vsImage} style={{ height: '4rem' , alignSelf:"center"}} />
+                <img src={vsImage} style={{ height: '4rem', alignSelf: "center" }} />
                 <TeamBox team={teams[1]} winner={winner} /> {/* Pass `winner` to TeamBox */}
             </Stack>
         </Paper>

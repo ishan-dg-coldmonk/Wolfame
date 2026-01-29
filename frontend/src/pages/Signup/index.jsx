@@ -165,10 +165,8 @@ const Signup = (props) => {
             }
         }
         catch (e) {
-            const msg = e?.response?.data?.msg
-            if(msg) {
-                setSnackBarMessage({color: 'error' , msg})
-            }
+            const msg = e?.response?.data?.msg || 'Signup failed. Please try again.'
+            setSnackBarMessage({ color: 'error', msg })
         }
     }
 

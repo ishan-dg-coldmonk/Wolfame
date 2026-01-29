@@ -7,7 +7,7 @@ import culturalPhoto from '../assets/events-page/cultural-bg.webp'
 const timelineList = [
     {
         title: "DAY 1",
-        date: "17 March 2025",
+        date: "5 February 2026",
         image: inaugurationPhoto,
         events: ["INITIATION",
             "INAUGURATION CEREMONY",
@@ -15,7 +15,7 @@ const timelineList = [
     },
     {
         title: "DAY 2",
-        date: "18 March 2025",
+        date: "6 February 2026",
         image: firstdayPhoto,
         events: [
             "HUSTLE BEGINS",
@@ -25,12 +25,12 @@ const timelineList = [
     },
     {
         title: "DAY 3",
-        date: "19 March 2025",
+        date: "7 February 2026",
         image: seconddayPhoto,
         events: [
             "MATCHES PROCEED TO THE NEXT ROUND",
             "MORE INTENSE ACTION",
-            "QUARTER AND SEMI FINALS",
+            "QUARTER'S ,SEMI'S AND FINALS",
         ],
     },
     // {
@@ -45,7 +45,7 @@ const timelineList = [
     // },
     {
         title: "DAY 4",
-        date: "20 March 2025",
+        date: "8 February 2026",
         image: culturalPhoto,
         events: [
             "CULTURAL NIGHT",

@@ -76,7 +76,7 @@ function Footer() {
             <Grid item xs={12} sx={{ justifyContent: 'center' }}>
                 <Divider />
                 <Typography variant='h5' fontSize={'1rem'} textAlign={'center'} sx={{ p: 2 }}>
-                    Copyright © 2025. All rights reserved by Wolfame organisers and IIEST, Shibpur.
+                    Copyright © 2026. All rights reserved by Wolfame organisers and IIEST, Shibpur.
                 </Typography>
             </Grid>
         </Paper>

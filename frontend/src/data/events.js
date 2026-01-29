@@ -197,7 +197,7 @@ const eventsList = [
                 name: 'Barnik',
                 contact: '+91 9641443116'
             },
-           
+
         ],
     },
     {
@@ -361,44 +361,12 @@ const eventsList = [
         players: [4, 5],
         coordinators: [
             {
-                name: 'Devans',
-                contact: '+91 6376322548'
+                name: 'Sandeep Raj',
+                contact: '+91 8946058529'
             },
             {
-                name: 'Rohit',
+                name: 'Devendra Prasad',
                 contact: '+91 9079627232'
-            },
-        ],
-    },
-    {
-        label: 'Strong Women',
-        event: "STRONG WOMEN",
-        image: strongWomenPhoto,
-        description: "Stand almost anything",
-        rules: [
-            "The event will consist of 3 activities- Forearm Plank, Sprinting and Bodyweight Squats.",
-            "The participants are required to do :- plank (duration - 1.5 minutes), 100 metre sprint and 30 Bodyweight squats.",
-            "There will be 4 judges.",
-            "The participants will have to complete all the 3 tasks in one go, following the correct techniques.",
-            "The participant will be disqualified if she fails to do all the 3 tasks.",
-            "In the event of any controversy, related to the judges' decision, a slow motion video recording will be consulted.",
-            "The right technique for the activities is described below.",
-            "Forearm plank:-<br/>Place forearms on the floor with elbows aligned below shoulders and arms parallel to your body at about shoulder width.<br/>Ground toes into the floor, keeping your legs straight.<br/>Your head should be in line with your back.<br/>Keep your torso straight and rigid and your body in a straight line, with no sagging or bending.<br/>Hold this position for 90 seconds.",
-            "Squats:-<br/>Stand straight up with your feet shoulder's width apart.<br/>While bending at the knees, push your hips out and bend down.<br/>Keep your torso erect.<br/>Bend till the knee joint makes a 90° angle.<br/>Don't allow your knees to extend beyond your toes, the knees should be in line with the toes rather than angled to the side.<br/>Your feet should remain fully on the ground.",
-            "Criteria for deciding the winner-<br/>The total time taken to complete all the tasks successfully will be recorded.<br/>The participants will be awarded the positions according to the time they take.<br/>The participant with the minimum time duration will be awarded the 1st position and so on.",
-            "The entire event will be video recorded.",
-        ],
-        points: [50, 30, 15],
-        team: undefined,
-        players: [1, 1],
-        coordinators: [
-            {
-                name: 'Rohit',
-                contact: '+91 9079627232'
-            },
-            {
-                name: 'Turjo',
-                contact: '+91 7048908158'
             },
         ],
     },
@@ -492,38 +460,6 @@ const eventsList = [
             {
                 name: 'Pritam',
                 contact: '+91 9905358075'
-            },
-        ],
-    },
-    {
-        label: 'Fifa',
-        event: "FIFA",
-        image: fifaPhoto,
-        description: "Train fingers for football",
-        rules: [
-            "Platform: FIFA 23 (updated teams).",
-            "Controller players must bring their own controller or keyboard. If not, will be provided from the organizers.",
-            "Opponent allotment - Randomly chosen by the organizers, half length - 6 minutes, tournament type 1V1(Knockout), camera - Default, difficulty - World Class.",
-            "There will be a moderator always present throughout the course of the match.",
-            "During an ongoing match the game cannot be paused by an individual unless the ball goes outside for a throw in/goal kick/free kick.",
-            "Before pausing the participant must ask the moderator for permission.",
-            "Any technical difficulty found must be informed immediately to the moderators. In that,case the match may be replayed.",
-            "A draw (tie-in score) will be resolved by extra time (Classic) followed by a penalty shootout.",
-            "Use of abusive words/misconduct will result in immediate disqualification.",
-            "In case of any dispute the decision of the moderators will be final.",
-            "If the participant fails to show up at the allotted time, the opponent will be declared winner.",
-        ],
-        points: [50, 30, 15],
-        team: undefined,
-        players: [1, 1],
-        coordinators: [
-            {
-                name: 'Suprotim',
-                contact: '+91 7003200121'
-            },
-            {
-                name: 'Tonmay',
-                contact: '+91 8910121385'
             },
         ],
     },

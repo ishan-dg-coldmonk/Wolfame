@@ -28,6 +28,10 @@ const teamSchema = new mongoose.Schema({
     createdBy: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
+    },
+    points: {
+        type: Number,
+        default: 0
     }
 })
 

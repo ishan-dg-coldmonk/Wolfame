@@ -18,6 +18,10 @@ const winnerSchema = new mongoose.Schema({
     category: {
         type: String
     },
+    points: {
+        type: Number,
+        required: true
+    }
 })
 
 const Winner = mongoose.model('Winner', winnerSchema)

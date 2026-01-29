@@ -1,7 +1,6 @@
 const mongoose = require("mongoose")
 
-const password = `IlovemyIndia@1000`;
-const url = `mongodb+srv://ishan:IlovemyIndia%401000@wolfamecluster.0ekxv.mongodb.net/?retryWrites=true&w=majority&appName=WolfameCluster`;
+const url = process.env.MONGODB_URL;
 
 mongoose.connect(url, {
     useNewUrlParser: true,

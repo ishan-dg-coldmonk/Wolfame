@@ -2,32 +2,24 @@ import React from 'react'
 import { Avatar, Link, Paper, Stack, Typography } from '@mui/material'
 
 import residenceList from '../../data/residence'
-import eventsList from '../../data/events'
 import { useQuery } from '@tanstack/react-query'
+import { fetchLeaderboard } from '../../services/http'
 
 import axios from '../../services/axiosinstance'
 
-function ValueCard({ label, children, value }) {
-    return (
-        <Stack>
-            <Typography variant='body2'>
-                {label}
-            </Typography>
-            {children || (<Typography variant='h5' fontWeight={500} sx={{ opacity: 0.6, color: 'inherit' }} >
-                {value}
-            </Typography>)}
-        </Stack>
-    )
-}
-
-function TableCard({ name, image, odd, points = 0 }) {
+function TableCard({ name, image, odd, points = 0, rank }) {
     return (
         <Paper elevation={odd ? 4 : 8} sx={{ ":hover": { transform: 'scaleY(1.2) scaleX(1.05)' }, width: '100%' }}>
             <Stack direction='row' p={1} sx={{ justifyContent: 'space-between', alignItems: 'center' }}>
                 <Link href={`/residence/${name.replaceAll(' ', '')}`} sx={{ textDecoration: 'none', color: 'white', ':hover': { color: 'red' } }}>
                     <Stack direction='row' gap={2} sx={{ justifyContent: 'center', alignItems: 'center' }}>
+                        <Paper sx={{ width: '2rem', height: '2rem', display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: '50%', backgroundColor: 'rgba(255, 255, 255, 0.1)' }}>
+                            <Typography variant='h6' fontWeight={700} sx={{ opacity: 0.8 }}>
+                                {rank}
+                            </Typography>
+                        </Paper>
                         <Avatar src={image} variant="rounded">{name?.[0]}</Avatar>
-                        <Typography variant='h5' fontWeight={500} sx={{ textAlign:"center", opacity: 0.6, color: 'inherit' }} >
+                        <Typography variant='h5' fontWeight={500} sx={{ textAlign: "center", opacity: 0.6, color: 'inherit' }} >
                             {name}
                         </Typography>
                     </Stack>
@@ -42,28 +34,28 @@ function TableCard({ name, image, odd, points = 0 }) {
     )
 }
 
-function PointsBlock({ label, winnerList }) {
+function PointsBlock({ label, leaderboard }) {
 
-    const filteredResidenceList = residenceList.filter(({ category }) => category.toLowerCase() === label.toLowerCase()).map((data) => {
-        let points = 0
-        winnerList.filter(({ team }) => team.residence == data.name).forEach(({ event, rank }) => {
-            // console.log(eventData.points?.[parseInt(rank)])
-            if (rank > 3) return;
-            const eventData = eventsList.find(({ label }) => label == event);
-            console.log(data.name, eventData.points[rank - 1], rank)
-            points += parseInt(eventData.points?.[parseInt(rank) - 1])
+    // Merge static residence data (images, category) with dynamic points from DB
+    const processedList = residenceList
+        .filter(({ category }) => category.toLowerCase() === label.toLowerCase())
+        .map((resData) => {
+            const dbEntry = leaderboard.find(l => l.residence === resData.name);
+            return {
+                ...resData,
+                points: dbEntry ? dbEntry.points : 0
+            };
         })
-        return { points, ...data }
-    }).sort((a, b) => b.points - a.points)
+        .sort((a, b) => b.points - a.points);
 
     return (
-        <Stack gap={3} sx={{ width: '100%', alignItems: 'center'}}>
+        <Stack gap={3} sx={{ width: '100%', alignItems: 'center' }}>
             <Typography variant='h2' fontWeight={700}>
                 {label}
             </Typography>
             <Stack gap={1} sx={{ width: '100%', alignItems: 'center' }}>
-                {filteredResidenceList.map((data, i) => {
-                    return <TableCard key={data.name} {...data} odd={i & 1} />
+                {processedList.map((data, i) => {
+                    return <TableCard key={data.name} {...data} odd={i & 1} rank={i + 1} />
                 })}
             </Stack>
         </Stack>
@@ -72,15 +64,15 @@ function PointsBlock({ label, winnerList }) {
 
 function PointsTable() {
 
-    const { data: winnerList = [], isPending, isError } = useQuery({
-        queryKey: ['winners'],
-        queryFn: () => axios.get('/winner').then(response => response.data),
+    const { data: leaderboard = [], isPending, isError } = useQuery({
+        queryKey: ['leaderboard'],
+        queryFn: fetchLeaderboard,
     })
 
     return (
         <Stack py={2} gap={3} pr={{ xs: 0, md: 2 }}>
-            <PointsBlock label={'Men'} winnerList={winnerList} />
-            <PointsBlock label={'Women'} winnerList={winnerList} />
+            <PointsBlock label={'Men'} leaderboard={leaderboard} />
+            <PointsBlock label={'Women'} leaderboard={leaderboard} />
         </Stack>
     )
 }

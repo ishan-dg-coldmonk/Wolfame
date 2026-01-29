@@ -11,7 +11,6 @@ import { fetchMatches } from '../../services/http';
 import residenceList from '../../data/residence';
 import eventsList from '../../data/events';
 import CustomSelect from './CustomSelect';
-// import StayTuned from '../StayTuned'
 
 export default function MatchSection({ params = {}, sx = {}, hide = {} }) {
     const { data: matchList, isPending, isError } = useQuery({
@@ -19,7 +18,7 @@ export default function MatchSection({ params = {}, sx = {}, hide = {} }) {
         queryFn: () => fetchMatches(params),
     });
 
-    const [filters, setFilters] = useState({ date: '17', event: 'All', residence: 'All' });
+    const [filters, setFilters] = useState({ date: 'All', event: 'All', residence: 'All' });
 
     if (isPending) {
         return <LoadingIndicator />;
@@ -49,19 +48,22 @@ export default function MatchSection({ params = {}, sx = {}, hide = {} }) {
                 <Paper elevation={3} sx={{ p: 2, borderRadius: 2 }}>
                     <Grid container spacing={2} p={1} sx={{ display: 'flex', justifyContent: 'space-evenly' }}>
                         <CustomSelect xs={6} hide={hide?.date} label={'Date'} value={filters} setValue={setFilters}>
-                            <MenuItem value={'17'}>17th March</MenuItem>
-                            <MenuItem value={'18'}>18th March</MenuItem>
-                            <MenuItem value={'19'}>19th March</MenuItem>
-                            <MenuItem value={'20'}>20th March</MenuItem>
+                            <MenuItem value={'All'}>All Dates</MenuItem>
+                            <MenuItem value={'5'}>5th Feb</MenuItem>
+                            <MenuItem value={'6'}>6th Feb</MenuItem>
+                            <MenuItem value={'7'}>7th Feb</MenuItem>
+                            <MenuItem value={'8'}>8th Feb</MenuItem>
                         </CustomSelect>
                         <CustomSelect xs={6} hide={hide?.residence} label={'Residence'} value={filters} setValue={setFilters}>
+                            <MenuItem value={'All'}>All Residences</MenuItem>
                             {residenceList.map(({ name }) => (
                                 <MenuItem key={name} value={name}>{name}</MenuItem>
                             ))}
                         </CustomSelect>
                         <CustomSelect xs={12} hide={hide?.event} label={'Event'} value={filters} setValue={setFilters}>
-                            {eventsList.map(({ label }) => (
-                                <MenuItem key={label} value={label}>{label}</MenuItem>
+                            <MenuItem value={'All'}>All Events</MenuItem>
+                            {eventsList.map(({ label, event }) => (
+                                <MenuItem key={event} value={event}>{label}</MenuItem>
                             ))}
                         </CustomSelect>
                     </Grid>

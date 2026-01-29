@@ -19,7 +19,7 @@ export default function MainAppBar() {
     const theme = useTheme();
     const navigate = useNavigate();
     const [mobileOpen, setMobileOpen] = React.useState(false);
-    const { user } = React.useContext(AuthContext);
+    const { user, signout } = React.useContext(AuthContext);
 
     const handleDrawerToggle = () => {
         setMobileOpen((prevState) => !prevState);
@@ -104,17 +104,30 @@ export default function MainAppBar() {
                         </Link>
                     </Stack>
                     <Navbar />
-                    {/* <Stack direction='row' gap={2} sx={{ alignItems: 'center', justifyContent: 'space-around' }}>
+                    <Stack direction='row' gap={2} sx={{ alignItems: 'center', justifyContent: 'space-around' }}>
                         {user ? (
-                            <Link to={`/users/${user?._id}`}>
-                                <Avatar sx={{ bgcolor: 'red' }} alt={user.name} src={user.image} />
-                            </Link>
+                            <>
+                                <Link to={`/users/${user?._id}`}>
+                                    <Avatar sx={{ bgcolor: 'red' }} alt={user.name} src={user.image} />
+                                </Link>
+                                <Button variant='outlined' color='error' onClick={() => {
+                                    signout();
+                                    navigate('/');
+                                }}>
+                                    Sign Out
+                                </Button>
+                            </>
                         ) : (
-                            <Button variant='outlined' size='large' onClick={() => navigate('/signin')}>
-                                Sign In
-                            </Button>
+                            <>
+                                <Button variant='outlined' size='large' onClick={() => navigate('/signin')} sx={{ color: 'white', borderColor: 'white' }}>
+                                    Sign In
+                                </Button>
+                                <Button variant='contained' size='large' onClick={() => navigate('/signup')} sx={{ bgcolor: 'red', '&:hover': { bgcolor: 'darkred' } }}>
+                                    Sign Up
+                                </Button>
+                            </>
                         )}
-                    </Stack> */}
+                    </Stack>
                 </Stack>
             </AppBar>
         </Box>

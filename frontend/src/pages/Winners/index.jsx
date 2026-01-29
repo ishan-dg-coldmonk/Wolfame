@@ -43,7 +43,14 @@ export default function Winners() {
             validateOnBlur: false,
             //// By disabling validation onChange and onBlur formik will validate on submit.
             onSubmit: async (values, action) => {
-                mutate(values)
+                // Determine points based on rank
+                const eventData = eventsList.find(e => e.label === values.event);
+                let points = 0;
+                if (eventData && values.rank && values.rank <= 3) {
+                    points = eventData.points[values.rank - 1] || 0;
+                }
+
+                mutate({ ...values, points })
             },
         });
 
@@ -58,7 +65,6 @@ export default function Winners() {
     }, [values?.event])
 
     const setTeams = (newTeamsList) => {
-        console.log(newTeamsList)
         setFieldValue('team', newTeamsList?.[0])
     }
 

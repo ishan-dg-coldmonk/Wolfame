@@ -36,12 +36,19 @@ const contactList = [
         title: 'Technical Team',
         contact: [
             {
-                name: 'Ishan Dasgupta',
-                phone_number: '9432394957',
+                name: 'Garvit Rai',
+                phone_number: '8948406771',
                 image: '',
-                // linkedin: 'https://in.linkedin.com/in/satyam-lohiya-536879229',
-                email: 'ishan.dasgupta.2003@gmail.com'
+                //linkedin: 'https://in.linkedin.com/in/garvitrai474',
+                email: 'raigarvit9@gmail.com',
             },
+            {
+                name: 'Aditya Dhanraj',
+                phone_number: '9308598841',
+                image: '',
+                //linkedin: 'https://in.linkedin.com/in/garvitrai474',
+                email: 'adityadhanraj0003@gmail.com',
+            },s
         ]
     },
 ]
