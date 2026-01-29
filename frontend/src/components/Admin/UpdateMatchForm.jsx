@@ -8,15 +8,32 @@ import { fetchMatches, updateMatch, queryClient } from '../../services/http';
 const UpdateMatchForm = ({ onClose }) => {
     const [submitError, setSubmitError] = useState(null);
     const [selectedMatchId, setSelectedMatchId] = useState('');
+    const [selectedSport, setSelectedSport] = useState('All');
 
     const { data: matches = [] } = useQuery({
         queryKey: ['matches'],
         queryFn: () => fetchMatches(),
     });
 
+    // Extract unique sports from matches
+    const sports = ['All', ...new Set(matches.map(m => m.event))];
+
+    // Filter matches based on selected sport
+    const filteredMatches = selectedSport === 'All'
+        ? matches
+        : matches.filter(m => m.event === selectedSport);
+
     const selectedMatch = matches.find(m => m._id === selectedMatchId);
 
-    const matchOptions = matches.filter(m => !m.winner); // Only show matches without a winner for now? Or allow editing? Let's allow editing all.
+    // Helper to format date
+    const formatDate = (dateString) => {
+        if (!dateString) return '';
+        return new Date(dateString).toLocaleDateString(undefined, {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric'
+        });
+    };
 
     const formik = useFormik({
         initialValues: {
@@ -53,6 +70,26 @@ const UpdateMatchForm = ({ onClose }) => {
                 {submitError && <Alert severity="error">{submitError}</Alert>}
 
                 <FormControl fullWidth>
+                    <InputLabel id="sport-select-label">Filter by Sport</InputLabel>
+                    <Select
+                        labelId="sport-select-label"
+                        value={selectedSport}
+                        label="Filter by Sport"
+                        onChange={(e) => {
+                            setSelectedSport(e.target.value);
+                            setSelectedMatchId(''); // Reset selected match when sport changes
+                            formik.setFieldValue('winner', '');
+                        }}
+                    >
+                        {sports.map((sport) => (
+                            <MenuItem key={sport} value={sport}>
+                                {sport}
+                            </MenuItem>
+                        ))}
+                    </Select>
+                </FormControl>
+
+                <FormControl fullWidth>
                     <InputLabel id="match-select-label">Select Match</InputLabel>
                     <Select
                         labelId="match-select-label"
@@ -62,10 +99,11 @@ const UpdateMatchForm = ({ onClose }) => {
                             setSelectedMatchId(e.target.value);
                             formik.setFieldValue('winner', '');
                         }}
+                        disabled={filteredMatches.length === 0}
                     >
-                        {matches.map((match) => (
+                        {filteredMatches.map((match) => (
                             <MenuItem key={match._id} value={match._id}>
-                                {match.event} - {match.teams[0]?.name} vs {match.teams[1]?.name}
+                                {match.event} - {match.teams[0]?.name} vs {match.teams[1]?.name} ({match.matchType}, {formatDate(match.time)})
                             </MenuItem>
                         ))}
                     </Select>

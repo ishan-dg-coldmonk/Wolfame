@@ -4,7 +4,7 @@ const Leaderboard = require("./models/Leaderboard");
 const User = require("./models/User");
 require("dotenv").config();
 
-const url = `mongodb+srv://garvitrai2580_db_user:wolfamepass@cluster0.rqtm5v7.mongodb.net/?appName=Cluster0`;
+const url = process.env.MONGODB_URL;
 
 mongoose.connect(url, { useNewUrlParser: true }).then(async () => {
     console.log("Connected. Testing Points Sync...");

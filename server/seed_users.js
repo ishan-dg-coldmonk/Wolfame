@@ -2,8 +2,7 @@ const mongoose = require("mongoose");
 const User = require("./models/User");
 require("dotenv").config();
 
-// Using the same connection string found in db/mongoose.js
-const url = `mongodb+srv://garvitrai2580_db_user:wolfamepass@cluster0.rqtm5v7.mongodb.net/?appName=Cluster0`;
+const url = process.env.MONGODB_URL;
 
 // Residences from frontend/src/data/residence.js
 const residences = [
