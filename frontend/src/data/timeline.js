@@ -30,7 +30,7 @@ const timelineList = [
         events: [
             "MATCHES PROCEED TO THE NEXT ROUND",
             "MORE INTENSE ACTION",
-            "QUARTER AND SEMI FINALS",
+            "QUARTER'S ,SEMI'S AND FINALS",
         ],
     },
     // {
