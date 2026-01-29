@@ -48,20 +48,17 @@ export default function MatchSection({ params = {}, sx = {}, hide = {} }) {
                 <Paper elevation={3} sx={{ p: 2, borderRadius: 2 }}>
                     <Grid container spacing={2} p={1} sx={{ display: 'flex', justifyContent: 'space-evenly' }}>
                         <CustomSelect xs={6} hide={hide?.date} label={'Date'} value={filters} setValue={setFilters}>
-                            <MenuItem value={'All'}>All Dates</MenuItem>
                             <MenuItem value={'5'}>5th Feb</MenuItem>
                             <MenuItem value={'6'}>6th Feb</MenuItem>
                             <MenuItem value={'7'}>7th Feb</MenuItem>
                             <MenuItem value={'8'}>8th Feb</MenuItem>
                         </CustomSelect>
                         <CustomSelect xs={6} hide={hide?.residence} label={'Residence'} value={filters} setValue={setFilters}>
-                            <MenuItem value={'All'}>All Residences</MenuItem>
                             {residenceList.map(({ name }) => (
                                 <MenuItem key={name} value={name}>{name}</MenuItem>
                             ))}
                         </CustomSelect>
                         <CustomSelect xs={12} hide={hide?.event} label={'Event'} value={filters} setValue={setFilters}>
-                            <MenuItem value={'All'}>All Events</MenuItem>
                             {eventsList.map(({ label, event }) => (
                                 <MenuItem key={event} value={event}>{label}</MenuItem>
                             ))}
