@@ -1,12 +1,12 @@
 import S3 from "react-aws-s3";
 import { v4 as uuidv4 } from 'uuid';
 
-const S3_ACCESS_KEY = process.env.REACT_APP_S3_ACCESS_KEY
-const S3_SECRET_KEY = process.env.REACT_APP_S3_SECRET_KEY
-const S3_REGION = process.env.REACT_APP_S3_REGION
-const S3_BUCKET_NAME = process.env.REACT_APP_S3_BUCKET_NAME
-const S3_URL = `https://${S3_BUCKET_NAME}.s3.amazonaws.com/`
-const BASE_IMG_URL = `https://${S3_BUCKET_NAME}.s3.${S3_REGION}.amazonaws.com/`
+const S3_ACCESS_KEY = 'AKIAZO4QIAQW2T45J4CW'
+const S3_SECRET_KEY = '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'
+const S3_REGION = 'us-east-2'
+const S3_BUCKET_NAME = 'rfcbucketv2'
+const S3_URL = 'https://rfcbucketv2.s3.amazonaws.com/'
+const BASE_IMG_URL = 'https://rfcbucketv2.s3.us-east-2.amazonaws.com/'
 
 const config = {
     bucketName: S3_BUCKET_NAME,
