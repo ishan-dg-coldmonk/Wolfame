@@ -1,11 +1,10 @@
 import React, { useContext, useLayoutEffect, useRef } from 'react';
-import { Stack, Paper, Typography, Link, Button } from '@mui/material';
+import { Stack, Paper, Button } from '@mui/material';
 import DefaultHeader from '../../UI/DefaultHeader';
 import MatchSection from '../../components/Sections/MatchSection';
 import { AuthContext } from '../../context/AuthProvider';
 import { useNavigate } from 'react-router-dom'; // Use 'react-router-dom' instead of 'react-router'
 import bgImage from '../../assets/matches-page/hero-bg.webp';
-import StayTuned from '../../components/StayTuned.jsx';
 
 function Matches() {
     const { user } = useContext(AuthContext);

@@ -1,6 +1,6 @@
-import React, { Fragment, useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { AuthContext } from '../../../context/AuthProvider'
-import { useNavigate, useParams } from 'react-router'
+import { useNavigate } from 'react-router'
 import ProfileImage from '../../../UI/ProfileImage'
 
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
@@ -8,13 +8,11 @@ import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import { useImageInput } from '../../../hooks/useImageInput'
 import { uploadMedia } from '../../../services/uploadMedia'
 
-import { Stack, Button, Typography, Paper, Avatar, Snackbar, Alert, MenuItem, Select, InputLabel, FormControl, TextField, Grid } from '@mui/material'
+import { Stack, Button, Typography, MenuItem, Select, InputLabel, FormControl, TextField } from '@mui/material'
 
-import PasswordInput from '../../../UI/PasswordInput';
 import { useFormik } from 'formik'
 import { updateSchema } from '../../../schemas/auth';
 import axios from '../../../services/axiosinstance';
-import AuthBox from '../../../UI/AuthBox';
 import resedenceList from '../../../data/residence'
 import useUserProfile from '../../../hooks/useUserProfile';
 
@@ -75,9 +73,10 @@ export default function EditSection() {
         });
 
     useEffect(() => {
-        const data = { ...userProfile }
-        setValues(userProfile)
-    }, [userProfile?.name])
+        if (userProfile) {
+            setValues(userProfile)
+        }
+    }, [userProfile, setValues])
 
     useEffect(() => {
         if (!file) return;
@@ -85,7 +84,7 @@ export default function EditSection() {
             // setImageLink(path)
             setFieldValue('image', path)
         })
-    }, [file])
+    }, [file, setFieldValue])
 
     if (!isMe) {
         return <Typography>

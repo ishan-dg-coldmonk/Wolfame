@@ -1,6 +1,4 @@
-import { createContext, useState, useMemo, useEffect } from "react";
 import { createTheme } from "@mui/material/styles";
-import { ThemeProvider } from "@mui/material";
 
 const fontFamily = ["'Exo 2'", "sans-serif"].join(",")
 

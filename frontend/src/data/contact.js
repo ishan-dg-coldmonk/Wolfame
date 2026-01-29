@@ -48,7 +48,7 @@ const contactList = [
                 image: '',
                 //linkedin: 'https://in.linkedin.com/in/garvitrai474',
                 email: 'adityadhanraj0003@gmail.com',
-            },s
+            },
         ]
     },
 ]

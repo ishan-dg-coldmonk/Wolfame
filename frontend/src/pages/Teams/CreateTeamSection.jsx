@@ -1,9 +1,9 @@
-import React, { Fragment, useContext, useEffect, useState } from 'react';
-import { Stack, Grid, Typography, Paper, Avatar, Snackbar, Alert, MenuItem, Select, InputLabel, FormControl, useTheme, Button, IconButton } from '@mui/material';
+import React, { useContext } from 'react';
+import { Stack, Grid, Typography, Avatar, MenuItem, Select, InputLabel, FormControl, Button } from '@mui/material';
 import TextField from "@mui/material/TextField";
 import { useFormik } from 'formik';
 import axios from '../../services/axiosinstance';
-import { useSearchParams, useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import RuleBook from '../../components/RuleBook';
 
 import residenceList from '../../data/residence';
@@ -46,7 +46,7 @@ function PlayerSelectInput({ index, selectedPlayers = [], playersList = [], setP
                     {filteredPlayersList.map((player) => {
                         const { name, image, _id } = player;
                         return (
-                            <MenuItem key={name} value={_id} selected={_id == selectedPlayers[index]}>
+                            <MenuItem key={name} value={_id} selected={_id === selectedPlayers[index]}>
                                 <Stack direction='row' gap={2} sx={{ alignItems: 'center' }}>
                                     <Avatar src={image} variant="rounded">{name?.[0]}</Avatar>
                                     <Typography variant='h5' fontWeight={500} sx={{ opacity: 0.6, color: 'inherit' }} >
@@ -79,7 +79,6 @@ export default function CreateTeamSection() {
     };
 
     const navigate = useNavigate();
-    const { user } = useContext(AuthContext);
 
     const { mutate, isPending } = useMutation({
         mutationFn: (values) => axios.post('/team', values),
@@ -121,7 +120,7 @@ export default function CreateTeamSection() {
         setFieldValue('players', newPlayersList);
     };
 
-    const eventData = eventsList.find(({ label }) => label === values.event);
+
 
     return (
         <Grid container p={{ xs: 1, md: 3 }} mt={9} mb={6}>
