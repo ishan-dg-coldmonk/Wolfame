@@ -1,15 +1,13 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { Avatar, Button, Grid, Link, Paper, Stack, Switch, Typography } from '@mui/material'
+import React, { useContext } from 'react'
+import { Grid, Link, Paper, Stack, Typography } from '@mui/material'
 import { useNavigate, useParams } from 'react-router'
 import axios from '../../services/axiosinstance'
 
-import PhoneIcon from '@mui/icons-material/Phone';
 import PlayerCard from '../../UI/PlayerCard'
 import MatchSection from '../../components/Sections/MatchSection';
 import { AuthContext } from '../../context/AuthProvider';
 
 import LoadingIndicator from '../../UI/LoadingIndicator'
-import EmptyBlock from '../../UI/EmptyBlock'
 import ErrorBlock from '../../UI/ErrorBlock'
 
 import { useMutation, useQuery } from '@tanstack/react-query';
@@ -24,13 +22,13 @@ export default function TeamPageSection() {
         queryFn: () => axios.get(`/team/${teamId}`).then((response) => response.data),
     })
 
-    const { mutate: deleteTeamHandler, isPending: isDeleting } = useMutation({
+    /* const { mutate: deleteTeamHandler, isPending: isDeleting } = useMutation({
         mutationFn: () => axios.delete(`/team/${teamId}`),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['teams'] })
             navigate('../')
         }
-    })
+    }) */
 
     const { mutate: updateTeamHandler } = useMutation({
         mutationFn: (values) => axios.patch(`/team/${teamId}`, values),
@@ -50,11 +48,11 @@ export default function TeamPageSection() {
         return <ErrorBlock pt={12} />
     }
 
-    const rightToDelete = !teamData?.approved && (user?.role === 'admin' || (user?.role === 'jmcr' && user?.residence === teamData?.residence) || teamData?.createdBy == user?._id)
+    /* const rightToDelete = !teamData?.approved && (user?.role === 'admin' || (user?.role === 'jmcr' && user?.residence === teamData?.residence) || teamData?.createdBy === user?._id)
 
     const approveChangeHandler = async (event) => {
         updateTeamHandler({ approved: event.target.checked })
-    }
+    } */
 
     return (
         <Grid container spacing={2} p={{ xs: 1, md: 4 }} mt={6} mb={2}>

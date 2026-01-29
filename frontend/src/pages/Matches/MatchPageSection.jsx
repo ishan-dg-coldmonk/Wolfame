@@ -9,41 +9,12 @@ import JoditEditor from 'jodit-react';
 
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
-import RadioGroup, { useRadioGroup } from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Radio from '@mui/material/Radio';
 import { useMutation, useQuery } from '@tanstack/react-query';
 
 import LoadingIndicator from '../../UI/LoadingIndicator'
 import ErrorBlock from '../../UI/ErrorBlock'
-import EmptyBlock from '../../UI/EmptyBlock'
 import { queryClient } from '../../services/http'
 
-
-const StyledFormControlLabel = styled((props) => <FormControlLabel {...props} />)(
-    ({ theme, checked }) => ({
-        '.MuiFormControlLabel-label': {
-            color: checked ? theme.palette.primary.main : 'white',
-            fontSize: '1.4rem'
-        },
-    }),
-);
-
-function MyFormControlLabel(props) {
-    const radioGroup = useRadioGroup();
-
-    let checked = false;
-
-    if (radioGroup) {
-        checked = radioGroup.value === props.value;
-    }
-
-    return <StyledFormControlLabel checked={checked} {...props} />;
-}
-
-MyFormControlLabel.propTypes = {
-    value: PropTypes.any,
-};
 
 function Editor({ value, onChange, onUpdate, onClose }) {
     return (

@@ -1,4 +1,4 @@
-import React, { useContext, useLayoutEffect, useRef } from 'react'
+import React, { useLayoutEffect, useRef } from 'react'
 import { Stack } from '@mui/material'
 import DefaultHeader from '../../UI/DefaultHeader'
 import TeamSection from '../../components/Sections/TeamSection'

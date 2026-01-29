@@ -1,17 +1,15 @@
-import React, { Fragment, useContext, useState } from 'react'
-import { Stack, Box, Typography, Paper, Avatar, Snackbar, Alert } from '@mui/material'
-import Button from "@mui/material/Button";
+import React, { useContext } from 'react'
+import { Typography } from '@mui/material'
 import TextField from "@mui/material/TextField";
 import PasswordInput from '../../UI/PasswordInput';
 import { useFormik } from 'formik'
-import { signInSchema, validateUsername, validateEmail } from '../../schemas/auth';
+import { signInSchema } from '../../schemas/auth';
 import axios from '../../services/axiosinstance';
 import AuthBox from '../../UI/AuthBox';
-import { useSearchParams, useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 
 const Signin = (props) => {
-    const [searchParams] = useSearchParams();
     const navigate = useNavigate();
     const { signin } = useContext(AuthContext)
 

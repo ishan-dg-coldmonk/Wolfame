@@ -1,8 +1,8 @@
-import { Button, Grid, IconButton, Paper, Stack, Typography } from '@mui/material'
-import React, { useEffect, useState } from 'react'
+import { Grid, Typography } from '@mui/material'
+import React from 'react'
 import Tilt from 'react-parallax-tilt';
 
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import residenceList from '../../data/residence'
 
 

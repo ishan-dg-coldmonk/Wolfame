@@ -1,14 +1,13 @@
-import React, { Fragment, useContext, useEffect, useState } from 'react'
-import { Stack, Grid, Typography, Paper, Avatar, Snackbar, Alert, MenuItem, Select, InputLabel, FormControl, useTheme, Button, IconButton } from '@mui/material'
+import React, { useEffect } from 'react'
+import { Stack, Typography, MenuItem, Select, InputLabel, FormControl, Button } from '@mui/material'
 import TextField from "@mui/material/TextField";
 import { useFormik } from 'formik'
 import axios from '../../services/axiosinstance';
-import { useSearchParams, useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import residenceList from '../../data/residence'
 import eventsList from '../../data/events'
 
-import { matchSchema } from '../../schemas/match'
 
 import { useMutation, useQuery } from '@tanstack/react-query';
 
@@ -27,7 +26,7 @@ export default function Winners() {
 
     const navigate = useNavigate()
 
-    const { mutate, isPending, isError } = useMutation({
+    const { mutate, isPending } = useMutation({
         mutationFn: (body) => axios.post('/winner', body).then(response => response.data),
         onSuccess: () => {
             queryClient.invalidateQueries(['winners'])
@@ -35,7 +34,7 @@ export default function Winners() {
         }
     })
 
-    const { values, handleBlur, handleChange, handleSubmit, errors, touched, setFieldValue, resetForm } =
+    const { values, handleBlur, handleChange, handleSubmit, errors, touched, setFieldValue } =
         useFormik({
             initialValues,
             validationSchema: winnerSchema,
@@ -62,14 +61,14 @@ export default function Winners() {
 
     useEffect(() => {
         setFieldValue('team', '')
-    }, [values?.event])
+    }, [values?.event, setFieldValue])
 
     const setTeams = (newTeamsList) => {
         setFieldValue('team', newTeamsList?.[0])
     }
 
     const filteredTeamList = teamsList.filter(({ residence }) => {
-        const residenceData = residenceList.find(({ name }) => name == residence)
+        const residenceData = residenceList.find(({ name }) => name === residence)
         return residenceData.category?.toLowerCase() === values?.category?.toLowerCase()
     }
     )

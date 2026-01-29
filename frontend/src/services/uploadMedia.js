@@ -23,10 +23,10 @@ export async function uploadMedia(file) {
     const id = uuidv4();
     const name = `${id}_${file.name}`
     const picUrl = BASE_IMG_URL + "CHAT/" + name
-    const response = await ReactS3Client.uploadFile(file, name)
+    await ReactS3Client.uploadFile(file, name)
     return picUrl
 }
 
 export async function deleteMedia(filename) {
-    const response = await ReactS3Client.deleteFile(filename)
+    await ReactS3Client.deleteFile(filename)
 }
