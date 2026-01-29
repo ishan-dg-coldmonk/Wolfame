@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../../../context/AuthProvider'
 import { useNavigate } from 'react-router'
 import ProfileImage from '../../../UI/ProfileImage'
@@ -8,7 +8,7 @@ import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import { useImageInput } from '../../../hooks/useImageInput'
 import { uploadMedia } from '../../../services/uploadMedia'
 
-import { Stack, Button, Typography, MenuItem, Select, InputLabel, FormControl, TextField } from '@mui/material'
+import { Stack, Button, Typography, MenuItem, Select, InputLabel, FormControl, TextField, Dialog, DialogTitle, DialogContent, DialogActions, Alert } from '@mui/material'
 
 import { useFormik } from 'formik'
 import { updateSchema } from '../../../schemas/auth';
@@ -42,6 +42,31 @@ export default function EditSection() {
         }
 
     }
+
+    const [openPasswordDialog, setOpenPasswordDialog] = useState(false);
+    const [passwordData, setPasswordData] = useState({ currentPassword: '', newPassword: '' });
+    const [passwordError, setPasswordError] = useState('');
+    const [passwordSuccess, setPasswordSuccess] = useState('');
+
+    const handlePasswordChange = (e) => {
+        setPasswordData({ ...passwordData, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmitPassword = async () => {
+        setPasswordError('');
+        setPasswordSuccess('');
+        try {
+            const { data } = await axios.patch('/user/change-password', passwordData);
+            setPasswordSuccess(data.message);
+            setTimeout(() => {
+                setOpenPasswordDialog(false);
+                setPasswordData({ currentPassword: '', newPassword: '' });
+                setPasswordSuccess('');
+            }, 1000);
+        } catch (e) {
+            setPasswordError(e.response?.data?.error || 'Failed to update password');
+        }
+    };
 
     const initialValues = {
         name: "",
@@ -102,6 +127,7 @@ export default function EditSection() {
                     <ProfileImage image={values?.image} />
                     <input style={{ display: 'none' }} {...inputProps} />
                     <Button type='file' variant='contained' size='large' fullWidth onClick={onClick} startIcon={<CameraAltIcon />}>Edit Avatar</Button>
+                    <Button variant='outlined' size='large' fullWidth onClick={() => setOpenPasswordDialog(true)}>Change Password</Button>
                 </Stack>
                 <Stack component="form" onSubmit={handleSubmit} px={{ xs: 0, md: 10 }} gap={1} sx={{ flexGrow: 1, flexShrink: 1, flexBasis: 'auto' }}>
                     <TextField
@@ -201,7 +227,37 @@ export default function EditSection() {
                     </Stack>
                 </Stack>
             </Stack>
-        </Stack>
+
+            <Dialog open={openPasswordDialog} onClose={() => setOpenPasswordDialog(false)}>
+                <DialogTitle>Change Password</DialogTitle>
+                <DialogContent>
+                    <Stack gap={2} sx={{ mt: 1, minWidth: '300px' }}>
+                        {passwordError && <Alert severity="error">{passwordError}</Alert>}
+                        {passwordSuccess && <Alert severity="success">{passwordSuccess}</Alert>}
+                        <TextField
+                            label="Current Password"
+                            type="password"
+                            name="currentPassword"
+                            fullWidth
+                            value={passwordData.currentPassword}
+                            onChange={handlePasswordChange}
+                        />
+                        <TextField
+                            label="New Password"
+                            type="password"
+                            name="newPassword"
+                            fullWidth
+                            value={passwordData.newPassword}
+                            onChange={handlePasswordChange}
+                        />
+                    </Stack>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={() => setOpenPasswordDialog(false)}>Cancel</Button>
+                    <Button onClick={handleSubmitPassword} variant="contained">Update Password</Button>
+                </DialogActions>
+            </Dialog>
+        </Stack >
     )
 }
 
