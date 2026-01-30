@@ -140,7 +140,7 @@ function HeroSection() {
                                 textShadow: "0 2px 2px rgba(0, 0, 0, 0)",
                             }}
                         >
-                            WOLFAME 2025
+                            WOLFAME 2026
                         </h1>
                     </motion.div>
                     <motion.div
