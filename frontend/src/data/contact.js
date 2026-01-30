@@ -42,13 +42,6 @@ const contactList = [
                 //linkedin: 'https://in.linkedin.com/in/garvitrai474',
                 email: 'raigarvit9@gmail.com',
             },
-            {
-                name: 'Aditya Dhanraj',
-                phone_number: '9308598841',
-                image: '',
-                //linkedin: 'https://in.linkedin.com/in/garvitrai474',
-                email: 'adityadhanraj0003@gmail.com',
-            },
         ]
     },
 ]
