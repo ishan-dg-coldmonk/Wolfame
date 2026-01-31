@@ -4,6 +4,9 @@ import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import MenuIcon from '@mui/icons-material/Menu';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import MenuItem from '@mui/material/MenuItem';
+import Menu from '@mui/material/Menu';
 import { Avatar, Button, Stack, useTheme } from '@mui/material';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
@@ -19,10 +22,19 @@ export default function MainAppBar() {
     const theme = useTheme();
     const navigate = useNavigate();
     const [mobileOpen, setMobileOpen] = React.useState(false);
+    const [anchorElUser, setAnchorElUser] = React.useState(null);
     const { user, signout } = React.useContext(AuthContext);
 
     const handleDrawerToggle = () => {
         setMobileOpen((prevState) => !prevState);
+    };
+
+    const handleOpenUserMenu = (event) => {
+        setAnchorElUser(event.currentTarget);
+    };
+
+    const handleCloseUserMenu = () => {
+        setAnchorElUser(null);
     };
 
     const container = window !== undefined ? () => window.document.body : undefined;
@@ -39,34 +51,6 @@ export default function MainAppBar() {
             </Stack>
             <Divider />
             <NavDrawer />
-            <Divider />
-            <Stack gap={2} p={2} width='100%'>
-                {user ? (
-                    <>
-                        <Link to={`/users/${user?._id}`} style={{ width: '100%' }}>
-                            <Button fullWidth variant='outlined' startIcon={<Avatar sx={{ width: 24, height: 24 }} src={user.image} />}>
-                                Profile
-                            </Button>
-                        </Link>
-                        <Button fullWidth variant='contained' color='error' onClick={() => {
-                            signout();
-                            navigate('/');
-                            handleDrawerToggle();
-                        }}>
-                            Sign Out
-                        </Button>
-                    </>
-                ) : (
-                    <>
-                        <Button fullWidth variant='outlined' onClick={() => { navigate('/signin'); handleDrawerToggle(); }} sx={{ color: 'white', borderColor: 'white' }}>
-                            Sign In
-                        </Button>
-                        <Button fullWidth variant='contained' onClick={() => { navigate('/signup'); handleDrawerToggle(); }} sx={{ bgcolor: 'red', '&:hover': { bgcolor: 'darkred' } }}>
-                            Sign Up
-                        </Button>
-                    </>
-                )}
-            </Stack>
         </Stack>
     );
 
@@ -132,6 +116,8 @@ export default function MainAppBar() {
                         </Link>
                     </Stack>
                     <Navbar />
+
+                    {/* Desktop Auth Buttons */}
                     <Stack direction='row' gap={2} sx={{ display: { xs: 'none', sm: 'flex' }, alignItems: 'center', justifyContent: 'space-around' }}>
                         {user ? (
                             <>
@@ -156,6 +142,59 @@ export default function MainAppBar() {
                             </>
                         )}
                     </Stack>
+
+                    {/* Mobile Auth Dropdown */}
+                    <Box sx={{ display: { xs: 'flex', sm: 'none' } }}>
+                        <IconButton
+                            size="large"
+                            aria-label="account of current user"
+                            aria-controls="menu-appbar"
+                            aria-haspopup="true"
+                            onClick={handleOpenUserMenu}
+                            color="inherit"
+                        >
+                            {user ? <Avatar sx={{ width: 32, height: 32 }} src={user.image} /> : <AccountCircle fontSize='large' />}
+                        </IconButton>
+                        <Menu
+                            id="menu-appbar"
+                            anchorEl={anchorElUser}
+                            anchorOrigin={{
+                                vertical: 'bottom',
+                                horizontal: 'right',
+                            }}
+                            keepMounted
+                            transformOrigin={{
+                                vertical: 'top',
+                                horizontal: 'right',
+                            }}
+                            open={Boolean(anchorElUser)}
+                            onClose={handleCloseUserMenu}
+                            sx={{
+                                display: { xs: 'block', sm: 'none' },
+                                '& .MuiPaper-root': {
+                                    backgroundColor: 'rgba(0, 0, 0, 0.9)',
+                                    color: 'white',
+                                    border: '1px solid #333'
+                                }
+                            }}
+                        >
+                            {user ? [
+                                <MenuItem key="profile" onClick={() => { handleCloseUserMenu(); navigate(`/users/${user?._id}`); }}>
+                                    <Typography textAlign="center">Profile</Typography>
+                                </MenuItem>,
+                                <MenuItem key="logout" onClick={() => { handleCloseUserMenu(); signout(); navigate('/'); }}>
+                                    <Typography textAlign="center" color="error">Sign Out</Typography>
+                                </MenuItem>
+                            ] : [
+                                <MenuItem key="signin" onClick={() => { handleCloseUserMenu(); navigate('/signin'); }}>
+                                    <Typography textAlign="center">Sign In</Typography>
+                                </MenuItem>,
+                                <MenuItem key="signup" onClick={() => { handleCloseUserMenu(); navigate('/signup'); }}>
+                                    <Typography textAlign="center">Sign Up</Typography>
+                                </MenuItem>
+                            ]}
+                        </Menu>
+                    </Box>
                 </Stack>
             </AppBar>
         </Box>
