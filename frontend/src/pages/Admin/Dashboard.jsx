@@ -27,7 +27,7 @@ const AdminDashboard = () => {
     return (
         <Box>
             <DefaultHeader title="Admin Dashboard" image={bgImage} height="50vh" subtitle="Manage Teams and Matches" showArrow={false} />
-            <Container sx={{ mt: 15, display: 'flex', flexDirection: 'column', gap: 2, alignItems: 'center' }}>
+            <Container sx={{ mt: { xs: 15, md: 20, lg: 25 }, display: 'flex', flexDirection: 'column', gap: 2, alignItems: 'center' }}>
                 <Typography variant="h4" gutterBottom>Admin Actions</Typography>
 
                 <Button
