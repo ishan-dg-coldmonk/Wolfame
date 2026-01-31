@@ -39,6 +39,34 @@ export default function MainAppBar() {
             </Stack>
             <Divider />
             <NavDrawer />
+            <Divider />
+            <Stack gap={2} p={2} width='100%'>
+                {user ? (
+                    <>
+                        <Link to={`/users/${user?._id}`} style={{ width: '100%' }}>
+                            <Button fullWidth variant='outlined' startIcon={<Avatar sx={{ width: 24, height: 24 }} src={user.image} />}>
+                                Profile
+                            </Button>
+                        </Link>
+                        <Button fullWidth variant='contained' color='error' onClick={() => {
+                            signout();
+                            navigate('/');
+                            handleDrawerToggle();
+                        }}>
+                            Sign Out
+                        </Button>
+                    </>
+                ) : (
+                    <>
+                        <Button fullWidth variant='outlined' onClick={() => { navigate('/signin'); handleDrawerToggle(); }} sx={{ color: 'white', borderColor: 'white' }}>
+                            Sign In
+                        </Button>
+                        <Button fullWidth variant='contained' onClick={() => { navigate('/signup'); handleDrawerToggle(); }} sx={{ bgcolor: 'red', '&:hover': { bgcolor: 'darkred' } }}>
+                            Sign Up
+                        </Button>
+                    </>
+                )}
+            </Stack>
         </Stack>
     );
 
@@ -104,7 +132,7 @@ export default function MainAppBar() {
                         </Link>
                     </Stack>
                     <Navbar />
-                    <Stack direction='row' gap={2} sx={{ alignItems: 'center', justifyContent: 'space-around' }}>
+                    <Stack direction='row' gap={2} sx={{ display: { xs: 'none', sm: 'flex' }, alignItems: 'center', justifyContent: 'space-around' }}>
                         {user ? (
                             <>
                                 <Link to={`/users/${user?._id}`}>
