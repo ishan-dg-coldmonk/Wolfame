@@ -45,7 +45,7 @@ export default function MainAppBar() {
                 <Stack gap={2} p={2} alignItems='center' maxWidth='auto'>
                     <img src={logo} style={{ width: '50%' }} />
                     <Typography variant='h3' fontFamily={"'Nosifer', sans-serif"}>
-                        <span className="text-gradient">Wolfame</span>
+                        <span className="text-gradient">Wolfame 2026</span>
                     </Typography>
                 </Stack>
             </Stack>
@@ -68,7 +68,7 @@ export default function MainAppBar() {
                         '& .MuiDrawer-paper': {
                             boxSizing: 'border-box',
                             width: drawerWidth,
-                            background: 'rgba(128, 128, 128, 0.2)', // Translucent gray
+                            background: 'rgba(0, 0, 0, 0.7)', // Semi-transparent black
                             backdropFilter: 'blur(10px)', // Blur effect
                         },
                     }}

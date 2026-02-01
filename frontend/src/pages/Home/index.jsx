@@ -7,6 +7,7 @@ import HeroSection from './HeroSection';
 import SponsersSection from './SponsersSection';
 import './index.css';
 import GeneralRulesSection from './GeneralRulesSection';
+import FreeHealthCheckupSection from './FreeHealthCheckupSection';
 
 function Home() {
     const location = useLocation();
@@ -28,7 +29,8 @@ function Home() {
             </div>
             <AboutSection />
             <EventSection />
-            <GeneralRulesSection/>
+            <GeneralRulesSection />
+            <FreeHealthCheckupSection />
             <SponsersSection />
         </Stack>
     );

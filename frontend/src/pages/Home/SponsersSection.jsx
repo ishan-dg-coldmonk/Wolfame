@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Grid, Paper, Stack, Typography } from '@mui/material';
+import { Grid, Paper, Stack, Typography, Box } from '@mui/material';
 import { motion } from 'framer-motion'; // Import framer-motion
 
 import monster from "../../assets/home-page/sponsors-section/monster.webp"
@@ -32,7 +32,7 @@ const sponsors = [
         logo: redBull,
         backgroundColor: 'white',
     },
-    
+
     {
         logo: shree,
         title: "Shree Diagnostics",
@@ -119,9 +119,9 @@ const presentSponsors = [
 
 function SponsorCard({ logo, title, backgroundColor }) {
     return (
-        <Paper 
-            sx={{ 
-                bgcolor: backgroundColor, 
+        <Paper
+            sx={{
+                bgcolor: backgroundColor,
                 borderRadius: '1rem',
                 padding: '0.3rem',
                 outline: "3px solid black",
@@ -136,16 +136,17 @@ function SponsorCard({ logo, title, backgroundColor }) {
                 },
             }}
         >
-            <img
+            <Box
+                component="img"
                 src={logo}
                 alt={title}
-                style={{
-                    width: '15rem',
-                    height: '15rem',
+                sx={{
+                    width: { xs: '8rem', sm: '15rem' },
+                    height: { xs: '8rem', sm: '15rem' },
                     objectFit: 'contain',
                     position: 'relative', // Ensure the image is above the border animation
                     zIndex: 1, // Place the image above the border animation
-                }} 
+                }}
             />
         </Paper>
     );
@@ -165,10 +166,10 @@ function SponsersSection() {
 
     return (
         <Fragment>
-            <Stack 
-                p={4} 
-                sx={{ 
-                    alignItems: 'center', 
+            <Stack
+                p={4}
+                sx={{
+                    alignItems: 'center',
                     justifyContent: 'center', // Center content vertically
                     minHeight: '100vh', // Take up the full viewport height
                     paddingBottom: '2rem',
@@ -176,7 +177,7 @@ function SponsersSection() {
                     backgroundSize: 'contain', // Ensure the image covers the entire section
                     backgroundPosition: 'center', // Center the background image
                     position: 'relative', // Ensure the Stack is positioned relatively
-                }} 
+                }}
                 gap={3}
             >
                 {/* Translucent Overlay */}
@@ -199,10 +200,10 @@ function SponsersSection() {
                     viewport={{ once: true, amount: 0.2 }} // Trigger animation when 20% of the element is visible
                     variants={titleVariants}
                 >
-                    <Typography 
-                        variant='h1' 
+                    <Typography
+                        variant='h1'
                         fontFamily={"'Nosifer', sans-serif"}
-                        sx={{ 
+                        sx={{
                             textAlign: "center",
                             mt: 8, // Margin top
                             mb: 3, // Margin bottom
@@ -220,23 +221,23 @@ function SponsersSection() {
                 </motion.div>
 
                 {/* Sponsors Grid */}
-                <Grid 
-                    container 
+                <Grid
+                    container
                     spacing={4} // Spacing between cards
                     justifyContent="center" // Center the cards
-                    sx={{ 
+                    sx={{
                         maxWidth: '1200px', // Limit the maximum width of the grid
                         position: 'relative', // Ensure the grid is above the overlay
                         zIndex: 1, // Place the grid above the overlay
                     }}
                 >
                     {sponsors.map((item, index) => (
-                        <Grid 
-                            item 
-                            xs={12} sm={6} md={4} // 3 cards per row on medium and larger screens
+                        <Grid
+                            item
+                            xs={6} sm={6} md={4} // 2 cards per row on small, 3 on medium+
                             key={index}
-                            sx={{ 
-                                display: 'flex', 
+                            sx={{
+                                display: 'flex',
                                 justifyContent: 'center', // Center the card horizontally
                             }}
                         >
@@ -259,10 +260,10 @@ function SponsersSection() {
                     viewport={{ once: true, amount: 0.2 }} // Trigger animation when 20% of the element is visible
                     variants={titleVariants}
                 >
-                    <Typography 
-                        variant='h1' 
+                    <Typography
+                        variant='h1'
                         fontFamily={"'Nosifer', sans-serif"}
-                        sx={{ 
+                        sx={{
                             textAlign: "center",
                             mt: 8, // Margin top
                             mb: 3, // Margin bottom
@@ -280,23 +281,23 @@ function SponsersSection() {
                 </motion.div>
 
                 {/* Sponsors Grid */}
-                <Grid 
-                    container 
+                <Grid
+                    container
                     spacing={4} // Spacing between cards
                     justifyContent="center" // Center the cards
-                    sx={{ 
+                    sx={{
                         maxWidth: '1200px', // Limit the maximum width of the grid
                         position: 'relative', // Ensure the grid is above the overlay
                         zIndex: 1, // Place the grid above the overlay
                     }}
                 >
                     {presentSponsors.map((item, index) => (
-                        <Grid 
-                            item 
-                            xs={12} sm={6} md={4} // 3 cards per row on medium and larger screens
+                        <Grid
+                            item
+                            xs={6} sm={6} md={4} // 2 cards per row on small, 3 on medium+
                             key={index}
-                            sx={{ 
-                                display: 'flex', 
+                            sx={{
+                                display: 'flex',
                                 justifyContent: 'center', // Center the card horizontally
                             }}
                         >
@@ -318,7 +319,7 @@ function SponsersSection() {
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.2 }} // Trigger animation when 20% of the element is visible
                     variants={titleVariants}
-                    sx={{ 
+                    sx={{
                         marginTop: '2rem', // Margin top
                         marginBottom: '10rem', // Margin bottom
                         textAlign: 'center', // Center the text

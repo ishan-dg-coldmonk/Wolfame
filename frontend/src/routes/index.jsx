@@ -24,6 +24,7 @@ import Error from '../pages/Error'
 import MatchPageSection from "../pages/Matches/MatchPageSection";
 import Winners from '../pages/Winners'
 import AdminDashboard from '../pages/Admin/Dashboard';
+import FreeHealthCheckup from '../pages/FreeHealthCheckup';
 
 const router = createBrowserRouter([
     {
@@ -151,6 +152,10 @@ const router = createBrowserRouter([
             {
                 path: '/admin/dashboard',
                 element: <AdminDashboard />
+            },
+            {
+                path: '/freehealthcheckup',
+                element: <FreeHealthCheckup />
             },
         ],
     },

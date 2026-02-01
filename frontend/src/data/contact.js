@@ -12,11 +12,6 @@ const contactList = [
                 phone_number: '+91 7047571174',
                 image: '',
             },
-            {
-                name: 'Ambhrin Roy',
-                phone_number: '+91 797883749',
-                image: '',
-            },
         ],
     },
     {
@@ -28,6 +23,13 @@ const contactList = [
                 image: '',
                 //linkedin: 'https://in.linkedin.com/in/garvitrai474',
                 email: 'raigarvit9@gmail.com',
+            },
+            {
+                name: 'Aditya Dhanraj',
+                phone_number: '+91 9308598841',
+                image: '',
+                //linkedin: 'https://in.linkedin.com/in/garvitrai474',
+                email: 'adityadhanraj0003@gmail.com',
             },
             {
                 name: 'Navonil Chatterjee',

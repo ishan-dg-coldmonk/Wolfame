@@ -1,4 +1,4 @@
-import { Stack, Typography } from "@mui/material";
+import { Stack, Typography, Box } from "@mui/material";
 import { motion } from "framer-motion";
 import { Typewriter } from "react-simple-typewriter";
 import wolfPng from "../../assets/logo.webp";
@@ -63,7 +63,7 @@ function HeroSection() {
     return (
         <Stack
             sx={{
-                height: { xs: "100vh", sm: "110vh" },
+                minHeight: { xs: "100vh", sm: "110vh" },
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
@@ -71,6 +71,7 @@ function HeroSection() {
                 backgroundImage: `url(${heroBg})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
+                paddingTop: { xs: "4rem", sm: "0" } // Add some padding on mobile to prevent cut-off at top
             }}
         >
             {/* Translucent overlay */}
@@ -99,22 +100,30 @@ function HeroSection() {
                     position: "relative",
                 }}
             >
-                <motion.div
-                    initial="hidden"
-                    animate="visible"
-                    variants={logoAnimation}
-                    style={{ flex: "0 0 39%", maxWidth: "80%", marginBottom: "6rem", marginTop: { xs: "-2rem", sm: "-1.3rem" } }}
+                <Box
+                    sx={{
+                        flex: "0 0 39%",
+                        maxWidth: "80%",
+                        marginBottom: "6rem",
+                        marginTop: { xs: "-2rem", sm: "-1.3rem" }
+                    }}
                     className="hero-logo"
                 >
-                    <img
-                        src={wolfPng}
-                        style={{
-                            width: "100%",
-                            height: "auto"
-                        }}
-                        alt="Wolfame Logo"
-                    />
-                </motion.div>
+                    <motion.div
+                        initial="hidden"
+                        animate="visible"
+                        variants={logoAnimation}
+                    >
+                        <img
+                            src={wolfPng}
+                            style={{
+                                width: "100%",
+                                height: "auto"
+                            }}
+                            alt="Wolfame Logo"
+                        />
+                    </motion.div>
+                </Box>
                 <Stack
                     direction="column"
                     alignItems="center"
@@ -151,16 +160,17 @@ function HeroSection() {
                     >
                         <Typography variant="h3" color="white" sx={{
                             fontWeight: "600",
-                            fontSize: "2.5rem",
+                            fontSize: { xs: "1.5rem", sm: "1.8rem" }, // Reduced from 2.5rem
                             fontFamily: "Frijole",
                             textTransform: "uppercase",
                             background: "linear-gradient(to right, white, rgb(162, 158, 159))",
                             WebkitBackgroundClip: "text",
                             WebkitTextFillColor: "transparent",
                             marginTop: "-1rem",
-                            marginBottom: "-10px"
+                            marginBottom: "1rem",
+                            textAlign: "center"
                         }}>
-                            Feel the
+                            COMING SOON
                         </Typography>
                     </motion.div>
                     <motion.div
@@ -176,13 +186,14 @@ function HeroSection() {
                                 WebkitBackgroundClip: "text",
                                 WebkitTextFillColor: "transparent",
                                 fontWeight: "600",
-                                fontSize: "2.5rem",
+                                fontSize: { xs: "1.2rem", sm: "2.5rem" },
                                 fontFamily: "Frijole",
-                                textTransform: "uppercase"
+                                textTransform: "uppercase",
+                                textAlign: "center"
                             }}
                         >
                             <Typewriter
-                                words={["Adrenaline", "Thrill", "Glory"]}
+                                words={["5th-8th FEBRUARY", "FEEL THE ADRENALINE", "FEEL THE THRILL", "FEEL THE GLORY"]}
                                 loop={0}
                                 cursor
                                 cursorStyle="|"
@@ -197,12 +208,12 @@ function HeroSection() {
                         initial="hidden"
                         animate="visible"
                         variants={fadeIn}
-                        transition={{ delay: 1.2 }}
+                        transition={{ delay: 1.5 }}
                     >
-                        <a href="#eventsSection" className="btn btn--white btn--animated m-top" onClick={(e) => {
+                        {/* <a href="#eventsSection" className="btn btn--white btn--animated m-top" onClick={(e) => {
                             e.preventDefault(); // Prevent default anchor behavior
                             scrollToSection("eventsSection"); // Trigger smooth scroll
-                        }}>Events</a>
+                        }}>Events</a> */}
                     </motion.div>
                 </Stack>
             </Stack>

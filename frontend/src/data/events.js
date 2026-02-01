@@ -201,7 +201,7 @@ const eventsList = [
                 name: 'Shekhar Pal',
                 contact: '+91 7080809384'
             },
-{
+            {
                 name: 'Shouvik Khanra',
                 contact: '+91 8582955982'
             },
@@ -265,7 +265,7 @@ const eventsList = [
             },
             {
                 name: 'Abu Hamza',
-                contact: '+91 6206798893'
+                contact: '+91 8340748252'
             },
             {
                 name: 'Soumyajit Gupta',

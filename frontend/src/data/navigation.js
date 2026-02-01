@@ -6,6 +6,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import GroupsIcon from '@mui/icons-material/Groups';
+import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
 
 const navigationList = [
     { name: 'Home', to: '/', icon: <HomeIcon fontSize='large' /> },
@@ -15,6 +16,7 @@ const navigationList = [
     { name: 'Leader Board', to: '/leaderboard', icon: <EmojiEventsIcon fontSize='large' /> },
     { name: 'Gallery', to: '/gallery', icon: <ImageIcon fontSize='large' /> },
     // { name: 'Residences', to: '/residence', icon: <ApartmentIcon fontSize='large' /> },
+    { name: 'Free Checkup', to: '/freehealthcheckup', icon: <LocalHospitalIcon fontSize='large' /> },
     { name: 'Contact Us', to: '/contactUs', icon: <PersonIcon fontSize='large' /> },
 ]
 

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Grid, Paper, Stack, Typography } from '@mui/material';
 import { motion } from 'framer-motion';
-import aboutBg from "../../assets/about-page/about-bg.webp";
+import aboutBg from "../../assets/about-page/new-bg.jpeg";
 import iiestImage from "../../assets/about-page/iiest.webp";
-import wolfImage from "../../assets/about-page/wolf.webp";
+import wolfImage from "../../assets/about-page/wolfenden.jpeg";
 import wolfMoon from "../../assets/about-page/wolf-moon.webp";
 
 // Wrap the Paper component with motion
