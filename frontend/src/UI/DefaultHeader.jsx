@@ -31,7 +31,7 @@ function DefaultHeader({ title, image, subtitle, height, showArrow = true, noGra
             <Stack
                 sx={{
                     height: '100%',
-                    marginTop: "-7rem",
+                    marginTop: "0rem",
                     width: '100%',
                     background: 'rgba(0, 0, 0, 0.5)',
                     display: 'flex',
