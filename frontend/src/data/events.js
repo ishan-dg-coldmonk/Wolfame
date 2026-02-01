@@ -10,8 +10,7 @@ import bgmiPhoto from "../assets/events/bgmi.webp";
 import cricketPhoto from "../assets/events/cricket.webp";
 import powerliftingPhoto from "../assets/events/powerlifting.webp";
 import valorantPhoto from "../assets/events/valorant.webp";
-import fifaPhoto from "../assets/events/fifa.webp";
-import strongWomenPhoto from "../assets/events/strong-woman.webp";
+import motogpPhoto from "../assets/events/MotoGP.webp";
 import pesPhoto from "../assets/events/pes.webp";
 import pushup from "../assets/events/pull-up.webp";
 
@@ -172,6 +171,51 @@ const eventsList = [
                 contact: '+91 7055294675'
             },
         ],
+    },
+    {
+        label: 'MotoGP',
+        event: 'MOTOGP',
+        image: motogpPhoto,
+        description: 'High-speed racing under pressure',
+        rules: [
+            "The game played will be MotoGP 25.",
+            "Match format: 2 players.",
+            "Mode: Split Screen.",
+            "Game Type: Arcade Mode.",
+            "All realism settings (gear shifting, braking assists, stability & traction assists) will be set to AUTO.",
+            "Manual override of realism settings is not allowed.",
+            "Each match will be a 3-lap race.",
+            "Both players will race on the same track under identical conditions.",
+            "A toss will be conducted before the race.",
+            "The toss winner will choose their rider first.",
+            "The second player must select from the remaining riders.",
+            "If both players finish the race, the in-game race time will decide the winner.",
+            "The player with the lower (faster) race time will be declared the winner.",
+            "In case of DNF by one or both players, a maximum time limit of 8 minutes will be given.",
+            "After 8 minutes, the player ahead on track will be declared the winner.",
+            "Game timer is irrelevant in DNF cases; track position will decide the result.",
+            "Only serious gameplay is allowed.",
+            "Deliberate crashes, ramming, blocking, or unsportsmanlike behavior are strictly prohibited.",
+            "Any violation may lead to immediate disqualification at the coordinators’ discretion.",
+            "Venue: TV Room, Wolfenden Hall.",
+            "Console, display, and controllers will be provided.",
+            "Participants may bring their own controller, subject to compatibility.",
+            "In case of any dispute, the coordinators’ decision will be final.",
+            "Rules may be slightly adjusted on-site to ensure smooth conduct of the event."
+        ],
+        points: [50, 30, 15],
+        team: 1,
+        players: [2, 2],
+        coordinators: [
+            {
+                name: 'Saatwata Sen',
+                contact: '+91 9231815301'
+            },
+            {
+                name: 'Ruman Paul',
+                contact: '+91 7908362321'
+            }
+        ]
     },
     {
         label: 'Chess',

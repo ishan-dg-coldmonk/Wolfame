@@ -160,7 +160,7 @@ function HeroSection() {
                     >
                         <Typography variant="h3" color="white" sx={{
                             fontWeight: "600",
-                            fontSize: { xs: "1.5rem", sm: "1.8rem" }, // Reduced from 2.5rem
+                            fontSize: { xs: "1.2rem", sm: "1.8rem" }, // Reduced from 1.5rem to fit one line
                             fontFamily: "Frijole",
                             textTransform: "uppercase",
                             background: "linear-gradient(to right, white, rgb(162, 158, 159))",

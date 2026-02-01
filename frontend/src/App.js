@@ -14,7 +14,7 @@ function App(props) {
   return (
     <ThemeProvider theme={theme}>
       <AuthProvider >
-        <Box height='100vh' overflow='auto' bgcolor={theme.palette.background.default} boxSizing='border-box'>
+        <Box id='scroll-container' height='100vh' overflow='auto' bgcolor={theme.palette.background.default} boxSizing='border-box'>
           <MainAppBar />
           <Outlet />
           {props?.children}

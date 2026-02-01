@@ -9,6 +9,14 @@ function FreeHealthCheckup() {
     const [showLogo, setShowLogo] = useState(true);
 
     useEffect(() => {
+        // Scroll to top when component mounts
+        const scrollContainer = document.getElementById('scroll-container');
+        if (scrollContainer) {
+            scrollContainer.scrollTo(0, 0);
+        } else {
+            window.scrollTo(0, 0);
+        }
+
         // Show logo for 2.5 seconds, then transition to content
         const timer = setTimeout(() => {
             setShowLogo(false);
@@ -117,7 +125,7 @@ function FreeHealthCheckup() {
                             alt="Health Checkup QR Code"
                             sx={{
                                 width: '100%',
-                                maxWidth: '350px',
+                                maxWidth: { xs: '250px', md: '350px' }, // Reduced size on small screens
                                 borderRadius: '20px',
                                 boxShadow: '0 0 30px rgba(255, 255, 255, 0.1)',
                                 border: '2px solid rgba(255, 255, 255, 0.2)'
@@ -162,7 +170,9 @@ function FreeHealthCheckup() {
                             }}
                         >
                             Get a free health checkup with our partner <br />
-                            <span style={{ fontWeight: 'bold', color: '#ff4d4d' }}>Shree Diagnostics and Clinic</span>
+                            <a href="https://shreediagnostics.in/" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+                                <span style={{ fontWeight: 'bold', color: '#ff4d4d', fontSize: '1.2rem' }}>Shree Diagnostics and Clinic</span>
+                            </a>
                         </Typography>
                     </Stack>
                 )}
