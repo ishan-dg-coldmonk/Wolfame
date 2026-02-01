@@ -11,29 +11,29 @@ const MotionPaper = motion(Paper);
 
 function AboutCard({ title, src, children, direction = 'left', sx = {}, index }) {
     return (
-        <MotionPaper 
-            elevation={1} 
-            initial={{ 
-                opacity: 0, 
+        <MotionPaper
+            elevation={1}
+            initial={{
+                opacity: 0,
                 x: direction === 'left' ? -30 : 30,  // Reduced slide distance
                 y: 20  // Reduced vertical movement
             }}
-            whileInView={{ 
-                opacity: 1, 
+            whileInView={{
+                opacity: 1,
                 x: 0,
                 y: 0,
-                transition: { 
-                    type: "spring", 
+                transition: {
+                    type: "spring",
                     bounce: 0.2,  // Reduced bounce 
                     duration: 0.9,  // Slightly faster
                     delay: index * 0.08  // Shorter delay
                 }
             }}
             viewport={{ once: true, amount: 0.2 }}
-            sx={{ 
-                height: { xs: 'auto', md: '22rem' }, 
-                width: { xs: '100%', sm:'85%', md: '85%' },
-                borderRadius: '2rem', 
+            sx={{
+                height: { xs: 'auto', md: '22rem' },
+                width: { xs: '100%', sm: '85%', md: '85%' },
+                borderRadius: '2rem',
                 zIndex: "3",
                 backgroundColor: "rgba(0, 0, 0, 0.4)",
                 boxShadow: "2px 2px 17px rgb(255, 19, 19)",
@@ -41,64 +41,64 @@ function AboutCard({ title, src, children, direction = 'left', sx = {}, index })
                 ...sx
             }}
         >
-            <Grid 
-                container 
-                direction={{ xs: 'column', md: 'row' }} 
+            <Grid
+                container
+                direction={{ xs: 'column', md: 'row' }}
                 sx={{ height: '100%', borderRadius: '2rem', overflow: 'hidden' }}
             >
-                <Grid 
-                    item 
-                    xs={12} 
-                    md={4} 
-                    order={{ md: direction === 'left' ? 1 : 2 }} 
-                    sx={{ 
-                        alignItems: 'center', 
-                        justifyContent: 'center', 
+                <Grid
+                    item
+                    xs={12}
+                    md={4}
+                    order={{ md: direction === 'left' ? 1 : 2 }}
+                    sx={{
+                        alignItems: 'center',
+                        justifyContent: 'center',
                         height: { xs: '250px', md: '350px' },
                         overflow: 'hidden', // Ensure image doesn't overflow
                     }}
                 >
-                    <motion.img 
+                    <motion.img
                         initial={{ scale: 1.05, filter: "blur(2px)" }}  // Subtler scale and blur
-                        whileInView={{ 
-                            scale: 1, 
+                        whileInView={{
+                            scale: 1,
                             filter: "blur(0px)",
-                            transition: { 
+                            transition: {
                                 duration: 0.8,  // Faster transition
                                 delay: (index * 0.08) + 0.1  // Shorter delay
                             }
                         }}
                         viewport={{ once: true, amount: 0.2 }}
-                        src={src} 
-                        alt={title} 
-                        style={{ 
-                            height: "100%", 
-                            width: "100%", 
+                        src={src}
+                        alt={title}
+                        style={{
+                            height: "100%",
+                            width: "100%",
                             objectFit: 'cover', // Ensure image covers the area without distortion
-                        }} 
+                        }}
                     />
                 </Grid>
-                <Grid 
-                    item 
-                    xs={12} 
-                    md={8} 
-                    order={{ md: direction === 'left' ? 2 : 1 }} 
-                    p={{ xs: 3, md: 4 }} 
-                    gap={2} 
-                    boxSizing='border-box' 
-                    sx={{ 
-                        flexGrow: 1, 
-                        flexShrink: 1, 
+                <Grid
+                    item
+                    xs={12}
+                    md={8}
+                    order={{ md: direction === 'left' ? 2 : 1 }}
+                    p={{ xs: 3, md: 4 }}
+                    gap={2}
+                    boxSizing='border-box'
+                    sx={{
+                        flexGrow: 1,
+                        flexShrink: 1,
                         flexBasis: 'auto',
                         overflow: 'hidden', // Prevent text overflow
                     }}
                 >
                     <motion.div
                         initial={{ opacity: 0, y: 10 }}  // Reduced y distance
-                        whileInView={{ 
-                            opacity: 1, 
+                        whileInView={{
+                            opacity: 1,
                             y: 0,
-                            transition: { 
+                            transition: {
                                 duration: 0.5,  // Shorter duration
                                 delay: (index * 0.08) + 0.2  // Shorter delay
                             }
@@ -111,21 +111,21 @@ function AboutCard({ title, src, children, direction = 'left', sx = {}, index })
                     </motion.div>
                     <motion.div
                         initial={{ opacity: 0, y: 15 }}  // Reduced y distance
-                        whileInView={{ 
-                            opacity: 1, 
+                        whileInView={{
+                            opacity: 1,
                             y: 0,
-                            transition: { 
+                            transition: {
                                 duration: 0.5,  // Shorter duration
                                 delay: (index * 0.08) + 0.3  // Shorter delay
                             }
                         }}
                         viewport={{ once: true, amount: 0.2 }}
                     >
-                        <Typography 
-                            variant='body1' 
-                            sx={{ 
-                                py: { xs: 1, md: 2 }, 
-                                fontSize: { 
+                        <Typography
+                            variant='body1'
+                            sx={{
+                                py: { xs: 1, md: 2 },
+                                fontSize: {
                                     xs: '1rem', // Default font size for small screens
                                     sm: '1.3rem', // Default font size for small-medium screens
                                     md: '1rem', // Default font size for medium screens
@@ -147,10 +147,10 @@ function AboutSection() {
     // More subtle title animation
     const titleVariants = {
         hidden: { opacity: 0, y: -15 },  // Reduced movement
-        visible: { 
-            opacity: 1, 
+        visible: {
+            opacity: 1,
             y: 0,
-            transition: { 
+            transition: {
                 type: "spring",
                 stiffness: 70,  // Less stiff spring
                 damping: 15,  // More damping
@@ -179,13 +179,13 @@ function AboutSection() {
                 variants={titleVariants}
                 style={{ position: "relative" }}
             >
-                <Typography 
-                    variant='h1' 
-                    fontFamily={"'Nosifer', sans-serif"} 
-                    sx={{ 
-                        position: "relative", 
-                        mt: 8, 
-                        mb: 3, 
+                <Typography
+                    variant='h1'
+                    fontFamily={"'Nosifer', sans-serif"}
+                    sx={{
+                        position: "relative",
+                        mt: 8,
+                        mb: 3,
                         fontSize: { xs: '2.8rem', md: '3.6rem' },
                         fontWeight: 500,
                         background: "linear-gradient(to bottom, red 0%, rgb(237, 23, 23) 50%, rgb(133, 48, 48) 100%)",
@@ -197,17 +197,17 @@ function AboutSection() {
                 </Typography>
             </motion.div>
 
-            <AboutCard 
-                title={'Wolfame'} 
+            <AboutCard
+                title={'Wolfame'}
                 src={wolfMoon}
                 index={0}
             >
                 Wolfame is a sports and cultural festival organised by Wolfenden Hall annually. The four-day-long event involves a plethora of activities, both indoor and outdoor, attended by enthusiastic students willing to prove their mettle. The much-anticipated festival has returned to reignite the spark of competition among the students and will be witnessed by an approximate of 6,500+ people.
             </AboutCard>
 
-            <AboutCard 
-                direction='right' 
-                title={'IIEST, Shibpur'} 
+            <AboutCard
+                direction='right'
+                title={'IIEST, Shibpur'}
                 src={iiestImage}
                 index={1}
             >
@@ -217,9 +217,9 @@ function AboutSection() {
                 It is recognized as an Institute of National Importance under MHRD by the Government of India.
             </AboutCard>
 
-            <AboutCard  
-                title={'Wolfenden Hall'} 
-                src={wolfImage} 
+            <AboutCard
+                title={'Wolfenden Hall'}
+                src={wolfImage}
                 sx={{ mb: '4rem' }}
                 index={2}
             >
@@ -231,7 +231,7 @@ function AboutSection() {
                 The hall is home to free-thinkers who want to prove their
                 mettle in every field, be it sports, academics, music and everything
                 else.
-                <br /> 
+                <br />
             </AboutCard>
         </Stack>
     );

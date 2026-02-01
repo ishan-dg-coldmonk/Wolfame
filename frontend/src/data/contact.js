@@ -3,32 +3,19 @@ const contactList = [
         title: 'Coordinator',
         contact: [
             {
-                name: 'Ayush Goyal',
-                phone_number: '+91 85020 76979',
+                name: 'Yogesh Mangawa',
+                phone_number: '+91 6375292371',
                 image: '',
-                // linkedin: 'https://in.linkedin.com/in/sumit-godara-97a201262',
-                email: 'ayushgoyal70@gmail.com'
             },
             {
-                name: 'Pial Sarkar Turjo',
-                phone_number: '07048908158',
+                name: 'Niloy Mondal',
+                phone_number: '+91 7047571174',
                 image: '',
-                // linkedin: 'https://in.linkedin.com/in/harsh-joshi-920150232',
-                email: 'turjosarkar1999@gmail.com',
             },
             {
-                name: 'Suprotim B.',
-                phone_number: '+91 7003200121',
+                name: 'Ambhrin Roy',
+                phone_number: '+91 797883749',
                 image: '',
-                // linkedin: '',
-                email: 'suprotim71@gmail.com',
-            },
-            {
-                name: 'Sourik Saha',
-                phone_number: '+91 8944913915',
-                image: '',
-                // linkedin: '',
-                email: 'souriksaha81@gmail.com',
             },
         ],
     },
@@ -41,6 +28,13 @@ const contactList = [
                 image: '',
                 //linkedin: 'https://in.linkedin.com/in/garvitrai474',
                 email: 'raigarvit9@gmail.com',
+            },
+            {
+                name: 'Navonil Chatterjee',
+                phone_number: '7364897566',
+                image: '',
+                //linkedin: 'https://in.linkedin.com/in/garvitrai474',
+                email: 'chatterjeenavonil2004@gmail.com',
             },
         ]
     },

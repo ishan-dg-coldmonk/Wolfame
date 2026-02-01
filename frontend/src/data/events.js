@@ -39,12 +39,12 @@ const eventsList = [
         players: [6, 8],
         coordinators: [
             {
-                name: 'Suman',
-                contact: '+91 6297295070'
+                name: 'Dipak Marandi',
+                contact: '+91 8170990400'
             },
             {
-                name: 'Shridhar',
-                contact: '+91 7365060664'
+                name: 'Biswajit Sardar',
+                contact: '+91 8961120732'
             },
         ],
     },
@@ -65,12 +65,16 @@ const eventsList = [
         players: [5, 5],
         coordinators: [
             {
-                name: 'Pantho',
-                contact: '+91 7003471232'
+                name: 'Debraj Sadhu',
+                contact: '+91 7908758223'
             },
             {
-                name: 'Wriddhiraj',
-                contact: '+91 9863057356'
+                name: 'Gaurav Dubey',
+                contact: '+91 9324022910'
+            },
+            {
+                name: 'Aditya Parihar',
+                contact: '+91 6261325449'
             },
         ],
     },
@@ -94,16 +98,12 @@ const eventsList = [
         players: [7, 7],
         coordinators: [
             {
-                name: 'Subir',
-                contact: '+91 9002205594'
+                name: 'Kumar Arunoday',
+                contact: '+91 8789298934'
             },
             {
-                name: 'Dipak',
-                contact: '+91 9073527607'
-            },
-            {
-                name: 'Sarthi',
-                contact: '+91 9125804980'
+                name: 'Anurag Kumar',
+                contact: '+91 7367955402'
             },
         ],
     },
@@ -128,12 +128,12 @@ const eventsList = [
         players: [5, 5],
         coordinators: [
             {
-                name: 'Arka',
-                contact: '+91 8918124750'
+                name: 'Sayandip Roy',
+                contact: '+91 8167500901'
             },
             {
-                name: 'Sayandip',
-                contact: '+91 8167500901'
+                name: 'Ruman Paul',
+                contact: '+91 7908362321'
             },
         ],
     },
@@ -160,12 +160,16 @@ const eventsList = [
         players: [3, 5],
         coordinators: [
             {
-                name: 'Alex',
-                contact: '+91 8249199487'
+                name: 'Pratyush Kumar Yadav',
+                contact: '+91 8601690059'
             },
             {
-                name: 'Sumeet',
-                contact: '+91 7325908070'
+                name: 'Tridipta Dolui',
+                contact: '+91 6294909398'
+            },
+            {
+                name: 'Harshaditya Punera',
+                contact: '+91 7055294675'
             },
         ],
     },
@@ -190,14 +194,17 @@ const eventsList = [
         players: [3, 3],
         coordinators: [
             {
-                name: 'Arnab',
-                contact: '+91 9474617725'
+                name: 'Md Sajid Sheikh',
+                contact: '+91 6204196399'
             },
             {
-                name: 'Barnik',
-                contact: '+91 9641443116'
+                name: 'Shekhar Pal',
+                contact: '+91 7080809384'
             },
-
+{
+                name: 'Shouvik Khanra',
+                contact: '+91 8582955982'
+            },
         ],
     },
     {
@@ -225,12 +232,12 @@ const eventsList = [
         players: [2, 2],
         coordinators: [
             {
-                name: 'Prayas',
-                contact: '+91 9679061739'
+                name: 'Aditya Dhanraj',
+                contact: '+91 9334754414'
             },
             {
-                name: 'Rajdeep',
-                contact: '+91 8509267506'
+                name: 'Arghadip Khan',
+                contact: '+91 6297468297'
             },
         ],
     },
@@ -253,16 +260,16 @@ const eventsList = [
         players: [5, 5],
         coordinators: [
             {
-                name: 'Hitesh',
-                contact: '+91 7703914079'
+                name: 'Rishav Jha',
+                contact: '+91 6206798893'
             },
             {
-                name: 'Kiran',
-                contact: '+91 95645 09253'
+                name: 'Abu Hamza',
+                contact: '+91 6206798893'
             },
             {
-                name: 'Astitva',
-                contact: '+91 9167571733'
+                name: 'Soumyajit Gupta',
+                contact: '+91 8794249523'
             },
         ],
     },
@@ -285,12 +292,20 @@ const eventsList = [
         players: [8, 8],
         coordinators: [
             {
-                name: 'Dishan',
-                contact: '+91 8918892152'
+                name: 'Satyam Kumar',
+                contact: '+91 9142385925'
             },
             {
-                name: 'Soukarsha',
-                contact: '+91 8509577139'
+                name: 'Satyam Yadav',
+                contact: '+91 7003514154'
+            },
+            {
+                name: 'Anish Kumar',
+                contact: '+91 9065431114'
+            },
+            {
+                name: 'Sarthi Singh',
+                contact: '+91 9125804980'
             },
         ],
     },
@@ -326,12 +341,12 @@ const eventsList = [
         players: [1, 1],
         coordinators: [
             {
-                name: 'Sourik',
-                contact: '+91 8944913915'
+                name: 'Prem Shankar',
+                contact: '+91 9798234217'
             },
             {
-                name: 'Dildahar',
-                contact: '+91 7082844272'
+                name: 'Aditya Parihar',
+                contact: '+91 6261325449'
             },
         ],
     },
@@ -366,7 +381,7 @@ const eventsList = [
             },
             {
                 name: 'Devendra Prasad',
-                contact: '+91 9079627232'
+                contact: '+91 7908583033'
             },
         ],
     },
@@ -392,12 +407,12 @@ const eventsList = [
         players: [1, 1],
         coordinators: [
             {
-                name: 'Biswajit',
-                contact: '+91 8961120732'
+                name: 'Shaumik Das',
+                contact: '+91 8100490597'
             },
             {
-                name: 'Ashim',
-                contact: '+91 9800631107'
+                name: 'Zaid Akhter',
+                contact: '+91 7872201460'
             },
         ],
     },
@@ -424,12 +439,12 @@ const eventsList = [
         players: [1, 1],
         coordinators: [
             {
-                name: 'Sourik',
-                contact: '+91 8944913915'
+                name: 'Prem Shankar',
+                contact: '+91 9798234217'
             },
             {
-                name: 'Dildahar',
-                contact: '+91 7082844272'
+                name: 'Aditya Parihar',
+                contact: '+91 6261325449'
             },
         ],
     },
@@ -454,12 +469,12 @@ const eventsList = [
         players: [5, 20],
         coordinators: [
             {
-                name: 'Anish',
-                contact: '+91 9031038277'
+                name: 'Rohit Mandal',
+                contact: '+91 7809756811'
             },
             {
-                name: 'Pritam',
-                contact: '+91 9905358075'
+                name: 'Vaibhav Sinha',
+                contact: '+91 7250516388'
             },
         ],
     },
