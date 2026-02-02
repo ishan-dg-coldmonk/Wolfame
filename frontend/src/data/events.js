@@ -176,7 +176,7 @@ const eventsList = [
         label: 'MotoGP',
         event: 'MOTOGP',
         image: motogpPhoto,
-        description: 'High-speed racing under pressure',
+        description: 'Fast reflexes Zero mercy.',
         rules: [
             "The game played will be MotoGP 25.",
             "Match format: 2 players.",

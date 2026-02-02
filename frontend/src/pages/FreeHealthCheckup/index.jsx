@@ -169,7 +169,7 @@ function FreeHealthCheckup() {
                                 fontSize: { xs: '1rem', md: '1.2rem' }
                             }}
                         >
-                            Get a free health checkup with our partner <br />
+                            Get a free health checkup with our medical partner <br />
                             <a href="https://shreediagnostics.in/" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
                                 <span style={{ fontWeight: 'bold', color: '#ff4d4d', fontSize: '1.2rem' }}>Shree Diagnostics and Clinic</span>
                             </a>

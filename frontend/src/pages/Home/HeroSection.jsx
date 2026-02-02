@@ -160,7 +160,7 @@ function HeroSection() {
                     >
                         <Typography variant="h3" color="white" sx={{
                             fontWeight: "600",
-                            fontSize: { xs: "1.2rem", sm: "1.8rem" }, // Reduced from 1.5rem to fit one line
+                            fontSize: { xs: "0.95rem", sm: "1.8rem" }, // Reduced from 1.5rem to fit one line
                             fontFamily: "Frijole",
                             textTransform: "uppercase",
                             background: "linear-gradient(to right, white, rgb(162, 158, 159))",
@@ -168,7 +168,8 @@ function HeroSection() {
                             WebkitTextFillColor: "transparent",
                             marginTop: "-1rem",
                             marginBottom: "1rem",
-                            textAlign: "center"
+                            textAlign: "center",
+                            whiteSpace: "nowrap"
                         }}>
                             COMING SOON
                         </Typography>
@@ -186,10 +187,13 @@ function HeroSection() {
                                 WebkitBackgroundClip: "text",
                                 WebkitTextFillColor: "transparent",
                                 fontWeight: "600",
-                                fontSize: { xs: "1.2rem", sm: "2.5rem" },
+                                fontSize: { xs: "0.9rem", sm: "2.5rem" },
                                 fontFamily: "Frijole",
                                 textTransform: "uppercase",
-                                textAlign: "center"
+                                textAlign: "center",
+                                whiteSpace: "nowrap",
+                                overflow: "hidden",
+                                textOverflow: "ellipsis",
                             }}
                         >
                             <Typewriter

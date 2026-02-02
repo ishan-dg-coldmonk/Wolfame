@@ -14,22 +14,48 @@ import eventsList from '../../data/events'
 import CustomSelect from './CustomSelect'
 import axios from '../../services/axiosinstance'
 
-function WinnerBlock({ label, winnerList }) {
-    const filteredWinerList = winnerList.filter((winner) => {
-        // 1. Check if category is explicitly stored in the Winner document (preferred)
-        if (winner.category) {
-            return label.toLowerCase() === winner.category.toLowerCase();
+function WinnerBlock({ label, winnerList, event }) {
+    // 1. Filter residence list by the current label (Men/Women)
+    const filteredResidenceList = residenceList.filter(r => r.category.toLowerCase() === label.toLowerCase());
+
+    // 2. Map residences to winner data or default data
+    const processedList = filteredResidenceList.map((resData) => {
+        // Find if this residence has a team in the winnerList
+        const winner = winnerList.find(w => {
+            if (w.category) {
+                return w.category.toLowerCase() === label.toLowerCase() && w.team?.residence === resData.name;
+            }
+            return w.team?.residence === resData.name;
+        });
+
+        if (winner) {
+            return {
+                ...winner,
+                hasTeam: true
+            };
         }
 
-        // 2. Fallback: Lookup residence category
-        const teamResidence = winner.team?.residence;
-        const resData = residenceList.find(r => r.name === teamResidence);
-        const category = resData ? resData.category : '';
-        return label.toLowerCase() == category.toLowerCase();
-    })
-    if (filteredWinerList.length === 0) {
+        // If no team found, return dummy data
+        return {
+            team: {
+                name: "Not Registered",
+                residence: resData.name,
+                event: event,
+                _id: null, // Indicates no team page
+                approved: false
+            },
+            points: 0,
+            hasTeam: false
+        };
+    });
+
+    // 3. Sort by points descending
+    processedList.sort((a, b) => (b.points || 0) - (a.points || 0));
+
+    if (processedList.length === 0) {
         return <></>
     }
+
     return (
         <Grid item xs={12}>
             <Grid container>
@@ -38,9 +64,9 @@ function WinnerBlock({ label, winnerList }) {
                         {label}
                     </Typography>
                     <Stack gap={1} sx={{ width: 1, alignItems: 'center' }}>
-                        {filteredWinerList.map(({ team, rank, points }, index) => {
+                        {processedList.map(({ team, rank, points }, index) => {
                             return (
-                                <Stack direction='row' gap={1} sx={{ width: '100%', alignItems: 'center', }}>
+                                <Stack key={team.residence} direction='row' gap={1} sx={{ width: '100%', alignItems: 'center', }}>
                                     <Paper elevation={15} sx={{ height: '4rem', aspectRatio: '1/1', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                                         <Typography variant='h2'>
                                             {index + 1}
@@ -52,7 +78,7 @@ function WinnerBlock({ label, winnerList }) {
                                             {points ?? 0}
                                         </Typography>
                                     </Paper>
-                                    <TeamCard key={team._id} team={team} />
+                                    <TeamCard team={team} />
                                 </Stack>)
                         })}
                     </Stack>
@@ -77,15 +103,12 @@ export default function WinnerSection({ params = {}, sx = {}, hide = {} }) {
         return <ErrorBlock />
     }
 
-    if (winnerList.length === 0) {
-        return <EmptyBlock />
-    }
-
+    // Removed EmptyBlock check because we always want to show the residence list now
 
     return (
         <Grid container spacing={4} sx={{ display: 'flex', justifyContent: 'center', p: { xs: 2, md: 4 }, ...sx }}>
-            <WinnerBlock label={'Men'} winnerList={winnerList} />
-            <WinnerBlock label={'Women'} winnerList={winnerList} />
+            <WinnerBlock label={'Men'} winnerList={winnerList} event={params.event} />
+            <WinnerBlock label={'Women'} winnerList={winnerList} event={params.event} />
         </Grid>
     )
 }
