@@ -187,13 +187,10 @@ function HeroSection() {
                                 WebkitBackgroundClip: "text",
                                 WebkitTextFillColor: "transparent",
                                 fontWeight: "600",
-                                fontSize: { xs: "0.9rem", sm: "2.5rem" },
+                                fontSize: { xs: "0.85rem", sm: "2.5rem" },
                                 fontFamily: "Frijole",
                                 textTransform: "uppercase",
                                 textAlign: "center",
-                                whiteSpace: "nowrap",
-                                overflow: "hidden",
-                                textOverflow: "ellipsis",
                             }}
                         >
                             <Typewriter
