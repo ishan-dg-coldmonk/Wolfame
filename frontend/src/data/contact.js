@@ -1,6 +1,7 @@
 import YogeshImg from '../assets/contactus-page/Yogesh.jpeg';
 import NiloyImg from '../assets/contactus-page/Niloy.jpeg';
-import GarvitImg from '../assets/contactus-page/Garvit.png';
+import GarvitImg from '../assets/contactus-page/Garvit.jpeg';
+import AdityaImg from '../assets/contactus-page/Aditya.jpeg';
 
 const contactList = [
     {
@@ -31,7 +32,7 @@ const contactList = [
             {
                 name: 'Aditya Dhanraj',
                 phone_number: '+91 9308598841',
-                image: '',
+                image: AdityaImg,
                 //linkedin: 'https://in.linkedin.com/in/garvitrai474',
                 email: 'adityadhanraj0003@gmail.com',
             },
