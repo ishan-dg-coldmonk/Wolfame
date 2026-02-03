@@ -21,55 +21,44 @@ import shree from "../../assets/home-page/sponsors-section/shree.webp";
 import space from "../../assets/home-page/sponsors-section/grand-space.webp";
 import redBull from "../../assets/home-page/sponsors-section/red-bull.webp";
 
+import shreedc from "../../assets/home-page/sponsors-section/shreedc.webp";
+import olympus from "../../assets/home-page/sponsors-section/olympus.webp";
+import youareawesome from "../../assets/home-page/sponsors-section/youareawesome.webp";
+import zerodeficiency from "../../assets/home-page/sponsors-section/zerodeficiency.webp";
+
 const sponsors = [
     {
-        title: 'Space Grand Infra',
-        logo: space,
+        title: 'ShreeDC',
+        logo: shreedc,
         backgroundColor: 'white',
     },
+    {
+        title: 'Olympus',
+        logo: olympus,
+        backgroundColor: 'white',
+    },
+    {
+        title: 'You Are Awesome',
+        logo: youareawesome,
+        backgroundColor: 'white'
+    },
+    {
+        title: 'Zero Deficiency',
+        logo: zerodeficiency,
+        backgroundColor: 'white'
+    },
+];
+const presentSponsors = [
     {
         title: 'RedBull',
         logo: redBull,
         backgroundColor: 'white',
     },
-
-    {
-        logo: shree,
-        title: "Shree Diagnostics",
-        backgroundColor: "white"
-    },
-    // {
-    //     title: 'Sting',
-    //     logo: sting,
-    //     backgroundColor: '#c2112c'
-    // },
-    // {
-    //     logo: bisleri,
-    //     title: "Bisleri",
-    //     backgroundColor: "#00B3A1",
-    // },
-    // {
-    //     logo: wowMomo,
-    //     title: "wow momo",
-    //     backgroundColor: "#facb23",
-    // },
     {
         logo: lic,
         title: "LIC",
         backgroundColor: "black",
     },
-    {
-        logo: kts,
-        title: "KTS Academy",
-        backgroundColor: "white",
-    },
-    // {
-    //     title: 'Monster Energy',
-    //     logo: monster,
-    //     backgroundColor: 'black'
-    // },
-];
-const presentSponsors = [
     {
         title: 'Coca Cola',
         logo: cocaCola,

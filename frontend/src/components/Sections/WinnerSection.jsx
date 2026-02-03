@@ -14,7 +14,7 @@ import eventsList from '../../data/events'
 import CustomSelect from './CustomSelect'
 import axios from '../../services/axiosinstance'
 
-function WinnerBlock({ label, winnerList, event }) {
+function WinnerBlock({ label, winnerList, event, hide }) {
     // 1. Filter residence list by the current label (Men/Women)
     const filteredResidenceList = residenceList.filter(r => r.category.toLowerCase() === label.toLowerCase());
 
@@ -67,18 +67,18 @@ function WinnerBlock({ label, winnerList, event }) {
                         {processedList.map(({ team, rank, points }, index) => {
                             return (
                                 <Stack key={team.residence} direction='row' gap={1} sx={{ width: '100%', alignItems: 'center', }}>
-                                    <Paper elevation={15} sx={{ height: '4rem', aspectRatio: '1/1', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                        <Typography variant='h2'>
+                                    <Paper elevation={15} sx={{ height: { xs: '3rem', md: '4rem' }, aspectRatio: '1/1', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                        <Typography variant='h2' sx={{ fontSize: { xs: '1.5rem', md: '3.75rem' } }}>
                                             {index + 1}
                                         </Typography>
                                     </Paper>
-                                    <Paper elevation={15} sx={{ height: '4rem', minWidth: '4rem', px: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-                                        <Typography variant='caption' sx={{ lineHeight: 1 }}>Pts</Typography>
-                                        <Typography variant='h5' fontWeight={700}>
+                                    <Paper elevation={15} sx={{ height: { xs: '3rem', md: '4rem' }, minWidth: { xs: '3rem', md: '4rem' }, px: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                                        <Typography variant='caption' sx={{ lineHeight: 1, fontSize: { xs: '0.6rem', md: '0.75rem' } }}>Pts</Typography>
+                                        <Typography variant='h5' fontWeight={700} sx={{ fontSize: { xs: '1.25rem', md: '1.5rem' } }}>
                                             {points ?? 0}
                                         </Typography>
                                     </Paper>
-                                    <TeamCard team={team} />
+                                    <TeamCard team={team} hide={hide} />
                                 </Stack>)
                         })}
                     </Stack>
@@ -107,8 +107,8 @@ export default function WinnerSection({ params = {}, sx = {}, hide = {} }) {
 
     return (
         <Grid container spacing={4} sx={{ display: 'flex', justifyContent: 'center', p: { xs: 2, md: 4 }, ...sx }}>
-            <WinnerBlock label={'Men'} winnerList={winnerList} event={params.event} />
-            <WinnerBlock label={'Women'} winnerList={winnerList} event={params.event} />
+            <WinnerBlock label={'Men'} winnerList={winnerList} event={params.event} hide={hide} />
+            <WinnerBlock label={'Women'} winnerList={winnerList} event={params.event} hide={hide} />
         </Grid>
     )
 }

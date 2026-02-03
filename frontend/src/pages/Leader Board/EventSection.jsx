@@ -43,7 +43,7 @@ export default function EventSection({ event }) {
             {selectedMenu === 'Matches' && <MatchSection params={{ event: event.event }} sx={{ p: 0, pt: 2 }} hide={{ event: true }} />}
 
             {/* WinnerSection (now Points Table) uses the EVENT SLUG (e.g. FUTSAL) */}
-            {selectedMenu === 'Points Table' && <WinnerSection params={{ event: event.event }} sx={{ p: 0, pt: 2 }} />}
+            {selectedMenu === 'Points Table' && <WinnerSection params={{ event: event.event }} sx={{ p: 0, pt: 2 }} hide={{ event: true }} />}
         </Stack >
     )
 }

@@ -160,7 +160,7 @@ function HeroSection() {
                     >
                         <Typography variant="h3" color="white" sx={{
                             fontWeight: "600",
-                            fontSize: { xs: "0.95rem", sm: "1.8rem" }, // Reduced from 1.5rem to fit one line
+                            fontSize: { xs: "1on the.0rem", sm: "1.8rem" }, // Reduced from 1.5rem to fit one line
                             fontFamily: "Frijole",
                             textTransform: "uppercase",
                             background: "linear-gradient(to right, white, rgb(162, 158, 159))",
@@ -187,7 +187,7 @@ function HeroSection() {
                                 WebkitBackgroundClip: "text",
                                 WebkitTextFillColor: "transparent",
                                 fontWeight: "600",
-                                fontSize: { xs: "0.85rem", sm: "2.5rem" },
+                                fontSize: { xs: "1.0rem", sm: "2.5rem" },
                                 fontFamily: "Frijole",
                                 textTransform: "uppercase",
                                 textAlign: "center",

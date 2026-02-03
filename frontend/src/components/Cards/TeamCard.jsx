@@ -20,7 +20,7 @@ function ValueCard({ label, children, value }) {
   )
 }
 
-export default function TeamCard({ team, ...props }) {
+export default function TeamCard({ team, hide = {}, ...props }) {
 
   const { name, residence, event, _id } = team
 
@@ -32,7 +32,7 @@ export default function TeamCard({ team, ...props }) {
     <Grid item xs={12} {...props} >
       <Paper elevation={8} sx={{ ":hover": { transform: 'scaleY(1.03) scaleX(1.03)' }, bgcolor: chroma(residenceData?.color).alpha(0.7).hex(), borderStyle: 'solid', borderWidth: '1px' }}>
         <Grid container p={1} sx={{ display: 'flex', alignItems: 'center' }}>
-          <Grid item xs={5}>
+          <Grid item xs={hide?.event ? 8 : 5} >
             {_id ? (
               <Link href={`/teams/${_id}`} sx={{ textDecoration: 'none', color: 'white', ':hover': { color: 'red' } }}>
                 <Stack direction='row' gap={2} sx={{ justifyContent: 'flex-start', alignItems: 'center' }}>
@@ -65,12 +65,14 @@ export default function TeamCard({ team, ...props }) {
               <ValueCard label='Residence' value={residence} />
             </Link>
           </Grid>
-          <Grid item xs={3} >
-            <Link href={`/leaderboard/${event?.replaceAll(' ', '')}`} sx={{ textDecoration: 'none', color: 'white', ':hover': { color: 'red' } }}>
-              <ValueCard label='Event' value={event} />
-            </Link>
-          </Grid>
-          <Grid item md={2} lg={2}>
+          {!hide?.event && (
+            <Grid item xs={3} >
+              <Link href={`/leaderboard/${event?.replaceAll(' ', '')}`} sx={{ textDecoration: 'none', color: 'white', ':hover': { color: 'red' } }}>
+                <ValueCard label='Event' value={event} />
+              </Link>
+            </Grid>
+          )}
+          <Grid item md={2} lg={2} sx={{ display: hide?.event ? 'none' : 'block' }}>
             <Avatar src={eventData?.image} variant="rounded" sx={{ width: 56, height: 56, display: { xs: 'none', lg: 'block' }, mr: 1 }} />
           </Grid>
         </Grid>
