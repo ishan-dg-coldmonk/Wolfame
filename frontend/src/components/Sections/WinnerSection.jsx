@@ -19,34 +19,40 @@ function WinnerBlock({ label, winnerList, event, hide }) {
     const filteredResidenceList = residenceList.filter(r => r.category.toLowerCase() === label.toLowerCase());
 
     // 2. Map residences to winner data or default data
-    const processedList = filteredResidenceList.map((resData) => {
-        // Find if this residence has a team in the winnerList
-        const winner = winnerList.find(w => {
+    // 2. Map residences to winner data or default data
+    let processedList = [];
+
+    filteredResidenceList.forEach((resData) => {
+        // Find ALL teams for this residence in the winnerList
+        const residenceTeams = winnerList.filter(w => {
             if (w.category) {
                 return w.category.toLowerCase() === label.toLowerCase() && w.team?.residence === resData.name;
             }
             return w.team?.residence === resData.name;
         });
 
-        if (winner) {
-            return {
-                ...winner,
-                hasTeam: true
-            };
+        if (residenceTeams.length > 0) {
+            // Add all teams from this residence
+            residenceTeams.forEach(winner => {
+                processedList.push({
+                    ...winner,
+                    hasTeam: true
+                });
+            });
+        } else {
+            // If no team found, add one dummy data entry
+            processedList.push({
+                team: {
+                    name: "Not Registered",
+                    residence: resData.name,
+                    event: event,
+                    _id: null, // Indicates no team page
+                    approved: false
+                },
+                points: 0,
+                hasTeam: false
+            });
         }
-
-        // If no team found, return dummy data
-        return {
-            team: {
-                name: "Not Registered",
-                residence: resData.name,
-                event: event,
-                _id: null, // Indicates no team page
-                approved: false
-            },
-            points: 0,
-            hasTeam: false
-        };
     });
 
     // 3. Sort by points descending

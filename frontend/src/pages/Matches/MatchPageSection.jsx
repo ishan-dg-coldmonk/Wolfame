@@ -69,9 +69,7 @@ export default function MatchPageSection() {
     }
 
 
-    if (!matchData?.time) {
-        return <LoadingIndicator />
-    }
+
 
     return (
         <Stack p={{ xs: 1, md: 4 }} pt={{ xs: 9, md: 10 }} gap={2}>
