@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Typography, Stack, Button } from '@mui/material';
+import { LocationOn, CalendarMonth, AccessTime } from '@mui/icons-material';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import wolfLogo from '../../assets/logo.png';
@@ -118,6 +119,27 @@ function FreeHealthCheckup() {
                         >
                             FREE HEALTH CHECKUP
                         </Typography>
+
+                        <Stack spacing={2} sx={{ marginBottom: 3, width: '100%', alignItems: 'center' }}>
+                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, color: '#e0e0e0' }}>
+                                <LocationOn sx={{ color: '#ff4d4d' }} />
+                                <Typography variant="h6" sx={{ fontFamily: "'Roboto', sans-serif", fontSize: { xs: '1rem', md: '1.2rem' } }}>
+                                    Canis Lupus Ground
+                                </Typography>
+                            </Box>
+                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, color: '#e0e0e0' }}>
+                                <CalendarMonth sx={{ color: '#ff4d4d' }} />
+                                <Typography variant="h6" sx={{ fontFamily: "'Roboto', sans-serif", fontSize: { xs: '1rem', md: '1.2rem' } }}>
+                                    5th February, 2026
+                                </Typography>
+                            </Box>
+                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, color: '#e0e0e0' }}>
+                                <AccessTime sx={{ color: '#ff4d4d' }} />
+                                <Typography variant="h6" sx={{ fontFamily: "'Roboto', sans-serif", fontSize: { xs: '1rem', md: '1.2rem' } }}>
+                                    4pm onwards
+                                </Typography>
+                            </Box>
+                        </Stack>
 
                         <Box
                             component="img"

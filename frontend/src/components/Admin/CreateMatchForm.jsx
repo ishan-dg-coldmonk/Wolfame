@@ -23,18 +23,21 @@ const CreateMatchForm = ({ onClose }) => {
             team1: Yup.string().required('Team 1 is required'),
             team2: Yup.string().required('Team 2 is required')
                 .notOneOf([Yup.ref('team1')], 'Teams must be different'),
-            date: Yup.string().required('Date is required'),
-            clockTime: Yup.string().required('Time is required'),
+            date: Yup.string(),
+            clockTime: Yup.string(),
         }),
         onSubmit: (values) => {
             // Combine date and time
-            const dateTimeString = `${values.date}T${values.clockTime}`; // e.g., "2026-02-05T14:30"
-            const finalDate = new Date(dateTimeString);
+            let finalTime = null;
+            if (values.date && values.clockTime) {
+                const dateTimeString = `${values.date}T${values.clockTime}`;
+                finalTime = new Date(dateTimeString).toISOString();
+            }
 
             mutate({
                 event: values.event,
                 teams: [values.team1, values.team2],
-                time: finalDate.toISOString(),
+                time: finalTime,
                 matchType: values.matchType,
             });
         },

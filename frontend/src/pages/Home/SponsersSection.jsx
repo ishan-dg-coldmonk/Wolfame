@@ -25,8 +25,16 @@ import shreedc from "../../assets/home-page/sponsors-section/shreedc.webp";
 import olympus from "../../assets/home-page/sponsors-section/olympus.webp";
 import youareawesome from "../../assets/home-page/sponsors-section/youareawesome.webp";
 import zerodeficiency from "../../assets/home-page/sponsors-section/zerodeficiency.webp";
+import maxProtein from "../../assets/home-page/sponsors-section/max-protien.webp";
+import luviaa from "../../assets/home-page/sponsors-section/luviaa.webp";
+import dynamic from "../../assets/home-page/sponsors-section/dynamic.webp";
 
 const sponsors = [
+    {
+        title: 'Max Protein',
+        logo: maxProtein,
+        backgroundColor: 'white'
+    },
     {
         title: 'ShreeDC',
         logo: shreedc,
@@ -45,6 +53,16 @@ const sponsors = [
     {
         title: 'Zero Deficiency',
         logo: zerodeficiency,
+        backgroundColor: 'white'
+    },
+    {
+        title: 'Dynamic',
+        logo: dynamic,
+        backgroundColor: 'white'
+    },
+    {
+        title: 'Luviaa',
+        logo: luviaa,
         backgroundColor: 'white'
     },
 ];

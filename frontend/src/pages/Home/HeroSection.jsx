@@ -152,28 +152,7 @@ function HeroSection() {
                             WOLFAME 2026
                         </h1>
                     </motion.div>
-                    <motion.div
-                        initial="hidden"
-                        animate="visible"
-                        variants={fadeInUp}
-                        transition={{ delay: 0.6 }}
-                    >
-                        <Typography variant="h3" color="white" sx={{
-                            fontWeight: "600",
-                            fontSize: { xs: "1.0rem", sm: "1.2rem" }, // Reduced from 1.5rem to fit one line
-                            fontFamily: "Frijole",
-                            textTransform: "uppercase",
-                            background: "linear-gradient(to right, white, rgb(162, 158, 159))",
-                            WebkitBackgroundClip: "text",
-                            WebkitTextFillColor: "transparent",
-                            marginTop: "-1rem",
-                            marginBottom: "1rem",
-                            textAlign: "center",
-                            whiteSpace: "nowrap"
-                        }}>
-                            COMING SOON
-                        </Typography>
-                    </motion.div>
+
                     <motion.div
                         initial="hidden"
                         animate="visible"

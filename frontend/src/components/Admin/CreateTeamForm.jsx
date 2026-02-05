@@ -21,7 +21,7 @@ const CreateTeamForm = ({ onClose }) => {
             name: Yup.string().required('Team Name is required'),
             residence: Yup.string().required('Residence is required'),
             event: Yup.string().required('Event is required'),
-            players: Yup.array().min(1, 'At least one player is required'),
+            players: Yup.array(),
         }),
         onSubmit: (values) => {
             mutate(values);
