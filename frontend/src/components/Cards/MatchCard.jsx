@@ -124,24 +124,28 @@ export default function MatchCard({ match, ...props }) {
                     >
                         {match.matchType || 'League Stage'}
                     </Typography>
-                    <Typography
-                        variant='h5'
-                        fontWeight={400}
-                        textAlign='center'
-                        letterSpacing={'1px'}
-                        sx={{ textShadow: '0px 2px 0 #000' }}
-                    >
-                        {moment(time).format('LT')}
-                    </Typography>
-                    <Typography
-                        variant='h5'
-                        fontWeight={400}
-                        textAlign='center'
-                        letterSpacing={'1px'}
-                        sx={{ textShadow: '0px 2px 0 #000' }}
-                    >
-                        {moment(time).format('Do MMMM')}
-                    </Typography>
+                    {time && (
+                        <>
+                            <Typography
+                                variant='h5'
+                                fontWeight={400}
+                                textAlign='center'
+                                letterSpacing={'1px'}
+                                sx={{ textShadow: '0px 2px 0 #000' }}
+                            >
+                                {moment(time).format('LT')}
+                            </Typography>
+                            <Typography
+                                variant='h5'
+                                fontWeight={400}
+                                textAlign='center'
+                                letterSpacing={'1px'}
+                                sx={{ textShadow: '0px 2px 0 #000' }}
+                            >
+                                {moment(time).format('Do MMMM')}
+                            </Typography>
+                        </>
+                    )}
                 </Stack>
             </Paper>
             <Stack direction='row' p={{ xs: 1, md: 2 }} gap={{ xs: 1, md: 3 }} sx={{ alignItems: 'stretch', justifyContent: 'space-evenly' }}>
