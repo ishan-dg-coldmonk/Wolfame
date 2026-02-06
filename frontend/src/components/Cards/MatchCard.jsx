@@ -126,15 +126,17 @@ export default function MatchCard({ match, ...props }) {
                     </Typography>
                     {time && (
                         <>
-                            <Typography
-                                variant='h5'
-                                fontWeight={400}
-                                textAlign='center'
-                                letterSpacing={'1px'}
-                                sx={{ textShadow: '0px 2px 0 #000' }}
-                            >
-                                {moment(time).format('LT')}
-                            </Typography>
+                            {(moment(time).hours() !== 0 || moment(time).minutes() !== 0) && (
+                                <Typography
+                                    variant='h5'
+                                    fontWeight={400}
+                                    textAlign='center'
+                                    letterSpacing={'1px'}
+                                    sx={{ textShadow: '0px 2px 0 #000' }}
+                                >
+                                    {moment(time).format('LT')}
+                                </Typography>
+                            )}
                             <Typography
                                 variant='h5'
                                 fontWeight={400}

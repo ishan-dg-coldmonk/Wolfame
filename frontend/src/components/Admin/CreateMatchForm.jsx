@@ -29,8 +29,11 @@ const CreateMatchForm = ({ onClose }) => {
         onSubmit: (values) => {
             // Combine date and time
             let finalTime = null;
-            if (values.date && values.clockTime) {
-                const dateTimeString = `${values.date}T${values.clockTime}`;
+            if (values.date) {
+                // If clockTime is provided, use it; otherwise default to "00:00"
+                const timeString = values.clockTime || "00:00";
+                const dateTimeString = `${values.date}T${timeString}`;
+                // Create date object (this will be in local time)
                 finalTime = new Date(dateTimeString).toISOString();
             }
 
