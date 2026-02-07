@@ -56,7 +56,7 @@ function WinnerBlock({ label, winnerList, event, hide }) {
     });
 
     // 3. Sort by points descending
-    processedList.sort((a, b) => (b.points || 0) - (a.points || 0));
+    processedList.sort((a, b) => (Number(b.points) || 0) - (Number(a.points) || 0));
 
     if (processedList.length === 0) {
         return <></>

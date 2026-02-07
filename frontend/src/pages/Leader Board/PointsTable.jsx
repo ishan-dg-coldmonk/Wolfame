@@ -46,7 +46,7 @@ function PointsBlock({ label, leaderboard }) {
                 points: dbEntry ? dbEntry.points : 0
             };
         })
-        .sort((a, b) => b.points - a.points);
+        .sort((a, b) => (Number(b.points) || 0) - (Number(a.points) || 0));
 
     return (
         <Stack gap={3} sx={{ width: '100%', alignItems: 'center' }}>
