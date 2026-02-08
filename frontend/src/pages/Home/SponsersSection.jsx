@@ -28,8 +28,14 @@ import zerodeficiency from "../../assets/home-page/sponsors-section/zerodeficien
 import maxProtein from "../../assets/home-page/sponsors-section/max-protien.webp";
 import luviaa from "../../assets/home-page/sponsors-section/luviaa.webp";
 import dynamic from "../../assets/home-page/sponsors-section/dynamic.webp";
+import campa from "../../assets/home-page/sponsors-section/campa.png";
 
 const sponsors = [
+    {
+        title: 'Campa',
+        logo: campa,
+        backgroundColor: 'white'
+    },
     {
         title: 'Max Protein',
         logo: maxProtein,
