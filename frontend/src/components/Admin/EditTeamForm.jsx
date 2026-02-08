@@ -10,11 +10,16 @@ import eventsList from '../../data/events';
 const EditTeamForm = ({ onClose }) => {
     const [submitError, setSubmitError] = useState(null);
     const [selectedTeamId, setSelectedTeamId] = useState('');
+    const [selectedEvent, setSelectedEvent] = useState('All');
 
     const { data: teams = [] } = useQuery({
         queryKey: ['teams'],
         queryFn: () => fetchTeams(),
     });
+
+    const filteredTeams = selectedEvent === 'All'
+        ? teams
+        : teams.filter(team => team.event === selectedEvent);
 
     const selectedTeam = teams.find(t => t._id === selectedTeamId);
 
@@ -94,6 +99,26 @@ const EditTeamForm = ({ onClose }) => {
                 {submitError && <Alert severity="error">{submitError}</Alert>}
 
                 <FormControl fullWidth>
+                    <InputLabel id="event-filter-label">Filter by Event</InputLabel>
+                    <Select
+                        labelId="event-filter-label"
+                        value={selectedEvent}
+                        label="Filter by Event"
+                        onChange={(e) => {
+                            setSelectedEvent(e.target.value);
+                            setSelectedTeamId('');
+                        }}
+                    >
+                        <MenuItem value="All">All Events</MenuItem>
+                        {eventsList.map((ev) => (
+                            <MenuItem key={ev.event} value={ev.event}>
+                                {ev.label}
+                            </MenuItem>
+                        ))}
+                    </Select>
+                </FormControl>
+
+                <FormControl fullWidth>
                     <InputLabel id="team-select-label">Select Team to Edit</InputLabel>
                     <Select
                         labelId="team-select-label"
@@ -104,7 +129,7 @@ const EditTeamForm = ({ onClose }) => {
                             setSubmitError(null);
                         }}
                     >
-                        {teams.map((team) => (
+                        {filteredTeams.map((team) => (
                             <MenuItem key={team._id} value={team._id}>
                                 {team.name} ({team.residence} - {team.event})
                             </MenuItem>

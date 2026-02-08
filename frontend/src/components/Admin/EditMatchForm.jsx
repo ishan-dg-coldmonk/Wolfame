@@ -4,15 +4,21 @@ import * as Yup from 'yup';
 import { TextField, Button, MenuItem, FormControl, InputLabel, Select, Typography, Stack, Alert } from '@mui/material';
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { fetchMatches, updateMatch, deleteMatch, queryClient } from '../../services/http';
+import eventsList from '../../data/events';
 
 const EditMatchForm = ({ onClose }) => {
     const [submitError, setSubmitError] = useState(null);
     const [selectedMatchId, setSelectedMatchId] = useState('');
+    const [selectedEvent, setSelectedEvent] = useState('All');
 
     const { data: matches = [] } = useQuery({
         queryKey: ['matches'],
         queryFn: () => fetchMatches(),
     });
+
+    const filteredMatches = selectedEvent === 'All'
+        ? matches
+        : matches.filter(match => match.event === selectedEvent);
 
     const selectedMatch = matches.find(m => m._id === selectedMatchId);
 
@@ -94,6 +100,26 @@ const EditMatchForm = ({ onClose }) => {
                 {submitError && <Alert severity="error">{submitError}</Alert>}
 
                 <FormControl fullWidth>
+                    <InputLabel id="event-select-label">Filter by Event</InputLabel>
+                    <Select
+                        labelId="event-select-label"
+                        value={selectedEvent}
+                        label="Filter by Event"
+                        onChange={(e) => {
+                            setSelectedEvent(e.target.value);
+                            setSelectedMatchId(''); // Reset selected match when filter changes
+                        }}
+                    >
+                        <MenuItem value="All">All Events</MenuItem>
+                        {eventsList.map((event) => (
+                            <MenuItem key={event.event} value={event.event}>
+                                {event.label}
+                            </MenuItem>
+                        ))}
+                    </Select>
+                </FormControl>
+
+                <FormControl fullWidth>
                     <InputLabel id="match-select-label">Select Match to Edit/Delete</InputLabel>
                     <Select
                         labelId="match-select-label"
@@ -104,7 +130,7 @@ const EditMatchForm = ({ onClose }) => {
                             setSubmitError(null);
                         }}
                     >
-                        {matches.map((match) => (
+                        {filteredMatches.map((match) => (
                             <MenuItem key={match._id} value={match._id}>
                                 {match.event}: {match.teams[0]?.name} vs {match.teams[1]?.name}
                             </MenuItem>
